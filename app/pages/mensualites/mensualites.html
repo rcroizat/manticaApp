@@ -1,0 +1,50 @@
+<ion-navbar *navbar primary>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mensualités</ion-title>
+</ion-navbar>
+<ion-content padding class="mensualites">
+    <ion-list>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+  
+              Montant du prêt </ion-label>
+             <ion-input type="number"  ><span>Euro</span></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="calendar"></ion-icon>
+                Durée du prêt (en années)</ion-label>
+            <ion-input  type="number" min="7" max="36"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="trending-up"></ion-icon>
+                Taux d'intérêt (%)</ion-label>
+            <ion-input type="number" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="home"></ion-icon>
+                Taux d'assurance (%)</ion-label>
+            <ion-input  type="number" min="7" max="36"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="briefcase"></ion-icon>
+                Frais de dossier (€)</ion-label>
+            <ion-input type="number" min="7" max="36"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="calculator"></ion-icon>
+                Frais de caution (€)</ion-label>
+            <ion-input type="number" min="7" max="36"></ion-input>
+        </ion-item>
+   </ion-list>
+
+<h5><b>Mensualités :</b></h5>
+</ion-content>

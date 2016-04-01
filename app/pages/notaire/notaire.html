@@ -1,0 +1,53 @@
+<ion-navbar *navbar primary>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Frais de notaire</ion-title>
+</ion-navbar>
+<ion-content padding class="notaire">
+    <ion-list>
+        <ion-item>
+            <ion-label><ion-icon name="home"></ion-icon>Type de bien</ion-label>
+
+            <ion-select [(ngModel)]="type">
+                <ion-option value="ancien">Logement ancien</ion-option>
+                <ion-option value="neuf">Logement neuf</ion-option>
+            </ion-select>
+        </ion-item>
+     
+        <ion-item>
+            <ion-label>
+                <ion-icon name="logo-euro"></ion-icon>
+                Montant de l'achat</ion-label>
+            <ion-input type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>
+                <ion-icon name="map"></ion-icon>
+                Département</ion-label>
+
+            <ion-select [(ngModel)]="departement">
+                <ion-option value="75">75</ion-option>
+                <ion-option value="77">77</ion-option>
+                <ion-option value="78">78</ion-option>
+                <ion-option value="91">91</ion-option>
+                <ion-option value="92">92</ion-option>
+                <ion-option value="93">93</ion-option>
+                <ion-option value="94">94</ion-option>
+                <ion-option value="95">95</ion-option>
+            </ion-select>
+        </ion-item>
+      
+    </ion-list>
+
+    <ion-row center>
+  
+  <ion-col center width-66><b>Frais de notaire : 454654654€</b></ion-col>
+  
+
+  <ion-col ><button primary>Détails</button></ion-col>
+
+
+</ion-row>
+
+</ion-content>

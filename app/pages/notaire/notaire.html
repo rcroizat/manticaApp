@@ -7,22 +7,16 @@
 <ion-content padding class="notaire">
     <ion-list>
         <ion-item>
-            <ion-label><ion-icon name="home"></ion-icon>Type de bien</ion-label>
+            <ion-label inputLight><ion-icon name="home"></ion-icon>Type de logement</ion-label>
 
             <ion-select [(ngModel)]="type">
-                <ion-option value="ancien">Logement ancien</ion-option>
-                <ion-option value="neuf">Logement neuf</ion-option>
+                <ion-option value="ancien">Ancien</ion-option>
+                <ion-option value="neuf">Neuf</ion-option>
             </ion-select>
         </ion-item>
      
         <ion-item>
-            <ion-label>
-                <ion-icon name="logo-euro"></ion-icon>
-                Montant de l'achat</ion-label>
-            <ion-input type="number"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>
+            <ion-label inputLight>
                 <ion-icon name="map"></ion-icon>
                 Département</ion-label>
 
@@ -36,6 +30,13 @@
                 <ion-option value="94">94</ion-option>
                 <ion-option value="95">95</ion-option>
             </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Montant de l'achat</ion-label>
+            <ion-input type="number"></ion-input>
         </ion-item>
       
     </ion-list>

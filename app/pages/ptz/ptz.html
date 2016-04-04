@@ -14,5 +14,64 @@
 </ion-navbar>
 
 <ion-content padding class="ptz">
-  
+   <ion-list>
+         <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="map"></ion-icon>
+                Zone PTZ+ du logement</ion-label>
+
+            <ion-select [(ngModel)]="zonePtz">
+                <ion-option value="a">A</ion-option>
+                <ion-option value="b1">B1</ion-option>
+                <ion-option value="b2">B2</ion-option>
+                <ion-option value="c">C</ion-option>
+            </ion-select>
+        </ion-item>
+       <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="people"></ion-icon>
+                Nombre de personnes au foyer</ion-label>
+
+            <ion-select [(ngModel)]="persFoyer">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+                <ion-option value="7">7</ion-option>
+                <ion-option value="8">8 et plus</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Revenu Fiscal de référence</ion-label>
+            <ion-input type="number" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Coût du projet</ion-label>
+            <ion-input type="number" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Apport personnel</ion-label>
+            <ion-input type="number" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Type de bien</ion-label>
+
+            <ion-select [(ngModel)]="bienPts">
+                <ion-option value="neuf">Neuf</ion-option>
+                <ion-option value="hlm">HLM ancien</ion-option>
+                <ion-option value="ancienTravaux">Ancien avec travaux</ion-option>
+                <ion-option value="anciensSansTravaux">Ancien sans travaux</ion-option>
+            </ion-select>
+        </ion-item>
+   </ion-list>
 </ion-content>

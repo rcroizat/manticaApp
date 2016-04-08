@@ -1,3 +1,4 @@
+import 'es6-shim';
 import {App, IonicApp, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 
@@ -16,7 +17,7 @@ import {PtzPage} from './pages/ptz/ptz';
   config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 class MyApp {
-  rootPage: any = GettingStartedPage;
+  rootPage: any = MensualitesPage;
   pages: Array<{title: string, component: any}>
 
   constructor(private app: IonicApp, private platform: Platform) {

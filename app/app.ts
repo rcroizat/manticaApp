@@ -27,8 +27,8 @@ class MyApp {
     this.pages = [
       { title: 'Getting Started', component: GettingStartedPage },
       { title: 'List', component: ListPage },
-      { title: 'Mensualités', component: MensualitesPage },
-      { title: 'Emprunt', component: CapacitePage },
+      { title: 'Calcul des mensualités', component: MensualitesPage },
+      { title: 'Capacité d\'emprunt', component: CapacitePage },
       { title: 'Demande de devis', component: DevisPage },
       { title: 'Frais de notaire', component: NotairePage },
       { title: 'Prêt à taux zéro', component: PtzPage }

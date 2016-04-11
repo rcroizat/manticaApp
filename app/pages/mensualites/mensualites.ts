@@ -1,22 +1,32 @@
 import {Page} from 'ionic-angular';
+import {Data} from '../../services/data';
+import {DataService} from '../../services/data.service';
+import {OnInit} from 'angular2/core';
 
 @Page({
-  templateUrl: 'build/pages/mensualites/mensualites.html'
+  templateUrl: 'build/pages/mensualites/mensualites.html',
+  providers: [DataService]
 })
-export class MensualitesPage {
+export class MensualitesPage implements OnInit {
 
 
 	montant : number;
-	mensualite: number;
-	matt = Math;
-  constructor() {
-	 
+	datas: Data;
+	math = Math;
+	constructor(private _dataService: DataService) {
+
   }
 
-  onkey(event: any) {
-	  this.montant = event.target.value;
-	  this.mensualite = this.montant / (10 * 12);
-  }
+
+	ngOnInit() {
+		this.getDatas();
+	}
+
+	getDatas() {
+		this._dataService.getDatas().then(datas => this.datas = datas);
+		console.log('lala : ' + this.datas);
+	}
+
 
 
 }

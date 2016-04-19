@@ -5,5 +5,53 @@
     <ion-title>Demande de devis</ion-title>
 </ion-navbar>
 <ion-content padding class="devis">
-
+    <ion-list>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="person"></ion-icon>
+                Nom</ion-label>
+            <ion-input type="text" value=""></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="person"></ion-icon>
+                Prénom</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="call"></ion-icon>
+                Tél. domicile</ion-label>
+            <ion-input type="number"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="phone-portrait"></ion-icon>
+                Tél. portable/bureau</ion-label>
+            <ion-input type="number" min="7" max="36"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Type de bien</ion-label>
+            <ion-select name="type">
+                <ion-option value="Maison">Maison</ion-option>
+                <ion-option value="appartement">Appartement</ion-option>
+                <ion-option value="terrain">Terrain</ion-option>
+                <ion-option value="autre">Autre</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Montant de l'acquisition (€)</ion-label>
+            <ion-input  type="number" min="7" max="36"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Apport personnel (€)</ion-label>
+            <ion-input type="number" min="7" max="36"></ion-input>
+        </ion-item>
+    </ion-list>
 </ion-content>

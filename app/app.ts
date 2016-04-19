@@ -1,6 +1,10 @@
 import 'es6-shim';
-import {App, IonicApp, Platform} from 'ionic-angular';
+import {App, IonicApp, Platform, Storage, LocalStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
+
+//Services
+import {DataService} from './services/data.service';
+
 
 // Pages
 import {GettingStartedPage} from './pages/getting-started/getting-started';
@@ -14,12 +18,12 @@ import {PtzPage} from './pages/ptz/ptz';
 
 @App({
   templateUrl: 'build/app.html',
-  config: {} // http://ionicframework.com/docs/v2/api/config/Config/
+  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
+  providers: [DataService] 
 })
 class MyApp {
-  rootPage: any = MensualitesPage;
+  rootPage: any = CapacitePage;
   pages: Array<{title: string, component: any}>
-
   constructor(private app: IonicApp, private platform: Platform) {
     this.initializeApp();
 

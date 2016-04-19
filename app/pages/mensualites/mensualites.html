@@ -4,56 +4,56 @@
     </button>
     <ion-title>Mensualités</ion-title>
 </ion-navbar>
-<ion-content padding class="mensualites">
-{{datas}}e
+<ion-content padding  class="mensualites">
     <ion-list >
         <ion-item>
             <ion-label floating >
                 <ion-icon name="logo-euro"></ion-icon>
-  
-              Montant du prêt {{datas.mensualites}}</ion-label>
-             <ion-input #montant type="number"  value=""></ion-input>
+              Montant du prêt</ion-label>
+             <ion-input [(ngModel)]="datas.montant" (keyup)="onKey('montant', montant.value)" #montant type="number"  value=""></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label floating>
-                <ion-icon name="calendar"></ion-icon>
+                <ion-icon name="timer"></ion-icon>
                 Durée du prêt (en années){{chiffre}}</ion-label>
-            <ion-input  #duree  type="number" >{{chiffre}}</ion-input>
+            <ion-input [(ngModel)]="datas.duree" #duree (keyup)="onKey('duree', duree.value)" type="number" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="trending-up"></ion-icon>
                 Taux d'intérêt (%)</ion-label>
-            <ion-input #interet type="number" ></ion-input>
+            <ion-input [(ngModel)]="datas.interets" #interets (keyup)="onKey('interets', interets.value)" type="number" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="home"></ion-icon>
                 Taux d'assurance (%)</ion-label>
-            <ion-input  type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.assurance"  #assurance (keyup)="onKey('assurance', assurance.value)" type="number" min="7" max="36"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="briefcase"></ion-icon>
                 Frais de dossier (€)</ion-label>
-            <ion-input type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.frais"  #frais (keyup)="onKey('frais', frais.value)" type="number" min="7" max="36"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="calculator"></ion-icon>
                 Frais de caution (€)</ion-label>
-            <ion-input type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.caution"  #caution (keyup)="onKey('caution', duree.caution)" type="number" min="7" max="36"></ion-input>
         </ion-item>
    </ion-list>
 
+{{datas | json}}<br>
+{{datas}}
+
+
 <h5><b>Mensualités :</b></h5>
-<div *ngIf="montant.value"><!-- 
-<div *ngIf="montant.value && duree.value && interet.value"> -->
+<p *ngIf="montant.value && duree.value && interets.value">
+ {{(montant.value * ((interets.value/100)/12))/(1-(math.pow((1+((interets.value/100)/12)),-(duree.value*12))))}}
 
+</p>
 
-    {{(montant.value * ((interet.value/100)/12))/(1-(math.pow((1+((interet.value/100)/12)),-(duree.value*12))))}}
-
-
-</div>
+   
 </ion-content>

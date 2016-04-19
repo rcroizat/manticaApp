@@ -4,15 +4,16 @@ import {DataService} from '../../services/data.service';
 import {OnInit} from 'angular2/core';
 
 @Page({
-  templateUrl: 'build/pages/mensualites/mensualites.html',
-  providers: [DataService]
+  templateUrl: 'build/pages/mensualites/mensualites.html'
 })
 export class MensualitesPage implements OnInit {
 
 
 	montant : number;
 	datas: Data;
+	value: number;
 	math = Math;
+
 	constructor(private _dataService: DataService) {
 
   }
@@ -20,11 +21,17 @@ export class MensualitesPage implements OnInit {
 
 	ngOnInit() {
 		this.getDatas();
+
 	}
 
 	getDatas() {
-		this._dataService.getDatas().then(datas => this.datas = datas);
-		console.log('lala : ' + this.datas);
+		this.datas = this._dataService.getDatas();		
+	}
+
+
+	onKey(field:string, value:number) {
+
+		this._dataService.save(field, value);	
 	}
 
 

@@ -51,15 +51,14 @@
  {{
 (
  mensualite.value *
- (1-(math.pow(1+((interets.value/100)/12), duree.value*12))*12)
+(1-
+ math.pow((1+((interets.value/100)/12)),-duree.value*12)
+
+ )
 
  /((interets.value/100)/12)
 )
-
  }}
-Mens {{mensualite.value}}
-interets {{interets.value}}
-duree {{duree.value}}
 </p>
 
 </ion-content>

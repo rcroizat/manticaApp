@@ -55,12 +55,13 @@
             <ion-input type="number" ngControl="apport"></ion-input>
         </ion-item>
     </ion-list>
-{{devisForm.valid}}
 
   <button block primary type="submit" [disabled]="!devisForm.valid">Envoyer
   </button>
 
     </form>
 
-    {{response}}
+    
+  <button block primary (click)="next()">suivant
+  </button>
 </ion-content>

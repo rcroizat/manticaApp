@@ -10,9 +10,9 @@
             <ion-label floating >
                 <ion-icon name="logo-euro"></ion-icon>
               Montant du prêt</ion-label>
-             <ion-input [(ngModel)]="datas.montant" (keyup)="onKey('montant', montant.value)" #montant type="number"  value=""></ion-input>
+             <ion-input [(ngModel)]="datas.montant" (keyup)="onKey('montant', montant.value)" #montant type="number"  required  ></ion-input>
         </ion-item>
-
+    <br> dsdsd{{montant.className}}
         <ion-item>
             <ion-label floating>
                 <ion-icon name="timer"></ion-icon>
@@ -45,15 +45,21 @@
         </ion-item>
    </ion-list>
 
-{{datas | json}}<br>
-{{datas}}
-
-
+json {{datas | json}}<br>
+ normal : {{datas}}<br>
+total :{{total}}
 <h5><b>Mensualités :</b></h5>
 <p *ngIf="montant.value && duree.value && interets.value">
- {{(montant.value * ((interets.value/100)/12))/(1-(math.pow((1+((interets.value/100)/12)),-(duree.value*12))))}}
+ {{
+ (montant.value * ((interets.value/100)/12))
+ /(1-
+ (math.pow((1+((interets.value/100)/12)),-(duree.value*12)))
+ )}}
 
 </p>
 
+ <ion-input [(ngModel)]="one"  type="number" ></ion-input>
+ <ion-input [(ngModel)]="two"  type="number" ></ion-input>
+moko {{total ||async}}
    
 </ion-content>

@@ -10,7 +10,6 @@ import {OnInit} from 'angular2/core';
 })
 export class CapacitePage implements OnInit {
 
-	montant: number;
 	datas: Data;
 	math = Math;
 	constructor(private _dataService: DataService) {

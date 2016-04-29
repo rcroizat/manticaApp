@@ -35,6 +35,9 @@ export class DataService {
 		
 	}
 
+	calculMensualite() {
+	}
+
 	save(field:string, value:number) {
 		this.storage.set(field, value);
 	}

@@ -9,31 +9,5 @@ import {OnInit} from 'angular2/core';
 export class MensualitesPage implements OnInit {
 
 
-	montant : number;
-	datas: Data;
-	value: number;
-	math = Math;
-
-	constructor(private _dataService: DataService) {
-
-  }
-
-
-	ngOnInit() {
-		this.getDatas();
-
-	}
-
-	getDatas() {
-		this.datas = this._dataService.getDatas();		
-	}
-
-
-	onKey(field:string, value:number) {
-
-		this._dataService.save(field, value);	
-	}
-
-
 
 }

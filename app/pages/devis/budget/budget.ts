@@ -23,7 +23,7 @@ export class BudgetPage {
 	}
 
 	next(){
-		this.nav.push(BudgetPage);
+		this.nav.push(CoordonneesPage);
 	}
 		
 }

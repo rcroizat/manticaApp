@@ -4,9 +4,9 @@
     </button>
     <ion-title>Votre situation</ion-title>
 </ion-navbar>
-<ion-content padding class="situation" (ngSubmit)="next()">
+<ion-content padding class="situation" >
  
- <form [(ngFormModel)]="situationForm" >
+ <form [(ngFormModel)]="situationForm" (ngSubmit)="next()" >
         <ion-item>
           <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>

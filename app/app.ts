@@ -4,6 +4,7 @@ import {StatusBar} from 'ionic-native';
 
 //Services
 import {DataService} from './services/data.service';
+import {DevisService} from './services/devis.service';
 
 
 // Pages
@@ -19,7 +20,7 @@ import {PtzPage} from './pages/ptz/ptz';
 @App({
   templateUrl: 'build/app.html',
   config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
-  providers: [DataService] 
+  providers: [DataService, DevisService] 
 })
 class MyApp {
   rootPage: any = DevisPage;

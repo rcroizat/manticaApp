@@ -8,57 +8,90 @@
   <form [(ngFormModel)]="devisForm" (ngSubmit)="next()">
     <ion-list>
         <ion-item>
-            <ion-label floating>
-                <ion-icon name="person"></ion-icon>
-                Nom </ion-label>
-            <ion-input type="text" ngControl="nom"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>
-                <ion-icon name="person"></ion-icon>
-                Prénom</ion-label>
-            <ion-input type="text" ngControl="prenom"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>
-                <ion-icon name="call"></ion-icon>
-                Tél. domicile</ion-label>
-            <ion-input type="number" ngControl="telDom"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>
-                <ion-icon name="phone-portrait"></ion-icon>
-                Tél. portable/bureau</ion-label>
-            <ion-input type="number" ngControl="telMobil" ></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label inputLight>
+              <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
-                Type de bien</ion-label>
-            <ion-select name="type" ngControl="type">
+                Votre projet immobilier</ion-label>
+            <ion-select [(ngModel)]="data.projet" ngControl="projet">
                 <ion-option value="Maison">Maison</ion-option>
                 <ion-option value="appartement">Appartement</ion-option>
                 <ion-option value="terrain">Terrain</ion-option>
                 <ion-option value="autre">Autre</ion-option>
             </ion-select>
+        </ion-item>    
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="pin"></ion-icon>
+                Code postal</ion-label>
+            <ion-input type="number" [(ngModel)]="data.cpProjet" ngControl="cpProjet"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
-                <ion-icon name="logo-euro"></ion-icon>
-                Montant de l'acquisition (€)</ion-label>
-            <ion-input  type="number" ngControl="montant"></ion-input>
+                <ion-icon name="map"></ion-icon>
+                Ville du bien</ion-label>
+            <ion-input type="text" ngControl="villeProjet"></ion-input>
+        </ion-item>
+         <ion-item>
+              <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Type de bien</ion-label>
+            <ion-select ngControl="type">
+                <ion-option value="Maison">Maison</ion-option>
+                <ion-option value="appartement">Appartement</ion-option>
+                <ion-option value="terrain">Terrain</ion-option>
+                <ion-option value="terrainConstruction">Terrain + construction</ion-option>
+                <ion-option value="autres">Autres</ion-option>
+            </ion-select>
+        </ion-item>
+         <ion-item>
+              <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Etat du bien</ion-label>
+            <ion-select ngControl="etat">
+                <ion-option value="ancien">Ancien</ion-option>
+                <ion-option value="neuf">Neuf</ion-option>
+                <ion-option value="social">Revente d'un bien de parc social</ion-option>
+            </ion-select>
         </ion-item>
         <ion-item>
-            <ion-label floating>
-                <ion-icon name="logo-euro"></ion-icon>
-                Apport personnel (€)</ion-label>
-            <ion-input type="number" ngControl="apport"></ion-input>
+            <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Norme</ion-label>
+            <ion-select ngControl="norme">
+                <ion-option value="a">a</ion-option>
+                <ion-option value="b">b</ion-option>
+                <ion-option value="c">c</ion-option>
+                <ion-option value="d">d</ion-option>
+                <ion-option value="e">e</ion-option>
+                <ion-option value="f">f</ion-option>
+                <ion-option value="g">g</ion-option>
+            </ion-select>
+        </ion-item>
+       
+        <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="leaf"></ion-icon>
+                Norme BBC / Non BBC</ion-label>
+            <ion-select ngControl="bbc">
+                <ion-option value="bbc">BBC</ion-option>
+                <ion-option value="nonBbc">Non BBC</ion-option>
+            </ion-select>
+        </ion-item>
+       
+        <ion-item>
+            <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Usage du bien</ion-label>
+            <ion-select ngControl="usage">
+                <ion-option value="principals">Résidence principals</ion-option>
+                <ion-option value="secondaire">Résidence secondaire</ion-option>
+                <ion-option value="locatif">Investissement locatif</ion-option>
+            </ion-select>
         </ion-item>
     </ion-list>
 
     
 
-  <button block primary type="submit" [disabled]="!devisForm.valid">Envoyer
+  <button block primary type="submit" [disabled]="!devisForm.valid">Suivant
   </button>
 
     </form>

@@ -5,7 +5,7 @@
     <ion-title>Demande de devis</ion-title>
 </ion-navbar>
 <ion-content padding class="devis">
-  <form [(ngFormModel)]="devisForm" (ngSubmit)="send()">
+  <form [(ngFormModel)]="devisForm" (ngSubmit)="next()">
     <ion-list>
         <ion-item>
             <ion-label floating>
@@ -56,12 +56,11 @@
         </ion-item>
     </ion-list>
 
+    
+
   <button block primary type="submit" [disabled]="!devisForm.valid">Envoyer
   </button>
 
     </form>
 
-    
-  <button block primary (click)="next()">suivant
-  </button>
 </ion-content>

@@ -9,17 +9,19 @@ import {BudgetPage} from '../budget/budget';
 export class SituationPage {
 
 
+	situationForm : ControlGroup;
 	nav : NavController;
-
-	constructor(form: FormBuilder, nav: NavController) {
+		constructor(form: FormBuilder, nav: NavController) {
 		this.nav = nav;
 
+		this.situationForm = form.group({ // name should match [ngFormModel] in your html
+			situationActuelle: ["", Validators.required],
+			avancement: ["", Validators]
+		});
+	}
 
+	next(){
+		this.nav.push(BudgetPage);
 	}
 		
-
-	next() {
-		console.log('next');
-		this.nav.push(SituationPage);
-	}
 }

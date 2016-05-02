@@ -1,0 +1,32 @@
+<ion-navbar *navbar primary>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Budget de votre projet</ion-title>
+</ion-navbar>
+<ion-content padding class="budget">
+ 
+ <form [(ngFormModel)]="budgetForm" (ngSubmit)="next()">
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Montant estimé de l'acquisition</ion-label>
+            <ion-input  type="number" ngControl="montant"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Frais de notaires estimés</ion-label>
+            <ion-input  type="number" ngControl="notaire"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Budget total estimé</ion-label>
+            <ion-input  type="number" ngControl="budget"></ion-input>
+        </ion-item>
+
+  <button block primary type="submit" [disabled]="!budgetForm.valid">Suivant
+  </button>
+</form>
+</ion-content>

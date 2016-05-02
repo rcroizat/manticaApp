@@ -2,19 +2,31 @@
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Demande de devis</ion-title>
+    <ion-title>Votre situation</ion-title>
 </ion-navbar>
-<ion-content padding class="devis">
+<ion-content padding class="situation" (ngSubmit)="next()">
  
- 
+ <form [(ngFormModel)]="situationForm" >
         <ion-item>
-            <ion-label floating>
-                <ion-icon name="logo-euro"></ion-icon>
-                Apport personnel (€)</ion-label>
-            <ion-input type="number" ></ion-input>
+          <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Votre situation actuelle</ion-label>
+            <ion-select ngControl="situationActuelle">
+                <ion-option value="Locataire">Locataire</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Votre niveau d'avancement</ion-label>
+            <ion-select ngControl="avancement">
+                <ion-option value="debut">Vous débutez vos recherches</ion-option>
+                <ion-option value="Locataire">Locataire</ion-option>
+            </ion-select>
         </ion-item>
 
 
-  <button block primary (click)="next()">suivant
+  <button block primary type="submit" [disabled]="!situationForm.valid">Suivant
   </button>
+</form>
 </ion-content>

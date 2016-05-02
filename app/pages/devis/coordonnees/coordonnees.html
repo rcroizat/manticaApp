@@ -1,0 +1,73 @@
+<ion-navbar *navbar primary>
+    <button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vos coordonnées</ion-title>
+</ion-navbar>
+<ion-content padding class="coordonnees">
+ 
+ <form [(ngFormModel)]="coordonneesForm" (ngSubmit)="send()" >
+       <ion-item>
+          <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Civilité</ion-label>
+            <ion-select ngControl="civilite">
+                <ion-option value="monsieur">Monsieur</ion-option>
+                <ion-option value="madame">Madame</ion-option>
+            </ion-select>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre nom</ion-label>
+            <ion-input  type="text" ngControl="nom"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre prenom</ion-label>
+            <ion-input  type="text" ngControl="prenom"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre code postal</ion-label>
+            <ion-input  type="number" ngControl="cp"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre ville</ion-label>
+            <ion-input  type="text" ngControl="ville"></ion-input>
+        </ion-item>
+       <ion-item>
+          <ion-label inputLight>
+                <ion-icon name="home"></ion-icon>
+                Vous préfére être rappelé sur : </ion-label>
+            <ion-select ngControl="preference">
+                <ion-option value="portable">Téléphone portable</ion-option>
+                <ion-option value="madame">Madame</ion-option>
+            </ion-select>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre téléphone portable</ion-label>
+            <ion-input  type="tel" ngControl="telPort"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre téléphone fixe</ion-label>
+            <ion-input  type="tel" ngControl="telFixe"></ion-input>
+        </ion-item>
+       <ion-item>
+            <ion-label floating>
+                <ion-icon name="logo-euro"></ion-icon>
+                Votre téléphone professionnel</ion-label>
+            <ion-input  type="tel" ngControl="telPro"></ion-input>
+        </ion-item>
+  <button block primary type="submit" [disabled]="!coordonneesForm.valid">Envoyer
+  </button>
+</form>
+</ion-content>

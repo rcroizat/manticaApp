@@ -21,4 +21,5 @@ export class DevisData {
 	montant: number;
 	notaire: number;
 	budget: number;
+	mail: string;
 }

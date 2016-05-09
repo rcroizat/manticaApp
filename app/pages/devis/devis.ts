@@ -36,7 +36,7 @@ export class DevisPage implements OnInit {
 
 	next(){
 	
-		this.nav.push(SituationPage, { devis: this.devisForm.value });
+		this.nav.push(SituationPage);
 
 	}
 	

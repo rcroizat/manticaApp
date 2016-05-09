@@ -1,9 +1,15 @@
 import {Page, NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import { Http, HTTP_PROVIDERS }    from 'angular2/http';
+import {OnInit} from 'angular2/core';
+
+
 import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
-import {OnInit} from 'angular2/core';
+
+
+import {GettingStartedPage} from '../../../pages/getting-started/getting-started';
+
 
 @Page({
 	templateUrl: 'build/pages/devis/coordonnees/coordonnees.html',
@@ -21,15 +27,15 @@ export class CoordonneesPage implements OnInit {
 		this.nav = nav;
 
 		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
-			civilite: ["", Validators],
+			civilite: ["", Validators.required],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
-			cp: ["", Validators],
-			ville: ["", Validators],
-			preference: ["", Validators],
-			telPort: ["", Validators],
-			telFixe: ["", Validators],
-			telPro: ["", Validators],
+			cp: ["", Validators.required],
+			ville: ["", Validators.required],
+			preference: ["", Validators.required],
+			telPort: ["", Validators.required],
+			telFixe: ["", Validators.required],
+			telPro: ["", Validators.required],
 			mail: ["", Validators.required]
 		});
 	}
@@ -42,7 +48,7 @@ export class CoordonneesPage implements OnInit {
 	getDatas() {
 		this.data = this._devisService.getDevisData();
 	}
-
+// envoie un post à mailer.php à la racine d'e-mantica PROD
 	send() {
 		let value = this.data;
 		
@@ -53,10 +59,18 @@ export class CoordonneesPage implements OnInit {
 					let alert = Alert.create({
 						title: 'Demande envoyée !',
 						subTitle: 'Votre demande a bien été envoyé, un de nos experts vous contactera sous peu',
-						buttons: ['OK']
+						buttons: [
+							{
+								text: 'OK',
+								handler: () => {
+									this.nav.setRoot(GettingStartedPage);
+								}
+							}
+						]
 					});
 
 					this.nav.present(alert);
+
 				} else {
 					let alert = Alert.create({
 						title: 'Erreur',

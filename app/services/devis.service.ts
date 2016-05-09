@@ -4,7 +4,7 @@ import {DevisData} from './devis';
 @Injectable()
 export class DevisService {
 
-	formDD: DevisData = {
+	formData: DevisData = {
 		projet: null,
 		cpProjet: null,
 		villeProjet: null,
@@ -38,7 +38,7 @@ export class DevisService {
 	}
 
 	getDevisData() {
-		return this.formDD;
+		return this.formData;
 	}
 
 }

@@ -3,15 +3,16 @@ import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {SituationPage} from './situation/situation';
 import {DevisService} from '../../services/devis.service';
 import {DevisData} from '../../services/devis';
+import {OnInit} from 'angular2/core';
 
 @Page({
 	templateUrl: 'build/pages/devis/devis.html'
 })
 
-export class DevisPage {
+export class DevisPage implements OnInit  {
 
 
-	response : boolean;
+	response: boolean;
 	devisForm : ControlGroup;
 	nav : NavController;
 	data: DevisData;
@@ -38,11 +39,11 @@ export class DevisPage {
 
 	getDatas() {
 		this.data = this._devisService.getDevisData();
+		console.log(this.data);
 	}
 
 
 	next(){
-		console.log(this.data);
 		this.nav.push(SituationPage, { devis: this.devisForm.value });
 
 	}

@@ -5,8 +5,8 @@ import {Data} from './data';
 @Injectable()
 export class DataService {
 	storage : Storage;
-	data: any;
 	all: Data;
+	
 	constructor() {
 		this.storage = new Storage(LocalStorage);
 	}

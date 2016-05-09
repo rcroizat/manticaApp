@@ -5,6 +5,8 @@ import {DevisService} from '../../services/devis.service';
 import {DevisData} from '../../services/devis';
 import {OnInit} from 'angular2/core';
 
+import {Input} from 'angular2/core';
+
 @Page({
 	templateUrl: 'build/pages/devis/devis.html'
 })
@@ -19,17 +21,7 @@ export class DevisPage implements OnInit  {
 
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
-
-		this.devisForm = form.group({ // name should match [ngFormModel] in your html
-			projet: ["", Validators],
-			cpProjet: ["", Validators.required],
-			villeProjet: ["", Validators],
-			type: ["", Validators],
-			etat: ["", Validators],
-			norme: ["", Validators],
-			bbc: ["", Validators],
-			usage: ["", Validators]
-		});
+		
 	}
 
 
@@ -44,7 +36,8 @@ export class DevisPage implements OnInit  {
 
 
 	next(){
-		this.nav.push(SituationPage, { devis: this.devisForm.value });
+	
+		this.nav.push(SituationPage);
 
 	}
 	

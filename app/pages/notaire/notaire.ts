@@ -11,7 +11,15 @@ import {Page} from 'ionic-angular';
 })
 
 export class NotairePage {
+	result: number;
+	montantNotaire: number;
+	departement: number;
+	type: number;
   constructor() {
 
+  }
+
+  calcul(a : any, b : any){
+	  this.result = a + b;
   }
 }

@@ -12,6 +12,7 @@
             <ion-select [(ngModel)]="type">
                 <ion-option value="ancien">Ancien</ion-option>
                 <ion-option value="neuf">Neuf</ion-option>
+                <ion-option value="terrain">Terrain</ion-option>
             </ion-select>
         </ion-item>
      
@@ -36,14 +37,24 @@
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Montant de l'achat</ion-label>
-            <ion-input type="number"></ion-input>
+            <ion-input type="number" [(ngModel)]="montantNotaire"></ion-input>
         </ion-item>
       
     </ion-list>
 
     <ion-row center>
-  
-  <ion-col center width-66><b>Frais de notaire : 454654654€</b></ion-col>
+  <button (click)="calcul(montantNotaire, departement, type)"></button>
+  <ion-col center width-66>
+
+  <b>Frais de notaire : 454654654€</b>
+
+{{result}}
+
+
+
+
+
+  </ion-col>
   
 
   <ion-col ><button primary>Détails</button></ion-col>

@@ -7,7 +7,7 @@
 <ion-content padding class="notaire">
     <ion-list>
         <ion-item>
-            <ion-label inputLight><ion-icon name="home"></ion-icon>Type de logement</ion-label>
+            <ion-label inputLight primary><ion-icon name="home"></ion-icon>Type de logement</ion-label>
 
             <ion-select [(ngModel)]="type">
                 <ion-option value="ancien">Ancien</ion-option>
@@ -17,24 +17,20 @@
         </ion-item>
      
         <ion-item>
-            <ion-label inputLight>
+            <ion-label inputLight primary>
                 <ion-icon name="map"></ion-icon>
                 Département</ion-label>
 
             <ion-select [(ngModel)]="departement">
-                <ion-option value="75">75</ion-option>
-                <ion-option value="77">77</ion-option>
-                <ion-option value="78">78</ion-option>
-                <ion-option value="91">91</ion-option>
-                <ion-option value="92">92</ion-option>
-                <ion-option value="93">93</ion-option>
-                <ion-option value="94">94</ion-option>
-                <ion-option value="95">95</ion-option>
+                <ion-option value="france">France métropolitaine / Corse</ion-option>
+                <ion-option value="reunion">Réunion</ion-option>
+                <ion-option value="guadeloupe">Guadeloupe / Martinique</ion-option>
+                <ion-option value="guyane">Guyane</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
-            <ion-label floating>
+            <ion-label floating > 
                 <ion-icon name="logo-euro"></ion-icon>
                 Montant de l'achat</ion-label>
             <ion-input type="number" [(ngModel)]="montantNotaire"></ion-input>
@@ -43,7 +39,7 @@
     </ion-list>
 
     <ion-row center>
-  <button (click)="calcul(montantNotaire, departement, type)"></button>
+  <button (click)="calcul()"></button>
   <ion-col center width-66>
 
   <b>Frais de notaire : 454654654€</b>

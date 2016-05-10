@@ -26,7 +26,7 @@ export class CoordonneesPage implements OnInit {
 	constructor(private http: Http, form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
-		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
+/*		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
 			civilite: ["", Validators.required],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
@@ -37,7 +37,7 @@ export class CoordonneesPage implements OnInit {
 			telFixe: ["", Validators.required],
 			telPro: ["", Validators.required],
 			mail: ["", Validators.required]
-		});
+		});*/
 	}
 
 

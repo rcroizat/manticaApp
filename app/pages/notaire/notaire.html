@@ -9,7 +9,7 @@
         <ion-item>
             <ion-label inputLight primary><ion-icon name="home"></ion-icon>Type de logement</ion-label>
 
-            <ion-select [(ngModel)]="type">
+            <ion-select (change)="calcul()" [(ngModel)]="type">
                 <ion-option value="ancien">Ancien</ion-option>
                 <ion-option value="neuf">Neuf</ion-option>
                 <ion-option value="terrain">Terrain</ion-option>
@@ -21,7 +21,7 @@
                 <ion-icon name="map"></ion-icon>
                 Département</ion-label>
 
-            <ion-select [(ngModel)]="departement">
+            <ion-select (change)="calcul()" [(ngModel)]="departement">
                 <ion-option value="france">France métropolitaine / Corse</ion-option>
                 <ion-option value="reunion">Réunion</ion-option>
                 <ion-option value="guadeloupe">Guadeloupe / Martinique</ion-option>
@@ -33,27 +33,22 @@
             <ion-label floating > 
                 <ion-icon name="logo-euro"></ion-icon>
                 Montant de l'achat</ion-label>
-            <ion-input type="number" [(ngModel)]="montantNotaire"></ion-input>
+            <ion-input type="number" (keyup)="calcul()" [(ngModel)]="montantNotaire"></ion-input>
         </ion-item>
       
     </ion-list>
 
     <ion-row center>
-  <button (click)="calcul()"></button>
   <ion-col center width-66>
 
-  <b>Frais de notaire : 454654654€</b>
+  <b>Frais de notaire : <br>
 
-{{result}}
-
-
-
-
-
+<div *ngIf="result < 10000000000">{{result}} €</div>
+</b>
   </ion-col>
   
 
-  <ion-col ><button primary>Détails</button></ion-col>
+  <ion-col ><button primary (click)="daba()" >Détails</button></ion-col>
 
 
 </ion-row>

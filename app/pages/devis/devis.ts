@@ -31,7 +31,6 @@ export class DevisPage implements OnInit  {
 
 	getDatas() {
 		this.data = this._devisService.getDevisData();
-		console.log(this.data);
 	}
 
 

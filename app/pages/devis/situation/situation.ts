@@ -12,17 +12,14 @@ import {OnInit} from 'angular2/core';
 export class SituationPage implements OnInit {
 
 
-	situationForm : ControlGroup;
+	
 	nav : NavController;
 	data: DevisData;
 
-	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
+	constructor(nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
-		this.situationForm = form.group({ // name should match [ngFormModel] in your html
-			situationActuelle: ["", Validators],
-			avancement: ["", Validators]
-		});
+
 		
 	}
 
@@ -36,7 +33,6 @@ export class SituationPage implements OnInit {
 
 
 	next() {
-		console.log(this.data);
 		this.nav.push(BudgetPage);
 	}
 		

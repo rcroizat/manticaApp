@@ -45,9 +45,6 @@
         </ion-item>
    </ion-list>
 
-json {{datas | json}}<br>
- normal : {{datas}}<br>
-total :{{total}}
 <h5><b>Mensualités :</b></h5>
 <p *ngIf="montant.value && duree.value && interets.value">
  {{
@@ -61,8 +58,5 @@ total :{{total}}
 
 </p>
 
- <ion-input [(ngModel)]="one"  type="number" ></ion-input>
- <ion-input [(ngModel)]="two"  type="number" ></ion-input>
-moko {{total ||async}}
-   
+
 </ion-content>

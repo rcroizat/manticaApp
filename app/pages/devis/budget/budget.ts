@@ -1,15 +1,21 @@
 import {Page, NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import {CoordonneesPage} from '../coordonnees/coordonnees';
+import {OnInit} from 'angular2/core';
+
+
+
 import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
-import {OnInit} from 'angular2/core';
+
+
+import {CoordonneesPage} from '../coordonnees/coordonnees';
+
 
 @Page({
 	templateUrl: 'build/pages/devis/budget/budget.html'
 })
 
-export class BudgetPage {
+export class BudgetPage implements OnInit{
 
 
 	budgetForm : ControlGroup;
@@ -19,11 +25,6 @@ export class BudgetPage {
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
-		this.budgetForm = form.group({ // name should match [ngFormModel] in your html
-			montant: ["", Validators.required],
-			notaire: ["", Validators],
-			budget: ["", Validators]
-		});
 	}
 
 	ngOnInit() {

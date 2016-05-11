@@ -5,12 +5,13 @@
     <ion-title>Demande de devis</ion-title>
 </ion-navbar>
 <ion-content padding class="devis">
+ <form [(ngFormModel)]="devisForm" (ngSubmit)="next()" >
     <ion-list>
         <ion-item>
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Votre projet immobilier*</ion-label>
-            <ion-select [(ngModel)]="data.projet" required>
+            <ion-select [(ngModel)]="data.projet" ngControl="projet">
                 <ion-option value="Maison">Maison</ion-option>
                 <ion-option value="appartement">Appartement</ion-option>
                 <ion-option value="terrain">Terrain</ion-option>
@@ -21,19 +22,19 @@
             <ion-label floating>
                 <ion-icon name="map"></ion-icon>
                 Code postal*</ion-label>
-            <ion-input type="number" [(ngModel)]="data.cpProjet" ></ion-input>
+            <ion-input type="number" [(ngModel)]="data.cpProjet"  ngControl="cpProjet"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="pin"></ion-icon>
                 Ville du bien*</ion-label>
-            <ion-input type="text" [(ngModel)]="data.villeProjet"></ion-input>
+            <ion-input type="text" [(ngModel)]="data.villeProjet"  ngControl="villeProjet"></ion-input>
         </ion-item>
          <ion-item>
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Type de bien*</ion-label>
-            <ion-select  [(ngModel)]="data.type">
+            <ion-select  [(ngModel)]="data.type"  ngControl="typeProjet">
                 <ion-option value="Maison">Maison</ion-option>
                 <ion-option value="Appartement">Appartement</ion-option>
                 <ion-option value="Terrain">Terrain</ion-option>
@@ -45,7 +46,7 @@
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Etat du bien*</ion-label>
-            <ion-select [(ngModel)]="data.etat">
+            <ion-select [(ngModel)]="data.etat"  ngControl="etat">
                 <ion-option value="Ancien">Ancien</ion-option>
                 <ion-option value="Neuf">Neuf</ion-option>
                 <ion-option value="Revente d un bien de parc sociale">Revente d'un bien de parc social</ion-option>
@@ -55,7 +56,7 @@
             <ion-label inputLight>
                 <ion-icon name="bulb"></ion-icon>
                 Norme</ion-label>
-            <ion-select  [(ngModel)]="data.norme">
+            <ion-select  [(ngModel)]="data.norme"  ngControl="norme">
                 <ion-option value="a">a</ion-option>
                 <ion-option value="b">b</ion-option>
                 <ion-option value="c">c</ion-option>
@@ -70,7 +71,7 @@
             <ion-label inputLight>
                 <ion-icon name="leaf"></ion-icon>
                 Norme BBC / Non BBC</ion-label>
-            <ion-select  [(ngModel)]="data.bbc">
+            <ion-select  [(ngModel)]="data.bbc"  ngControl="bbc">
                 <ion-option value="bbc">BBC</ion-option>
                 <ion-option value="nonBbc">Non BBC</ion-option>
             </ion-select>
@@ -80,7 +81,7 @@
             <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Usage du bien*</ion-label>
-            <ion-select  [(ngModel)]="data.usage">
+            <ion-select  [(ngModel)]="data.usage"  ngControl="usage">
                 <ion-option value="Résidence principale">Résidence principale</ion-option>
                 <ion-option value="Résidence secondaire">Résidence secondaire</ion-option>
                 <ion-option value="Investissement locatif">Investissement locatif</ion-option>
@@ -90,12 +91,12 @@
 
     
 
-  <button block primary (click)="next()" [disabled]="!data.projet || !data.cpProjet || !data.villeProjet || !data.type || !data.etat || !data.usage">Suivant
+  <button block primary (click)="next()" [disabled]="!devisForm.valid">Suivant
   </button>
     
 
   <button block primary (click)="next()" >Suivant
   </button>
 
-
+</form>
 </ion-content>

@@ -5,13 +5,12 @@
     <ion-title>Votre situation</ion-title>
 </ion-navbar>
 <ion-content padding class="situation" >
- 
- <form  [(ngFormModel)]="situationForm" (ngSubmit)="next()" >
+  <form [(ngFormModel)]="situationForm" (ngSubmit)="next()" >
         <ion-item>
           <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Votre situation actuelle</ion-label>
-            <ion-select required [(ngModel)]="data.situationActuelle">
+            <ion-select   [(ngModel)]="data.situationActuelle" ngControl="situationActuelle">
                 <ion-option value="Locataire">Locataire</ion-option>
                 <ion-option value="Proprietaire">Propriétaire</ion-option>
                 <ion-option value="logementFonction">Bénéficiaire d'un logement de fonction</ion-option>
@@ -22,7 +21,7 @@
           <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Votre niveau d'avancement</ion-label>
-            <ion-select required [(ngModel)]="data.avancement">
+            <ion-select  [(ngModel)]="data.avancement"  ngControl="avancement">
                 <ion-option value="debut">Vous débutez vos recherches</ion-option>
                 <ion-option value="active">Vous êtes en recherche active</ion-option>
                 <ion-option value="Locataire">Vous avez trouvé et pensez signer prochainement</ion-option>
@@ -31,7 +30,7 @@
         </ion-item>
 
 
-  <button block primary type="submit" >Suivant
+  <button block primary (click)="next()" [disabled]="!situationForm.valid" >Suivant
   </button>
 </form>
 </ion-content>

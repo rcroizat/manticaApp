@@ -14,14 +14,22 @@ import {Input} from 'angular2/core';
 export class DevisPage implements OnInit  {
 
 
-	response: boolean;
 	devisForm : ControlGroup;
 	nav : NavController;
 	data: DevisData;
 
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
-		
+		this.devisForm = form.group({ // name should match [ngFormModel] in your html
+			projet: ["", Validators.required],
+			cpProjet: ["", Validators.required],
+			villeProjet: ["", Validators.required],
+			typeProjet: ["", Validators.required],
+			etat: ["", Validators.required],
+			norme: ["", Validators.required],
+			bbc: ["", Validators.required],
+			usage: ["", Validators.required]
+		});
 	}
 
 

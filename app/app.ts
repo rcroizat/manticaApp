@@ -13,6 +13,7 @@ import {ListPage} from './pages/list/list';
 import {MensualitesPage} from './pages/mensualites/mensualites';
 import {NotairePage} from './pages/notaire/notaire';
 import {DevisPage} from './pages/devis/devis';
+import {CoordonneesPage} from './pages/devis/coordonnees/coordonnees';
 import {CapacitePage} from './pages/capacite/capacite';
 import {PtzPage} from './pages/ptz/ptz';
 
@@ -23,7 +24,7 @@ import {PtzPage} from './pages/ptz/ptz';
   providers: [DataService, DevisService] 
 })
 class MyApp {
-  rootPage: any = DevisPage;
+   rootPage: any = CoordonneesPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: IonicApp, private platform: Platform) {
     this.initializeApp();

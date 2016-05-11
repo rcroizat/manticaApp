@@ -22,11 +22,11 @@ export class CoordonneesPage implements OnInit {
 	coordonneesForm : ControlGroup;
 	nav : NavController;
 	data: DevisData;
-
-	constructor(private http: Http, form: FormBuilder, nav: NavController, private _devisService: DevisService) {
+	lala: string;
+	constructor(form: FormBuilder, private http: Http, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
-/*		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
+		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
 			civilite: ["", Validators.required],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
@@ -35,9 +35,9 @@ export class CoordonneesPage implements OnInit {
 			preference: ["", Validators.required],
 			telPort: ["", Validators.required],
 			telFixe: ["", Validators.required],
-			telPro: ["", Validators.required],
 			mail: ["", Validators.required]
-		});*/
+		});
+
 	}
 
 

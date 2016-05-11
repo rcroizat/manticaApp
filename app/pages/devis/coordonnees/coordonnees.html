@@ -5,46 +5,44 @@
     <ion-title>Vos coordonnées</ion-title>
 </ion-navbar>
 <ion-content padding class="coordonnees">
- <!-- 
- <form [(ngFormModel)]="coordonneesForm" (ngSubmit)="send()" > -->
+<form [(ngFormModel)]="coordonneesForm" (ngSubmit)="send()" >
        <ion-item>
           <ion-label inputLight>
                 <ion-icon name="contact"></ion-icon>
                 Civilité</ion-label>
-            <ion-select >
+            <ion-select (ngModel)]="data.civilite" ngControl="civilite">
                 <ion-option value="Monsieur">Monsieur</ion-option>
                 <ion-option value="Madame">Madame</ion-option>
             </ion-select>
         </ion-item>
        <ion-item>
             <ion-label floating>
-                <ion-icon name="contact"></ion-icon>
+                <ion-icon name="contact" ></ion-icon>
                 Votre nom</ion-label>
-            <ion-input  type="text"  ></ion-input>
+            <ion-input  type="text" [(ngModel)]="data.nom" ngControl="nom"></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="contact"></ion-icon>
                 Votre prenom</ion-label>
-            <ion-input  type="text"  ></ion-input>
+            <ion-input  type="text" [(ngModel)]="data.prenom" ngControl="prenom" ></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="map"></ion-icon>
                 Votre code postal</ion-label>
-            <ion-input  type="number" ></ion-input>
+            <ion-input  type="number" [(ngModel)]="data.cp" ngControl="cp"></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="pin"></ion-icon>
                 Votre ville</ion-label>
-            <ion-input  type="text" ></ion-input>
+            <ion-input  type="text" [(ngModel)]="data.ville" ngControl="ville"></ion-input>
         </ion-item>
-       <ion-item><!-- 
-          <ion-label inputLight>
+       <ion-item><ion-label inputLight>
                 <ion-icon name="phone"></ion-icon>
-                Vous préférez être rappelé sur : </ion-label> -->
-            <ion-select  >
+                Vous préférez être rappelé sur : </ion-label>
+            <ion-select [(ngModel)]="data.preference" ngControl="preference">
                 <ion-option value="Téléphone Portable">Téléphone portable</ion-option>
                 <ion-option value="Téléphone Fixe">Téléphone fixe</ion-option>
             </ion-select>
@@ -53,21 +51,21 @@
             <ion-label floating>
                 <ion-icon name="phone-portrait"></ion-icon>
                 Votre téléphone portable</ion-label>
-            <ion-input  type="tel" ></ion-input>
+            <ion-input  type="tel" [(ngModel)]="data.telPort" ngControl="telPort"></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="call"></ion-icon>
                 Votre téléphone fixe</ion-label>
-            <ion-input  type="tel"  ></ion-input>
+            <ion-input  type="tel" [(ngModel)]="data.telFixe" ngControl="telFixe"></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Votre mail</ion-label>
-            <ion-input  type="email" ></ion-input>
+            <ion-input  type="email" (ngModel)]="data.mail" ngControl="mail"></ion-input>
         </ion-item>
-  <button block primary type="submit" >Envoyer
+  <button block primary type="submit" [disabled]="!coordonneesForm.valid">Envoyer
   </button>
-<!-- </form> -->
+</form>
 </ion-content>

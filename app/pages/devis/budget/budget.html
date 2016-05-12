@@ -8,10 +8,11 @@
  
  
   <form [(ngFormModel)]="budgetForm" (ngSubmit)="next()" >
+    <ion-list>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
-                Montant estimé de l'acquisition</ion-label>
+                Montant estimé de l'acquisition*</ion-label>
             <ion-input  type="number"  [(ngModel)]="data.montant" ngControl="montant"></ion-input>
         </ion-item>
        <ion-item>
@@ -29,5 +30,6 @@
 
   <button block primary (click)="next()" [disabled]="!budgetForm.valid">Suivant
   </button>
+  </ion-list>
 </form>
 </ion-content>

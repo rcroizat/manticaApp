@@ -2,7 +2,7 @@ export class DevisData {
 	projet: string;
 	cpProjet: number;
 	villeProjet: string;
-	type: string;
+	typeProjet: string;
 	etat: string;
 	norme: string;
 	bbc: string;
@@ -17,9 +17,8 @@ export class DevisData {
 	preference: string;
 	telPort: number;
 	telFixe: number;
-	telPro: number;
+	mail: string;
 	montant: number;
 	notaire: number;
 	budget: number;
-	mail: string;
 }

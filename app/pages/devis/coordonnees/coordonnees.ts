@@ -1,6 +1,6 @@
 import {Page, NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import { Http, HTTP_PROVIDERS }    from 'angular2/http';
+import {Http, HTTP_PROVIDERS }    from 'angular2/http';
 import {OnInit} from 'angular2/core';
 
 
@@ -22,22 +22,20 @@ export class CoordonneesPage implements OnInit {
 	coordonneesForm : ControlGroup;
 	nav : NavController;
 	data: DevisData;
-	lala: string;
 	constructor(form: FormBuilder, private http: Http, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
 		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
-			civilite: ["", Validators.required],
+			civilite: ["", Validators],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
-			cp: ["", Validators.required],
-			ville: ["", Validators.required],
-			preference: ["", Validators.required],
+			cp: ["", Validators],
+			ville: ["", Validators],
+			preference: ["", Validators],
 			telPort: ["", Validators.required],
-			telFixe: ["", Validators.required],
+			telFixe: ["", Validators],
 			mail: ["", Validators.required]
 		});
-
 	}
 
 

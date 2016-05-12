@@ -7,7 +7,7 @@ export class DevisService {
 		projet: null,
 		cpProjet: null,
 		villeProjet: null,
-		type: null,
+		typeProjet: null,
 		etat: null,
 		norme: null,
 		bbc: null,
@@ -23,12 +23,11 @@ export class DevisService {
 		preference: null,
 		telPort: null,
 		telFixe: null,
-		telPro: null,
+		mail: null,
 
 		montant: null,
 		notaire: null,
 		budget: null,
-		mail: null
 	};
 
 	constructor() {

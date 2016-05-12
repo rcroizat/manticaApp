@@ -26,8 +26,8 @@ export class DevisPage implements OnInit  {
 			villeProjet: ["", Validators.required],
 			typeProjet: ["", Validators.required],
 			etat: ["", Validators.required],
-			norme: ["", Validators.required],
-			bbc: ["", Validators.required],
+			norme: ["", Validators],
+			bbc: ["", Validators],
 			usage: ["", Validators.required]
 		});
 	}

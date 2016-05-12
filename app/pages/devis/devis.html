@@ -11,10 +11,10 @@
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Votre projet immobilier*</ion-label>
-            <ion-select [(ngModel)]="data.projet" ngControl="projet">
+            <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.projet" ngControl="projet">
                 <ion-option value="Maison">Maison</ion-option>
-                <ion-option value="appartement">Appartement</ion-option>
-                <ion-option value="terrain">Terrain</ion-option>
+                <ion-option value="Appartement">Appartement</ion-option>
+                <ion-option value="Terrain">Terrain</ion-option>
                 <ion-option value="autre">Autre</ion-option>
             </ion-select>
         </ion-item>    
@@ -34,7 +34,7 @@
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Type de bien*</ion-label>
-            <ion-select  [(ngModel)]="data.type"  ngControl="typeProjet">
+            <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.type"  ngControl="typeProjet">
                 <ion-option value="Maison">Maison</ion-option>
                 <ion-option value="Appartement">Appartement</ion-option>
                 <ion-option value="Terrain">Terrain</ion-option>
@@ -46,7 +46,7 @@
               <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Etat du bien*</ion-label>
-            <ion-select [(ngModel)]="data.etat"  ngControl="etat">
+            <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.etat"  ngControl="etat">
                 <ion-option value="Ancien">Ancien</ion-option>
                 <ion-option value="Neuf">Neuf</ion-option>
                 <ion-option value="Revente d un bien de parc sociale">Revente d'un bien de parc social</ion-option>
@@ -56,7 +56,7 @@
             <ion-label inputLight>
                 <ion-icon name="bulb"></ion-icon>
                 Norme</ion-label>
-            <ion-select  [(ngModel)]="data.norme"  ngControl="norme">
+            <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.norme"  ngControl="norme">
                 <ion-option value="a">a</ion-option>
                 <ion-option value="b">b</ion-option>
                 <ion-option value="c">c</ion-option>
@@ -73,7 +73,7 @@
                 Norme BBC / Non BBC</ion-label>
             <ion-select  [(ngModel)]="data.bbc"  ngControl="bbc">
                 <ion-option value="bbc">BBC</ion-option>
-                <ion-option value="nonBbc">Non BBC</ion-option>
+                <ion-option value="non bbc">Non BBC</ion-option>
             </ion-select>
         </ion-item>
        
@@ -81,22 +81,20 @@
             <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Usage du bien*</ion-label>
-            <ion-select  [(ngModel)]="data.usage"  ngControl="usage">
+            <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.usage"  ngControl="usage">
                 <ion-option value="Résidence principale">Résidence principale</ion-option>
                 <ion-option value="Résidence secondaire">Résidence secondaire</ion-option>
                 <ion-option value="Investissement locatif">Investissement locatif</ion-option>
             </ion-select>
         </ion-item>
-    </ion-list>
 
-    
+ </ion-list>
+         
+      <button block primary (click)="next()" [disabled]="!devisForm.valid">Suivant
+      </button>
+        
 
-  <button block primary (click)="next()" [disabled]="!devisForm.valid">Suivant
-  </button>
-    
-
-  <button block primary (click)="next()" >Suivant
-  </button>
-
+      <button block primary (click)="next()" >Suivant
+      </button>
 </form>
 </ion-content>

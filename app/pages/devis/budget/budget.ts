@@ -27,8 +27,8 @@ export class BudgetPage implements OnInit{
 
 		this.budgetForm = form.group({ // name should match [ngFormModel] in your html
 			montant: ["", Validators.required],
-			notaire: ["", Validators.required],
-			budget: ["", Validators.required]
+			notaire: ["", Validators],
+			budget: ["", Validators]
 		});
 	}
 

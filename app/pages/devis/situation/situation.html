@@ -6,7 +6,7 @@
 </ion-navbar>
 <ion-content padding class="situation" >
   <form [(ngFormModel)]="situationForm" (ngSubmit)="next()" >
-    <ion-list>
+
         <ion-item>
           <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
@@ -14,8 +14,8 @@
             <ion-select okText="Ok" cancelText="Annuler"  [(ngModel)]="data.situationActuelle" ngControl="situationActuelle">
                 <ion-option value="Locataire">Locataire</ion-option>
                 <ion-option value="Proprietaire">Propriétaire</ion-option>
-                <ion-option value="logementFonction">Logement de fonction</ion-option>
-                <ion-option value="gratuit">Hébergé à titre gratuit</ion-option>
+                <ion-option value="Logement de fonciton">Logement de fonction</ion-option>
+                <ion-option value="Hébergé gratuitement">Hébergé à titre gratuit</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
@@ -31,8 +31,7 @@
         </ion-item>
 
 
-  <button block primary (click)="next()" [disabled]="!situationForm.valid" >Suivant
+  <button block primary type="submit" [disabled]="!situationForm.valid" >Suivant
   </button>
-  </ion-list>
 </form>
 </ion-content>

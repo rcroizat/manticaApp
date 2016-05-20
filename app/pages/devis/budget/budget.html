@@ -8,7 +8,7 @@
  
  
   <form [(ngFormModel)]="budgetForm" (ngSubmit)="next()" >
-    <ion-list>
+   
        <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
@@ -19,17 +19,16 @@
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Frais de notaires estimés</ion-label>
-            <ion-input  type="number"  [(ngModel)]="data.notaire" ngControl="notaire"></ion-input>
+            <ion-input  type="number"  [(ngModel)]="data.notaire" ></ion-input>
         </ion-item>
        <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Budget total estimé</ion-label>
-            <ion-input  type="number"  [(ngModel)]="data.budget" ngControl="budget"></ion-input>
+            <ion-input  type="number"  [(ngModel)]="data.budget"></ion-input>
         </ion-item>
 
-  <button block primary (click)="next()" [disabled]="!budgetForm.valid">Suivant
+  <button block primary type="submit" [disabled]="!budgetForm.valid">Suivant
   </button>
-  </ion-list>
 </form>
 </ion-content>

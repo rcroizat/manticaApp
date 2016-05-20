@@ -24,7 +24,7 @@ import {PtzPage} from './pages/ptz/ptz';
   providers: [DataService, DevisService] 
 })
 class MyApp {
-   rootPage: any = CoordonneesPage;
+  rootPage: any = CapacitePage;
   pages: Array<{title: string, component: any}>
   constructor(private app: IonicApp, private platform: Platform) {
     this.initializeApp();

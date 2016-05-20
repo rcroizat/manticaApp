@@ -1,7 +1,7 @@
 import {Page, NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
 import {Http, HTTP_PROVIDERS }    from 'angular2/http';
-import {OnInit} from 'angular2/core';
+import {OnInit, Input} from 'angular2/core';
 
 
 import {DevisService} from '../../../services/devis.service';
@@ -18,22 +18,22 @@ import {GettingStartedPage} from '../../../pages/getting-started/getting-started
 
 export class CoordonneesPage implements OnInit {
 
-	response: any;
+	response: string;
 	coordonneesForm : ControlGroup;
 	nav : NavController;
-	data: DevisData;
+	@Input()  data: DevisData;
+
+
+
+
 	constructor(form: FormBuilder, private http: Http, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 
 		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
-			civilite: ["", Validators],
+		
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
-			cp: ["", Validators],
-			ville: ["", Validators],
-			preference: ["", Validators],
 			telPort: ["", Validators.required],
-			telFixe: ["", Validators],
 			mail: ["", Validators.required]
 		});
 	}

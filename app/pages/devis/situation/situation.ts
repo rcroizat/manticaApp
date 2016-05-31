@@ -1,9 +1,9 @@
 import {Page, NavController, Alert, NavParams} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
+import {FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {BudgetPage} from '../budget/budget';
 import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
-import {OnInit, Input} from 'angular2/core';
+import {OnInit, Input} from '@angular/core';
 
 @Page({
 	templateUrl: 'build/pages/devis/situation/situation.html'

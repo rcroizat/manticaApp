@@ -1,7 +1,7 @@
 import {Page, NavController, Alert} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import {Http, HTTP_PROVIDERS }    from 'angular2/http';
-import {OnInit, Input} from 'angular2/core';
+import {FormBuilder, Validators, ControlGroup} from '@angular/common';
+import {Http, HTTP_PROVIDERS }    from '@angular/http';
+import {OnInit, Input} from '@angular/core';
 
 
 import {DevisService} from '../../../services/devis.service';

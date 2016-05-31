@@ -12,7 +12,7 @@
                 <ion-icon name="logo-euro"></ion-icon>
   
               Mensualités </ion-label>
-             <ion-input type="number" [(ngModel)]="datas.mensualite" #mensualite ><span>Euro</span></ion-input>
+             <ion-input type="number" [(ngModel)]="datas.mensualites" #mensualites (keyup)="onKey('mensualites', mensualites.value)" ><span>Euro</span></ion-input>
         </ion-item>
 
             <ion-item>
@@ -47,17 +47,17 @@
         </ion-item>
    </ion-list>
 <h5><b>Capacité d'emprunt :</b></h5>
-<p *ngIf="mensualite.value && duree.value && interets.value">
+<p *ngIf="mensualites.value && duree.value && interets.value">
  {{
-(
- mensualite.value *
+((
+ mensualites.value *
 (1-
  math.pow((1+((interets.value/100)/12)),-duree.value*12)
 
  )
 
  /((interets.value/100)/12)
-)| number: '.0-0'
+) - r )  | number: '.0-0'
  }} €
 </p>
 

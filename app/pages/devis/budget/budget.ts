@@ -1,6 +1,6 @@
 import {Page, NavController, Alert} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from 'angular2/common';
-import {OnInit, Input} from 'angular2/core';
+import {FormBuilder, Validators, ControlGroup} from '@angular/common';
+import {OnInit, Input} from '@angular/core';
 
 
 

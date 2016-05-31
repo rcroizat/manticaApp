@@ -1,6 +1,8 @@
 import 'es6-shim';
 import {App, IonicApp, Platform, Storage, LocalStorage} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
+import {ViewChild} from '@angular/core';
+import {Nav} from 'ionic-angular';
 
 //Services
 import {DataService} from './services/data.service';
@@ -24,6 +26,7 @@ import {PtzPage} from './pages/ptz/ptz';
   providers: [DataService, DevisService] 
 })
 class MyApp {
+  @ViewChild(Nav) nav: Nav;
   rootPage: any = CapacitePage;
   pages: Array<{title: string, component: any}>
   constructor(private app: IonicApp, private platform: Platform) {
@@ -53,7 +56,7 @@ class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    let nav = this.app.getComponent('nav');
-    nav.setRoot(page.component);
+/*    let nav = this.app.getComponent('nav');*/
+    this.nav.setRoot(page.component);
   }
 }

@@ -28,19 +28,19 @@
             <ion-label floating>
                 <ion-icon name="home"></ion-icon>
                 Taux d'assurance (%)</ion-label>
-            <ion-input [(ngModel)]="datas.assurance"  #assurance (keyup)="onKey('assurance', assurance.value)" type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.assurance"  #assurance (keyup)="onKey('assurance', assurance.value)" type="number" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="briefcase"></ion-icon>
                 Frais de dossier (€)</ion-label>
-            <ion-input [(ngModel)]="datas.frais"  #frais (keyup)="onKey('frais', frais.value)" type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.frais"  #frais (keyup)="onKey('frais', frais.value)" type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="calculator"></ion-icon>
                 Frais de caution (€)</ion-label>
-            <ion-input [(ngModel)]="datas.caution"  #caution (keyup)="onKey('caution', duree.caution)" type="number" min="7" max="36"></ion-input>
+            <ion-input [(ngModel)]="datas.caution"  #caution (keyup)="onKey('caution', duree.caution)" type="number" ></ion-input>
         </ion-item>
    </ion-list>
 
@@ -48,7 +48,7 @@
 <p *ngIf="montant.value && duree.value && interets.value">
  {{
  (
- (montant.value * ((interets.value/100)/12))
+ ((parseFloat(montant.value) + r) * ((interets.value/100)/12))
  /(1-
  (math.pow((1+((interets.value/100)/12)),-(duree.value*12)))
  )

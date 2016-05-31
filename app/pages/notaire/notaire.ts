@@ -21,8 +21,12 @@ export class NotairePage {
     this.fa = true;
   }
 
-  calcul(){
-
+  calcul(a){
+    if(a){
+    console.log(a);
+    this.montantNotaire = a;
+    }
+    
    let taux = [[6500.0, 0.04000],
                [17000.0, 0.01650],
                [60000.0, 0.01100],

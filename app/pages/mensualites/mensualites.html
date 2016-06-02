@@ -47,15 +47,19 @@
 <h5><b>Mensualités :</b></h5>
 <p *ngIf="montant.value && duree.value && interets.value">
  {{
+    (assuranceMois +
  (
  ((parseFloat(montant.value) + r) * ((interets.value/100)/12))
  /(1-
  (math.pow((1+((interets.value/100)/12)),-(duree.value*12)))
  )
+ )
  ) | number:'.0-0'
- }} €
-
+ }} € 
 </p>
+
+ <p *ngIf="montantAssurance">Dont {{montantAssurance}} € d'assurance</p>
+
 
 
 </ion-content>

@@ -24,7 +24,8 @@ export class CapacitePage implements OnInit {
 	}
 
 	getDatas() {
-		 this._dataService.getDatas().then(da => this.datas = da);
+		/* this._dataService.getDatas().then(da => this.datas = da);*/
+		 this.datas = this._dataService.getDatas();	
 
 	}
 

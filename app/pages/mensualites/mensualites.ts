@@ -1,7 +1,7 @@
 import {Page} from 'ionic-angular';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
-import {OnInit} from '@angular/core';
+import {OnInit, Output, Input} from '@angular/core';
 import {Storage, LocalStorage} from 'ionic-angular';
 
 @Page({
@@ -16,7 +16,7 @@ export class MensualitesPage implements OnInit {
 	montantAssurance: number;
 	assuranceMois: number;
 	constructor(private _dataService: DataService) {
-	
+
   }
 
 
@@ -33,11 +33,11 @@ export class MensualitesPage implements OnInit {
 	onKey(field:string, value:number) {
 
 		this._dataService.save(field, value);	
-		let df = parseFloat(this.datas.frais) || 0;
-		let dc = parseFloat(this.datas.caution) || 0;
-		let da = parseFloat(this.datas.montant) * (parseFloat(this.datas.assurance)/100)/12  || 0;
+		let df = (this.datas.frais) || 0;
+		let dc = (this.datas.caution) || 0;
+		let da = this.datas.montant * (this.datas.assurance/100)/12  || 0;
 		this.assuranceMois = da || 0;
-		let assuranceTotal = parseFloat(this.datas.assurance) * parseFloat(this.datas.duree) * (parseFloat(this.datas.montant)/100) || 0;
+		let assuranceTotal = (this.datas.assurance * this.datas.duree * (this.datas.montant/100)) || 0;
 		this.montantAssurance = assuranceTotal;
 		this.r = df + dc;
 	}

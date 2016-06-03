@@ -42,6 +42,12 @@
                 Frais de caution (€)</ion-label>
             <ion-input [(ngModel)]="datas.caution"  #caution (keyup)="onKey('caution', duree.caution)" type="number" ></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label floating>
+                <ion-icon name="calculator"></ion-icon>
+                Fmamatest</ion-label>
+            <ion-input [(ngModel)]="mama"   type="number" ></ion-input>
+        </ion-item>
    </ion-list>
 
 <h5><b>Mensualités :</b></h5>

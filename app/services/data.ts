@@ -6,4 +6,4 @@ export class Data {
 	frais: number;
 	assurance: number;
 	caution: number;
-}
+};

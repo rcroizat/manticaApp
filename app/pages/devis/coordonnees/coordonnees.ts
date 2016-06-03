@@ -1,4 +1,4 @@
-import {Page, NavController, Alert} from 'ionic-angular';
+import {Page, NavController, Alert, Loading} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {Http, HTTP_PROVIDERS }    from '@angular/http';
 import {OnInit, Input} from '@angular/core';
@@ -18,7 +18,7 @@ import {GettingStartedPage} from '../../../pages/getting-started/getting-started
 
 export class CoordonneesPage implements OnInit {
 
-	response: string;
+	response: any;
 	coordonneesForm : ControlGroup;
 	nav : NavController;
 	@Input()  data: DevisData;
@@ -53,6 +53,12 @@ export class CoordonneesPage implements OnInit {
 		this.http.post('http://www.e-mantica.com/mailer.php', JSON.stringify(value))
 			.subscribe(res => {
 				this.response = res;
+				let loading = Loading.create({
+					content: 'Please wait...',
+					dismissOnPageChange : true
+				});
+
+				this.nav.present(loading);
 				if (this.response) {
 					let alert = Alert.create({
 						title: 'Demande envoyée !',

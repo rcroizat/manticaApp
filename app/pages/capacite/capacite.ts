@@ -34,8 +34,8 @@ export class CapacitePage implements OnInit {
 	onKey(field: string, value: number) {
 
 		this._dataService.save(field, value);
-		let df = parseFloat(this.datas.frais) || 0;
-		let dc = parseFloat(this.datas.caution) || 0;
+		let df = this.datas.frais || 0;
+		let dc = this.datas.caution || 0;
 		this.r = df + dc;
 	}
 

@@ -1,4 +1,4 @@
-<ion-navbar *navbar primary>
+﻿<ion-navbar *navbar primary>
     <button menuToggle>
         <ion-icon name="menu"></ion-icon>
     </button>
@@ -33,7 +33,7 @@
             <ion-label floating > 
                 <ion-icon name="logo-euro"></ion-icon>
                 Montant de l'achat</ion-label>
-            <ion-input type="number" (keyup)="calcul(this)" [(ngModel)]="montantNotaire"></ion-input>
+            <ion-input type="number" (keyup)="calcul($event)" [(ngModel)]="montantNotaire"></ion-input>
         </ion-item>
       
     </ion-list>
@@ -48,7 +48,7 @@
   </ion-col>
   
 
-  <ion-col ><button primary (click)="daba()" >Détails</button></ion-col>
+  <ion-col ><button primary >Détails</button></ion-col>
 
 
 </ion-row>

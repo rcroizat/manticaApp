@@ -6,7 +6,8 @@ import {Data} from './data';
 @Injectable()
 export class DataService {
 	storage : Storage;
-	all: Data;
+	all: Data;/*
+	data: Data;*/
 	
 	constructor() {
 		this.storage = new Storage(LocalStorage);
@@ -27,12 +28,14 @@ export class DataService {
 */
 
 
-		
-/*		this.storage.get('duree').then(dureeP => {
-			this.all.duree = dureeP;
+/*		
+		this.storage.get('data').then(data => {
+			this.data = data;
+			return JSON.parse(data);
 		});*/
 
 
+		let montant = this.storage.get('montant');
 		let mensualites = this.storage.get('mensualites');
 		let duree = this.storage.get('duree');
 		let interets = this.storage.get('interets');
@@ -40,7 +43,8 @@ export class DataService {
 		let assurance = this.storage.get('assurance');
 		let caution = this.storage.get('caution');
 
-		var all = {
+		this.all = {
+			montant: montant,
 			mensualites: mensualites,
 			duree: duree,
 			interets: interets,
@@ -48,8 +52,8 @@ export class DataService {
 			assurance: assurance,
 			caution: caution
 		};
-			return all;
-		
+			
+		return this.all;
 	}
 
 	calculMensualite() {

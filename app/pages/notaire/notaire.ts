@@ -16,15 +16,9 @@ export class NotairePage {
   constructor() {
   }
 
-
-  daba(){
-    this.fa = true;
-  }
-
-  calcul(a){
-    if(a){
-    console.log(a);
-    this.montantNotaire = a;
+  calcul(event:any){
+    if (event) {
+    this.montantNotaire = event.target.value;
     }
     
    let taux = [[6500.0, 0.04000],

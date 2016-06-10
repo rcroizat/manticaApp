@@ -27,7 +27,7 @@ import {PtzPage} from './pages/ptz/ptz';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = MensualitesPage;
+  rootPage: any = PtzPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: IonicApp, private platform: Platform) {
     this.initializeApp();

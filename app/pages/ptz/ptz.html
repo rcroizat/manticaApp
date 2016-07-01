@@ -15,18 +15,33 @@
 
 <ion-content padding class="ptz">
    <ion-list>
-         <ion-item>
-            <ion-label inputLight>
-                <ion-icon name="map"></ion-icon>
-                Zone PTZ+ du logement</ion-label>
+<!--          <ion-item>
 
-            <ion-select [(ngModel)]="zonePtz">
-                <ion-option value="a">A</ion-option>
-                <ion-option value="b1">B1</ion-option>
-                <ion-option value="b2">B2</ion-option>
-                <ion-option value="c">C</ion-option>
-            </ion-select>
+   <ion-label inputLight>
+       <ion-icon name="map"></ion-icon>
+       Zone PTZ+ du logement</ion-label>
+
+   <ion-select [(ngModel)]="zonePtz">
+       <ion-option value="a">A</ion-option>
+       <ion-option value="b1">B1</ion-option>
+       <ion-option value="b2">B2</ion-option>
+       <ion-option value="c">C</ion-option>
+   </ion-select>
+        </ion-item> -->
+        
+         <ion-item>
+
+          <ion-searchbar
+  [(ngModel)]="myInput"
+  placeholder="Votre ville"
+  autocomplete="on"
+  autocorrect="on"
+  [showCancelButton]="shouldShowCancel"
+  (ionInput)="onInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
         </ion-item>
+
        <ion-item>
             <ion-label inputLight>
                 <ion-icon name="people"></ion-icon>

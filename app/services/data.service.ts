@@ -33,7 +33,7 @@ export class DataService {
 			this.data = data;
 			return JSON.parse(data);
 		});*/
-
+/*
 
 		let montant = this.storage.get('montant');
 		let mensualites = this.storage.get('mensualites');
@@ -41,7 +41,15 @@ export class DataService {
 		let interets = this.storage.get('interets');
 		let frais = this.storage.get('frais');
 		let assurance = this.storage.get('assurance');
-		let caution = this.storage.get('caution');
+		let caution = this.storage.get('caution');*/
+
+		let montant = 0;
+		let mensualites = 0;
+		let duree = 0;
+		let interets = 0;
+		let frais = 0;
+		let assurance = 0;
+		let caution = 0;
 
 		this.all = {
 			montant: montant,

@@ -1,10 +1,9 @@
-import {Page} from 'ionic-angular';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 
-@Page({
+@Component({
   templateUrl: 'build/pages/capacite/capacite.html',
 })
 export class CapacitePage implements OnInit {

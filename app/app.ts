@@ -1,8 +1,6 @@
-import 'es6-shim';
-import {App, IonicApp, Platform, Storage, LocalStorage} from 'ionic-angular';
+import {App, Storage, Nav, LocalStorage, ionicBootstrap, Platform} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {ViewChild} from '@angular/core';
-import {Nav} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
 
 //Services
 import {DataService} from './services/data.service';
@@ -20,16 +18,14 @@ import {CapacitePage} from './pages/capacite/capacite';
 import {PtzPage} from './pages/ptz/ptz';
 
 
-@App({
-  templateUrl: 'build/app.html',
-  config: {}, // http://ionicframework.com/docs/v2/api/config/Config/
-  providers: [DataService, DevisService] 
+@Component({
+  templateUrl: 'build/app.html'
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = PtzPage;
   pages: Array<{title: string, component: any}>
-  constructor(private app: IonicApp, private platform: Platform) {
+  constructor(private app: App, private platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -60,3 +56,6 @@ class MyApp {
     this.nav.setRoot(page.component);
   }
 }
+
+
+ionicBootstrap(MyApp, [DataService, DevisService], {});

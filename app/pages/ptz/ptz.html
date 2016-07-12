@@ -1,50 +1,36 @@
-<!--
-  Generated template for the PtzPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-navbar *navbar primary>
-    <button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Prêt à taux zéro</ion-title>
-</ion-navbar>
+<ion-header>
+    <ion-navbar primary>
+        <button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Prêt à taux zéro</ion-title>
+    </ion-navbar>
+</ion-header>
 <ion-content padding class="ptz">
     <ion-list>
-        <!--          <ion-item>
-
-   <ion-label inputLight>
-       <ion-icon name="map"></ion-icon>
-       Zone PTZ+ du logement</ion-label>
-
-   <ion-select [(ngModel)]="zonePtz">
-       <ion-option value="a">A</ion-option>
-       <ion-option value="b1">B1</ion-option>
-       <ion-option value="b2">B2</ion-option>
-       <ion-option value="c">C</ion-option>
-   </ion-select>
-        </ion-item> -->
         <ion-item>
             <ion-label floating>
-                <ion-icon name="logo-euro"></ion-icon>
+                <ion-icon name="map"></ion-icon>
                 Votre ville</ion-label>
-            <ion-input type="string" [(ngModel)]="villePtz" (keyup)="getItems($event)"></ion-input>
+            <ion-input type="string" #ville [(ngModel)]="villePtz" (keyup)="getItems($event)"></ion-input>
            
         </ion-item>
 
          <ion-item *ngFor="let zone of zoneCut"  (click)="insertInput(zone)">
                 {{ zone.ville }}
+                {{ zone.cp }}
+                {{ zone.zone }}
             </ion-item>
 
         <ion-item>
             <ion-label inputLight>
                 <ion-icon name="people"></ion-icon>
                 Nombre de personnes au foyer</ion-label>
-            <ion-select  #pers >
+            <ion-select [(ngModel)]="nbrPers" #pers >
                 <ion-option value="1">1</ion-option>
                 <ion-option value="2">2</ion-option>
-                <ion-option value="3">3</ion-option>
+                <ion-option selected value="3">3</ion-option>
                 <ion-option value="4">4</ion-option>
                 <ion-option value="5">5</ion-option>
                 <ion-option value="6">6</ion-option>
@@ -56,13 +42,13 @@
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Revenu Fiscal de référence</ion-label>
-            <ion-input [(ngModel)]="revenuFiscal" #rev type="number"></ion-input>
+            <ion-input value="150000" [(ngModel)]="revenuFiscal" #rev type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Coût du projet</ion-label>
-            <ion-input #coutOp type="number"></ion-input>
+            <ion-input value="150000" #coutPrj type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
@@ -81,11 +67,8 @@
                 <ion-option value="anciensSansTravaux">Ancien sans travaux</ion-option>
             </ion-select>
         </ion-item>
+
+      <button primary  (click)="CalculPTZ(rev.value, coutPrj.value )">Calcul</button>
+      <p *ngIf="reponse"><b style="color : red;">QUEL MESSAGE METTRE</b>Compte tenu des éléments que vous avez indiqué, vous n'avez pas droit au Prêt à Taux Zéro plus 2016. </p>
     </ion-list>
-      
-      <ion-col >
-       {{pers.value}}fdfdfd
-       {{pers.value | JSON}}
-       {{pers | JSON}}
-      <button primary (click)="CalculPTZ(pers, rev.value, coutOp.value )">Calcul</button></ion-col>
 </ion-content>

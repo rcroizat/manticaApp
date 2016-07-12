@@ -1,7 +1,7 @@
-import {Page, NavController, Alert, Loading} from 'ionic-angular';
+import {NavController, Alert, Loading} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {Http, HTTP_PROVIDERS }    from '@angular/http';
-import {OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 
 import {DevisService} from '../../../services/devis.service';
@@ -11,7 +11,7 @@ import {DevisData} from '../../../services/devis';
 import {GettingStartedPage} from '../../../pages/getting-started/getting-started';
 
 
-@Page({
+@Component({
 	templateUrl: 'build/pages/devis/coordonnees/coordonnees.html',
 	providers: [HTTP_PROVIDERS]
 })

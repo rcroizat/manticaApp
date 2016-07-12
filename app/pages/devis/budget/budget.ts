@@ -1,6 +1,6 @@
-import {Page, NavController, Alert} from 'ionic-angular';
+import {NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from '@angular/common';
-import {OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 
 
@@ -11,7 +11,7 @@ import {DevisData} from '../../../services/devis';
 import {CoordonneesPage} from '../coordonnees/coordonnees';
 
 
-@Page({
+@Component({
 	templateUrl: 'build/pages/devis/budget/budget.html'
 })
 

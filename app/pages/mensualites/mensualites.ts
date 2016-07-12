@@ -1,10 +1,10 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
 import {OnInit, Output, Input} from '@angular/core';
 import {Storage, LocalStorage} from 'ionic-angular';
 
-@Page({
+@Component({
   templateUrl: 'build/pages/mensualites/mensualites.html'
 })
 export class MensualitesPage implements OnInit {

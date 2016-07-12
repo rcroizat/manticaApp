@@ -1,13 +1,13 @@
-import {Page, NavController, Alert} from 'ionic-angular';
+import {NavController, Alert} from 'ionic-angular';
 import {FormBuilder, Validators, ControlGroup} from '@angular/common';
 import {SituationPage} from './situation/situation';
 
 import {DevisService} from '../../services/devis.service';
 import {DevisData} from '../../services/devis';
 
-import {OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 
-@Page({
+@Component({
 	templateUrl: 'build/pages/devis/devis.html'
 })
 

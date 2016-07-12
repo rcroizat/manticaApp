@@ -1,4 +1,4 @@
-import {Page} from 'ionic-angular';
+import {Component} from '@angular/core';
 /*import {ZonageService} from '../../services/zonage.service';
 import {ZoneData} from '../../services/zones';*/
 
@@ -11,7 +11,7 @@ import {OnInit} from '@angular/core';
   Ionic pages and navigation.
 */
 
-@Page({
+@Component({
   templateUrl: 'build/pages/ptz/ptz.html',
 })
 
@@ -23,9 +23,9 @@ export class PtzPage {
 	zoneField : string;
 	villePtz : string;
 	zoneptz : any;
+ 	nbrPers:number;
 
-
-
+  reponse : boolean = false;
 
 	coeff_ptz: any;
 	quantite_maximale_du_pret_neuf: any;
@@ -46,7 +46,7 @@ export class PtzPage {
 	
   constructor() {
 	this.initialiseItems();
-	console.log('amidou');
+	
 
   };
 
@@ -80,13 +80,16 @@ let b = "C";
        return b;
    };
 
-    get_tr(cout_op, rfr, nbpers, typo, ouglou) {
+    get_tr(cout_op, rfr, nbpers, typo, ptzParam) {
     
     this.montant_retenu = Math.max(rfr, cout_op / 9);
     this.coeff_familial = this.coeff_ptz[nbpers];
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
-    this.zoneptz = this.zoneFromNumber(ouglou);
+   
+    console.log('zoneptz' + this.zoneptz);
 
+    this.zoneptz = this.zoneFromNumber(ptzParam);
+    console.log('PTZ FROM NUMBER' + this.zoneptz);
     let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
     if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
         let i = 1;
@@ -102,17 +105,15 @@ let b = "C";
 };
 
 
- CalculPTZ(personne, revenu_fiscale, cout_operation) {
-
-console.log('personne : ' + JSON.stringify(personne) + ' revenu fisc ' +revenu_fiscale+ ' cour op ' + cout_operation );
+ CalculPTZ( revenu_fiscale, cout_operation) {
+let personne = this.nbrPers;
+console.log('personne : ' + this.nbrPers + 'pers' + personne +' revenu fisc ' +revenu_fiscale+ ' cour op ' + cout_operation );
   
     if(revenu_fiscale!=0){
     	revenu_fiscale = revenu_fiscale.replace(/ /g, '');
     	cout_operation = cout_operation.replace(/ /g, '');
 	};
-    if (personne > 8){
-        personne = 8;
-    };
+
     let nbpers = parseInt(personne);
     let rfr = parseFloat(revenu_fiscale);
     let cout = parseFloat(cout_operation);
@@ -130,7 +131,7 @@ console.log('personne : ' + JSON.stringify(personne) + ' revenu fisc ' +revenu_f
             this.zoneptz = 3;
             break;
         case "C":
-            this.zoneptz = 5;
+            this.zoneptz = 4;
             break;
         case "DOM":
             {
@@ -185,21 +186,25 @@ console.log('personne : ' + JSON.stringify(personne) + ' revenu fisc ' +revenu_f
     this.plafond_de_ressources = arr.plafond_de_ressources;
     this.plafond_de_operation = arr.plafond_de_operation;
     this.tranches = arr.tranches;
-
     this.coeff_familial = this.coeff_ptz[nbpers];
     this.coeff_rev_forf = this.coeff_evaluation_forfaitaire_du_revenu;
     this.montant_retenu = Math.max(rfr, cout / this.coeff_rev_forf);
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
 
-    let ptz_allowed = this.is_allowed_ptz(cout, rfr, nbpers, 0 , this.zoneptz); // apparemment common typeop neuf est toujours 0
+console.log('avant let' + this.zoneptz);
+  
+console.log('1');
+console.log(this.plafond_de_operation);
+console.log(this.zoneptz);
+console.log(' nbr personne ' + nbpers);
     if (cout < this.plafond_de_operation[this.zoneptz][nbpers]) {
-
+console.log('2');
     } else {
         cout = this.plafond_de_operation[this.zoneptz][nbpers];
     };
     //Outuput
-    if (ptz_allowed) {
-/*        let zone = zoneFromNumber(zoneptz);
+    if (this.is_allowed_ptz(cout, rfr, nbpers, 0 , this.zoneptz)) {
+/*        
         let montant_max_ptz_neuf = (cout * quantite_maximale_du_pret_neuf[zone]) / 100;
         let montant_max_ptz_ancien = (cout * quantite_maximale_du_pret_ancien[zone]) / 100;
         let montant_max_ptz_hlm = (cout * quantite_maximale_du_pret_hlm[zone]) / 100;
@@ -219,6 +224,8 @@ console.log('personne : ' + JSON.stringify(personne) + ' revenu fisc ' +revenu_f
         let mensualite_seconde_neuf_hlm = (montant_max_ptz_hlm * (montant_differe / 100)) / (periode_de_remboursement);
         differe = true;*/
         console.log('YATA');
+let zone = this.zoneFromNumber(this.zoneptz);
+        console.log((cout * this.quantite_maximale_du_pret_neuf[zone]) / 100);
        /* scope.model['success_box_messages_ptz'] = true;
         scope.model["montant_maximum_1"] = mtr.number_format(montant_max_ptz_neuf, 0, ',', ' ');
         scope.model["montant_maximum_ancien"] = mtr.number_format(montant_max_ptz_ancien, 0, ',', ' ');
@@ -240,6 +247,8 @@ console.log('personne : ' + JSON.stringify(personne) + ' revenu fisc ' +revenu_f
         scope.model['success_box_messages_ptz'] = false;
         scope.model['error_message_ptz'] = true;*/
          console.log('NON');
+         this.reponse = true;
+          console.log(this.reponse );
     };
 
 };

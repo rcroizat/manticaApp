@@ -9,7 +9,7 @@ import {Storage, LocalStorage} from 'ionic-angular';
 })
 export class MensualitesPage implements OnInit {
 
-	datas: Data;
+	@Input() datas: Data;
 	math = Math;
 	parseFloat = parseFloat;
 	r: number =  0;

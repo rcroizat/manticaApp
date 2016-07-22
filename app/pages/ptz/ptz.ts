@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Page} from 'ionic-angular';
 /*import {ZonageService} from '../../services/zonage.service';
 import {ZoneData} from '../../services/zones';*/
 
@@ -11,7 +11,7 @@ import {OnInit} from '@angular/core';
   Ionic pages and navigation.
 */
 
-@Component({
+@Page({
   templateUrl: 'build/pages/ptz/ptz.html',
 })
 

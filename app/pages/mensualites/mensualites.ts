@@ -10,6 +10,7 @@ import {Storage, LocalStorage} from 'ionic-angular';
 export class MensualitesPage implements OnInit {
 
 	@Input() datas: Data;
+	dodo : any;
 	math = Math;
 	parseFloat = parseFloat;
 	r: number =  0;
@@ -24,9 +25,31 @@ export class MensualitesPage implements OnInit {
 		this.getDatas();
 	}
 
-	getDatas() {
+	getDatas() {/*
 		this.datas = this._dataService.getDatas();	
-	
+*/
+		this._dataService.getDatas().then(da => {
+
+			this.dodo.flou = 25;
+			console.log('ami');
+			console.log(this.dodo.flou);
+/*
+			console.log('chablagou');
+				da.forEach(function(elem, i, arr){
+					switch(i) {
+					    case 1:
+					    	this.dodo.montant = elem;
+					        break;
+					    case 2:
+					        this.dodo.mensualites = elem;
+					        break;
+					    case 3:
+					        this.dodo.interets = elem;
+					        break;
+					}
+				});
+			console.log(JSON.stringify(this.dodo));*/
+			});
 	}
 
 

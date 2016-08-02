@@ -6,100 +6,67 @@ import {Data} from './data';
 @Injectable()
 export class DataService {
 	storage : Storage;
-	all: Data;
-	all.montant : number;
-	mama : string;
+	public all: Data;
+	montant : number;
 	constructor() {
 		this.storage = new Storage(LocalStorage);
 	}
 
 	getDatas() {
 
-  this.storage.set('montant', 45);
-
-		this.storage.get('montant').then(montantP => {
-
-			 console.log(montantP);
-			 this.all.montant = montantP;
-
-			 console.log(this.all.montant);
-		});
 
 
-
-		this.storage.get('mensualites').then(mensualites => {
-
-			 this.all.mensualites = mensualites;
-
-		});
-
-		
-		this.storage.get('duree').then(duree => {
-
-			 this.all.duree = duree;
-		});
-
-		
-		this.storage.get('interets').then(interets => {
-
-			 this.all.interets = interets;
-		});
-
-		
-		this.storage.get('frais').then(frais => {
-
-			 this.all.frais = frais;
-		});
-
-		
-		this.storage.get('assurance').then(assurance => {
-
-			 this.all.assurance = assurance;
-		});
-
-
-		
-		this.storage.get('caution').then(caution => {
-
-			 this.all.caution = caution;
-		});
-
-
-
-	/*	this.storage.get('montant').then(data => {
-			this.all.montant = montant;
-			console.log('this montant ' + this.montant);
-		});
-		this.storage.get('duree').then(data => {
-			this.all.duree = duree;
-		});*/
 /*
+Promise.all([this.storage.get('montant'), 
+			 this.storage.get('mensualites'),
+			 this.storage.get('duree'),
+			 this.storage.get('interets'),
+			 this.storage.get('frais'),
+			 this.storage.get('assurance'),
+			 this.storage.get('caution')]).then((values) => {
+  console.log(values); // [3, 1337, "toto"]
+});*/
+ 	 this.storage.set('montant', 45);
 
-		let montant = this.storage.get('montant');
-		let mensualites = this.storage.get('mensualites');
-		let duree = this.storage.get('duree');
-		let interets = this.storage.get('interets');
-		let frais = this.storage.get('frais');
-		let assurance = this.storage.get('assurance');
-		let caution = this.storage.get('caution');*/
-/*
-		let mensualites = 0;
-		let interets = 0;
-		let frais = 0;
-		let assurance = 0;
-		let caution = 0;*/
 
-/*		this.all = {
-			mensualites: mensualites,
-			interets: interets,
-			frais: frais,
-			assurance: assurance,
-			caution: caution
-		};*/
-		return this.all;
+this.storage.get('montant').then(montant => {
+				 this.montant = montant;
+				 this.all.montant = this.montant;
+				 console.log('marche ' + this.all.montant);
+});
 
-		
-	}
+ 	
+	  return Promise.all([this.storage.get('montant'), 
+							 this.storage.get('mensualites'),
+							 this.storage.get('duree'),
+							 this.storage.get('interets'),
+							 this.storage.get('frais'),
+							 this.storage.get('assurance'),
+							 this.storage.get('caution')]); // [3, 1337, "toto"];
+
+};
+	/*	this.storage.get('montant').then(montant => {
+
+				 this.montant = montant;
+
+ 	 this.storage.set('montant', 45);
+	  return new Promise(function(resolve, reject) {
+	  
+				 let aly = {
+					montant: 85,
+					mensualites: 988,
+					duree: 75757,
+					interets: 75757,
+					frais: 575757,
+					assurance: 757575,
+					caution: 75757575
+				 };
+
+	      resolve(aly);
+	    });
+	*/
+			
+	
 
 	calculMensualite() {
 	}

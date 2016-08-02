@@ -1,5 +1,5 @@
 export class Data {
-	montant: number;
+	montant: any;
 	mensualites: number;
 	duree: number;
 	interets: number;

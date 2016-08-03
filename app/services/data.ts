@@ -1,9 +1,11 @@
 export class Data {
-	montant: any;
+	montant: number;
 	mensualites: number;
 	duree: number;
 	interets: number;
-	frais: number;
+	dossier: number;
 	assurance: number;
 	caution: number;
+	apport: number;
+	notaire: number;
 };

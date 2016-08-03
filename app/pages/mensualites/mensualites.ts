@@ -10,14 +10,16 @@ import {Storage, LocalStorage} from 'ionic-angular';
 export class MensualitesPage implements OnInit {
 
 	@Input() datas: Data;
-	dodo : any;
 	math = Math;
-	parseFloat = parseFloat;
-	r: number =  0;
 	montantAssurance: number;
 	assuranceMois: number;
+	nouveauMontant : number;
+	result :any;
+	resultSal: number;
+	montant2: any;
 	constructor(private _dataService: DataService) {
 
+		this.datas;
   }
 
 
@@ -25,44 +27,86 @@ export class MensualitesPage implements OnInit {
 		this.getDatas();
 	}
 
-	getDatas() {/*
-		this.datas = this._dataService.getDatas();	
-*/
-		this._dataService.getDatas().then(da => {
-
-			this.dodo.flou = 25;
-			console.log('ami');
-			console.log(this.dodo.flou);
-/*
-			console.log('chablagou');
-				da.forEach(function(elem, i, arr){
-					switch(i) {
-					    case 1:
-					    	this.dodo.montant = elem;
-					        break;
-					    case 2:
-					        this.dodo.mensualites = elem;
-					        break;
-					    case 3:
-					        this.dodo.interets = elem;
-					        break;
-					}
-				});
-			console.log(JSON.stringify(this.dodo));*/
-			});
+	getDatas() {
+		this._dataService.getDatas().then(data => {
+			this.datas = {
+				montant: data[0],
+				mensualites: data[1],
+				duree: data[2],
+				interets: data[3],
+				dossier: data[4],
+				assurance: data[5],
+				caution: data[6],
+				apport: data[7],
+				notaire: data[8]
+			},  rejet => {
+				console.log(rejet)
+			};
+		this.calcul();
+		});
 	}
 
+	calcul(){
+
+
+		for (let property in this.datas) {
+		/*	property = 66666666;
+		    */
+		}
+
+
+		this.montant2 = (this.datas.montant) + (this.datas.notaire) + (this.datas.dossier) - (this.datas.apport);
+		console.log(this.montant2);
+		this.datas.caution = parseFloat(this.montant2) * 0.01;
+		this.nouveauMontant = this.montant2 - this.datas.caution;
+		
+		this.assuranceMois = (this.nouveauMontant) * (this.datas.assurance/100)/12  || 0;
+		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100)) || 0;
+
+		this.resultSal = this.assuranceMois + 
+		(
+				(
+					( (this.nouveauMontant) * ((this.datas.interets/100)/12))/
+					(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
+ 				)
+ 		);
+
+		this.result = this.formatMillier(this.resultSal.toFixed(2));
+	}
+
+	formatMillier( nombre :string){
+		nombre += '';
+	  let sep = ' ';
+	  let reg = /(\d+)(\d{3})/;
+	  while( reg.test( nombre)) {
+	    nombre = nombre.replace( reg, '$1' +sep +'$2');
+	  }
+	  return nombre;
+	}
 
 	onKey(field:string, value:number) {
 
-		this._dataService.save(field, value);	
-		let df = (this.datas.frais) || 0;
-		let dc = (this.datas.caution) || 0;
-		let da = this.datas.montant * (this.datas.assurance/100)/12  || 0;
-		this.assuranceMois = da || 0;
-		let assuranceTotal = (this.datas.assurance * this.datas.duree * (this.datas.montant/100)) || 0;
-		this.montantAssurance = assuranceTotal;
-		this.r = df + dc;
+
+		this._dataService.save(field, value);
+
+		this.montant2 = (this.datas.montant) + (this.datas.notaire) + (this.datas.dossier) - (this.datas.apport);
+
+		this.datas.caution = parseFloat(this.montant2) * 0.01;
+
+		this.nouveauMontant = this.montant2 - this.datas.caution;
+		
+		this.assuranceMois = (this.nouveauMontant) * (this.datas.assurance/100)/12  || 0;
+		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100)) || 0;
+
+		this.resultSal = this.assuranceMois + 
+		(
+				(
+					( (this.nouveauMontant) * ((this.datas.interets/100)/12))/
+					(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
+ 				)
+ 		);
+		this.result = this.formatMillier(this.resultSal.toFixed(2));
+		
 	}
 
 

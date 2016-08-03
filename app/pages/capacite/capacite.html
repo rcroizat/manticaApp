@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding class="capacite">
-    <ion-list>
+    <ion-list *ngIf="datas">
         <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
@@ -54,7 +54,7 @@
         </ion-item>
    </ion-list>
 <h5><b>Capacité d'emprunt :</b></h5>
-<p *ngIf="mensualites.value && duree.value && interets.value">
+<div *ngIf="datas && datas.mensualites > 0 && datas.duree > 0 && datas.interets > 0">
  {{
 ((
  mensualites.value *
@@ -66,6 +66,6 @@
  /((interets.value/100)/12)
 ) - r )  | number: '.0-0'
  }} €
-</p>
+</div>
 
 </ion-content>

@@ -23,9 +23,19 @@ export class CapacitePage implements OnInit {
 	}
 
 	getDatas() {
-/*		 this._dataService.getDatas().then(da => this.datas = da);
-	/*	 this.datas = this._dataService.getDatas();	
-*/
+		this._dataService.getDatas().then(data => {
+			this.datas = {
+				montant: data[0],
+				mensualites: data[1],
+				duree: data[2],
+				interets: data[3],
+				dossier: data[4],
+				assurance: data[5],
+				caution: data[6],
+				apport: data[7],
+				notaire: data[8]
+			};
+		});
 	}
 
 
@@ -33,7 +43,7 @@ export class CapacitePage implements OnInit {
 	onKey(field: string, value: number) {
 
 		this._dataService.save(field, value);
-		let df = this.datas.frais || 0;
+		let df = this.datas.dossier || 0;
 		let dc = this.datas.caution || 0;
 		this.r = df + dc;
 	}

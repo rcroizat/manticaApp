@@ -1,8 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
-import {OnInit, Output, Input} from '@angular/core';
-import {Storage, LocalStorage} from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/pages/mensualites/mensualites.html'
@@ -10,7 +8,6 @@ import {Storage, LocalStorage} from 'ionic-angular';
 export class MensualitesPage implements OnInit {
 
 	@Input() datas: Data;
-	math = Math;
 	montantAssurance: number;
 	assuranceMois: number;
 	nouveauMontant : number;
@@ -48,20 +45,14 @@ export class MensualitesPage implements OnInit {
 
 	calcul(){
 
-
-		for (let property in this.datas) {
-		/*	property = 66666666;
-		    */
-		}
-
-
 		this.montant2 = (this.datas.montant) + (this.datas.notaire) + (this.datas.dossier) - (this.datas.apport);
-		console.log(this.montant2);
-		this.datas.caution = parseFloat(this.montant2) * 0.01;
-		this.nouveauMontant = this.montant2 - this.datas.caution;
+
+		this.datas.caution = (this.montant2) * 0.01;
+
+		this.nouveauMontant = this.montant2 + this.datas.caution;
 		
-		this.assuranceMois = (this.nouveauMontant) * (this.datas.assurance/100)/12  || 0;
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100)) || 0;
+		this.assuranceMois = (this.nouveauMontant) * ((this.datas.assurance/100)/12);
+		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100));
 
 		this.resultSal = this.assuranceMois + 
 		(
@@ -70,12 +61,12 @@ export class MensualitesPage implements OnInit {
 					(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
  				)
  		);
-
-		this.result = this.formatMillier(this.resultSal.toFixed(2));
+		this.result = this.formatMillier(Math.round(this.resultSal));
+		
 	}
 
-	formatMillier( nombre :string){
-		nombre += '';
+	formatMillier( nombre){
+	nombre += '';
 	  let sep = ' ';
 	  let reg = /(\d+)(\d{3})/;
 	  while( reg.test( nombre)) {
@@ -88,24 +79,9 @@ export class MensualitesPage implements OnInit {
 
 
 		this._dataService.save(field, value);
+		this._dataService.save('caution', Math.round(this.datas.caution));
 
-		this.montant2 = (this.datas.montant) + (this.datas.notaire) + (this.datas.dossier) - (this.datas.apport);
-
-		this.datas.caution = parseFloat(this.montant2) * 0.01;
-
-		this.nouveauMontant = this.montant2 - this.datas.caution;
-		
-		this.assuranceMois = (this.nouveauMontant) * (this.datas.assurance/100)/12  || 0;
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100)) || 0;
-
-		this.resultSal = this.assuranceMois + 
-		(
-				(
-					( (this.nouveauMontant) * ((this.datas.interets/100)/12))/
-					(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
- 				)
- 		);
-		this.result = this.formatMillier(this.resultSal.toFixed(2));
+		this.calcul();
 		
 	}
 

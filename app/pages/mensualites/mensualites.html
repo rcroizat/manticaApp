@@ -23,7 +23,7 @@
         <ion-item>
 
          <ion-label floating class="labelRange">Durée du prêt (en années)</ion-label>
-         <ion-range min="7" max="25" pin="true" [(ngModel)]="datas.duree" #duree (ionChange)="onKey('duree', duree.value)">
+         <ion-range min="2" max="30" pin="true" [(ngModel)]="datas.duree" #duree (ionChange)="onKey('duree', duree.value)">
            <ion-icon range-left small name="calendar"></ion-icon>
            <ion-icon range-right name="calendar"></ion-icon>
          </ion-range> 
@@ -51,7 +51,7 @@
            <ion-label floating>
                <ion-icon name="calculator"></ion-icon>
                Frais de caution (€)</ion-label>
-           <ion-input [(ngModel)]="datas.caution"  #caution (keyup)="onKey('caution', caution.value)" type="number" ></ion-input>
+           <ion-input [(ngModel)]="datas.caution" disabled #caution  type="number" ></ion-input>
        </ion-item> 
         <ion-item>
            <ion-label floating>
@@ -63,11 +63,9 @@
 
 <h5><b>Mensualités :</b></h5>
 
-result {{result}} €<br>
-<div *ngIf="resultSal" >a {{resultSal}} €<br></div>
 <div *ngIf="datas && datas.montant > 0 && datas.duree > 0 && datas.interets >  0">
 
-Mensualités {{result}} €<br>
+Mensualités {{result || number}} €<br>
 <!--  {{
    (assuranceMois +
 (
@@ -80,7 +78,7 @@ Mensualités {{result}} €<br>
 }} €  -->
 </div>
 
- <div *ngIf="montantAssurance">Dont {{montantAssurance}} € d'assurance</div>
+ <div *ngIf="montantAssurance">Le coût d'assurance de prêt sera de {{montantAssurance}} € soit {{assuranceMois}} € par mois</div>
 
 
 

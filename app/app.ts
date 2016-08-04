@@ -23,7 +23,7 @@ import {PtzPage} from './pages/ptz/ptz';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = MensualitesPage;
+  rootPage: any = CapacitePage;
   pages: Array<{title: string, component: any}>
   constructor(private app: App, private platform: Platform) {
     this.initializeApp();

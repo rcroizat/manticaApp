@@ -1,6 +1,6 @@
+import {Component, OnInit, Input} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
-import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -8,10 +8,9 @@ import {Component, OnInit} from '@angular/core';
 })
 export class CapacitePage implements OnInit {
 
-	datas: Data;
-	math = Math;
-	parseFloat = parseFloat;
-	r: number = 0;
+	@Input() datas: Data;
+	result: any;
+	resultSal: number;
 	constructor(private _dataService: DataService) {
 
 	}
@@ -34,18 +33,44 @@ export class CapacitePage implements OnInit {
 				caution: data[6],
 				apport: data[7],
 				notaire: data[8]
+			},  rejet => {
+				console.log(rejet)
 			};
+		this.calcul();
 		});
+	}
+
+	calcul(){
+		this.resultSal = 
+		 	(
+			 	(
+					this.datas.mensualites *
+						(1- Math.pow((1+((this.datas.interets/100)/12)),-this.datas.duree*12))/
+						((this.datas.interets/100)/12)
+				) - (this.datas.dossier + this.datas.dossier)
+			);
+		this.result = this.formatMillier(Math.round(this.resultSal));
 	}
 
 
 
+	formatMillier( nombre ){
+	nombre += '';
+	  let sep = ' ';
+	  let reg = /(\d+)(\d{3})/;
+	  while( reg.test( nombre)) {
+	    nombre = nombre.replace( reg, '$1' +sep +'$2');
+	  }
+	  return nombre;
+	}
+
+
 	onKey(field: string, value: number) {
 
+
 		this._dataService.save(field, value);
-		let df = this.datas.dossier || 0;
-		let dc = this.datas.caution || 0;
-		this.r = df + dc;
+
+		this.calcul();
 	}
 
 }

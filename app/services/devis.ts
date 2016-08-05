@@ -18,7 +18,7 @@ export class DevisData {
 	telPort: number;
 	telFixe: number;
 	mail: string;
-	montant: number;
-	notaire: number;
-	budget: number;
+	montant: Promise<number>;
+	notaire: Promise<number>;
+	budget: Promise<number>;
 };

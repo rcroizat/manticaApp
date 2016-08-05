@@ -13,10 +13,10 @@ export class MensualitesPage implements OnInit {
 	nouveauMontant : number;
 	result :any;
 	resultSal: number;
-	montant2: any;
+	montant2: number;
 	constructor(private _dataService: DataService) {
-
-		this.datas;
+/*
+		this.datas;*/
   }
 
 
@@ -27,15 +27,15 @@ export class MensualitesPage implements OnInit {
 	getDatas() {
 		this._dataService.getDatas().then(data => {
 			this.datas = {
-				montant: data[0],
-				mensualites: data[1],
-				duree: data[2],
-				interets: data[3],
-				dossier: data[4],
-				assurance: data[5],
-				caution: data[6],
-				apport: data[7],
-				notaire: data[8]
+				montant: data[0] || null,
+				mensualites: data[1] || null,
+				duree: data[2] || null,
+				interets: data[3] || null,
+				dossier: data[4] || null,
+				assurance: data[5] || null,
+				caution: data[6] || null,
+				apport: data[7] || null,
+				notaire: data[8] || null
 			},  rejet => {
 				console.log(rejet)
 			};
@@ -44,10 +44,11 @@ export class MensualitesPage implements OnInit {
 	}
 
 	calcul(){
+		// le + permet de convertir une promise en number
+		this.montant2 = (+this.datas.montant) + (+this.datas.notaire) + (+this.datas.dossier) - (+this.datas.apport);
 
-		this.montant2 = (this.datas.montant) + (this.datas.notaire) + (this.datas.dossier) - (this.datas.apport);
-
-		this.datas.caution = (this.montant2) * 0.01;
+		this.datas.caution = (this.montant2 * 0.01);
+		this._dataService.save('caution', Math.round(this.datas.caution));
 
 		this.nouveauMontant = this.montant2 + this.datas.caution;
 		
@@ -78,8 +79,7 @@ export class MensualitesPage implements OnInit {
 	onKey(field:string, value:number) {
 
 
-		this._dataService.save(field, value);
-		this._dataService.save('caution', Math.round(this.datas.caution));
+		this._dataService.save(field, value); // un cran de retard
 
 		this.calcul();
 		

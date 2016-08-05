@@ -11,7 +11,7 @@
         <ion-item>
             <ion-label floating >
                 <ion-icon name="logo-euro"></ion-icon>
-              Montant du prêt</ion-label>
+              Valeur du bien</ion-label>
              <ion-input [(ngModel)]="datas.montant" (keyup)="onKey('montant', montant.value)" #montant type="number"  required  ></ion-input>
         </ion-item>
         <ion-item>
@@ -65,7 +65,8 @@
 
 <div *ngIf="datas && datas.montant > 0 && datas.duree > 0 && datas.interets >  0">
 
-Mensualités {{result || number}} €<br>
+Mensualités : <br>
+<b>{{result || number}} €</b>
 <!--  {{
    (assuranceMois +
 (

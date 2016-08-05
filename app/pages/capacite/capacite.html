@@ -38,7 +38,7 @@
             <ion-label floating>
                 <ion-icon name="briefcase"></ion-icon>
                 Frais de dossier (€)</ion-label>
-            <ion-input [(ngModel)]="datas.frais"  #frais (keyup)="onKey('frais', frais.value)" type="number" ></ion-input>
+            <ion-input [(ngModel)]="datas.dossier"  #dossier (keyup)="onKey('dossier', dossier.value)" type="number" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
@@ -61,7 +61,7 @@ math.pow((1+((interets.value/100)/12)),-duree.value*12)
 ) - r )  | number: '.0-0'
 }} € -->
 
-{{ result || number}} €
+<b>{{ result || number}} € </b>
 </div>
 
 </ion-content>

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Storage, LocalStorage} from 'ionic-angular';
 
 
 @Component({
@@ -6,6 +7,7 @@ import {Component} from '@angular/core';
 })
 
 export class NotairePage {
+  storage : Storage;
 	result: number;
 	montantNotaire: number;
 	departement: string;
@@ -14,11 +16,15 @@ export class NotairePage {
 
 
   constructor() {
+     this.storage = new Storage(LocalStorage);
   }
 
   calcul(event:any){
+
+
+
     if (event) {
-    this.montantNotaire = event.target.value;
+      this.montantNotaire = event.target.value;
     }
     
    let taux = [[6500.0, 0.04000],
@@ -75,5 +81,7 @@ export class NotairePage {
     }
 
     this.result = Math.round(emoluments_notaire + droits_et_taxes + emoluments_formalites);
+
+    this.storage.set('notaire', this.result);
   }
 }

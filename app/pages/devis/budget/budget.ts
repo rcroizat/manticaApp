@@ -1,5 +1,5 @@
 import {NavController} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from '@angular/common';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {Component, OnInit, Input} from '@angular/core';
 
 import {DevisService} from '../../../services/devis.service';
@@ -18,10 +18,9 @@ import {CoordonneesPage} from '../coordonnees/coordonnees';
 export class BudgetPage implements OnInit{
 
 
-	budgetForm : ControlGroup;
+	budgetForm : FormGroup;
 	nav : NavController;
-	@Input() data: DevisData;
-	localData: Data;
+	data: DevisData;
 
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService, private _dataService: DataService) {
 		this.nav = nav;

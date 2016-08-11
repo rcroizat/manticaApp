@@ -2,6 +2,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
 
+import {NavController} from 'ionic-angular';
+import {DevisPage} from '../devis/devis';
+
 
 @Component({
   templateUrl: 'build/pages/capacite/capacite.html',
@@ -13,7 +16,9 @@ export class CapacitePage implements OnInit {
 	result: any;
 	resultSal: number;
 	cout: number;
-	constructor(private _dataService: DataService) {
+
+
+	constructor(private nav: NavController, private _dataService: DataService) {
 
 	}
 
@@ -24,7 +29,7 @@ export class CapacitePage implements OnInit {
 	}
 
 	getDatas() {
-		this._dataService.getDatas().then(data => {
+		this._dataService.getDatas().then((data: Array<any>) => {
 			this.datas = {
 				montant: data[0] || null,
 				mensualites: data[1] || null,
@@ -45,20 +50,26 @@ export class CapacitePage implements OnInit {
 	calcul(){
 
 		this.resultSal = 
-		 	(
 			 	(
 					this.datas.mensualites *
 						(1- Math.pow((1+((this.datas.interets/100)/12)),-this.datas.duree*12))/
 						((this.datas.interets/100)/12)
-				) - (this.datas.dossier + this.datas.dossier)
-			);
+				);
 		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal/100));
 
-		this.cout =  (this.datas.dossier) + (this.datas.caution) + (this.montantAssurance);
-			console.log(this.cout );
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal/100));
+		let coutSal =  (+this.datas.dossier) + (+this.datas.caution) + (+this.montantAssurance);
 
-		this.result = this.formatMillier(Math.round(this.resultSal));
+		if((this.resultSal - coutSal) > 0){
+			this.result = this.formatMillier(Math.round(this.resultSal- coutSal));
+		}else{
+			this.result = null;
+		}
+		if(coutSal > 0){
+			this.cout = this.formatMillier(Math.round(coutSal));
+		}else{
+			this.cout = null;
+		}
+		this.cout = this.formatMillier(Math.round(coutSal));
 
 		if(Math.round(this.resultSal) > 0){ // sauvegarde de la capacite d'emprunt qui est égal au budget du client
 			this._dataService.save('capacite', Math.round(this.resultSal));
@@ -85,6 +96,10 @@ export class CapacitePage implements OnInit {
 		this._dataService.save(field, value);
 
 		this.calcul();
+	}
+
+	openDevis() {
+		this.nav.setRoot(DevisPage);
 	}
 
 }

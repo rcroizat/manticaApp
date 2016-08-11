@@ -4,6 +4,10 @@ import {ZoneData} from '../../services/zones';*/
 
 import {OnInit} from '@angular/core';
 
+import {NavController} from 'ionic-angular';
+import {ResultPtzPage} from './result-ptz/result-ptz';
+
+
 /*
   Generated class for the PtzPage page.
 
@@ -17,12 +21,15 @@ import {OnInit} from '@angular/core';
 
 
 export class PtzPage {
+
+  nav : NavController;
 	valuesPTZ : any[];
 	elements : any[];
 	zoneCut : any[];
 	zoneField : string;
 	villePtz : string;
-	zoneptz : any;
+  zoneptz : any;
+	bienPtz : string;
  	nbrPers:number;
 
   reponse : boolean = false;
@@ -36,17 +43,15 @@ export class PtzPage {
 	plafond_de_operation: any;
 	coeff_rev_forf: any;
 	montant_retenu: number;
-    coeff_familial: number; 
-    revenu_familiales:number;
-
-
+  coeff_familial: number; 
+  revenu_familiales:number;
 
 
 	coeff_evaluation_forfaitaire_du_revenu : number = 9;
 	
-  constructor() {
-	this.initialiseItems();
-	
+  constructor(nav: NavController) {
+	  this.initialiseItems();
+    this.nav = nav;	
 
   };
 
@@ -60,7 +65,7 @@ export class PtzPage {
  zoneFromNumber(zone) {
  	
 
-let b = "C";
+    let b = "C";
        switch (zone) {
            case '1':
                 b =  "A";
@@ -81,23 +86,22 @@ let b = "C";
    };
 
     get_tr(cout_op, rfr, nbpers, typo, ptzParam) {
-    
-    this.montant_retenu = Math.max(rfr, cout_op / 9);
-    this.coeff_familial = this.coeff_ptz[nbpers];
-    this.revenu_familiales = this.montant_retenu / this.coeff_familial;
-   
-    console.log('zoneptz' + this.zoneptz);
+      this.montant_retenu = Math.max(rfr, cout_op / 9);
+      this.coeff_familial = this.coeff_ptz[nbpers];
+      this.revenu_familiales = this.montant_retenu / this.coeff_familial;
+     
+      console.log('zoneptz' + this.zoneptz);
 
-    this.zoneptz = this.zoneFromNumber(ptzParam);
-    console.log('PTZ FROM NUMBER' + this.zoneptz);
-    let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
-    if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
-        let i = 1;
-        return i;
-    }else{
-    	return -1;
+      this.zoneptz = this.zoneFromNumber(ptzParam);
+      console.log('PTZ FROM NUMBER' + this.zoneptz);
+      let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
+      if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
+          let i = 1;
+          return i;
+      }else{
+      	return -1;
+      };
     };
-};
 
 
  is_allowed_ptz(cout_op, rfr, nbpers, typo, zoneptz) {
@@ -105,16 +109,16 @@ let b = "C";
 };
 
 
- CalculPTZ( revenu_fiscale, cout_operation) {
+ CalculPTZ( revenu_fiscale, cout_operation, apport, etat) {
+   console.log(this.bienPtz)
+   cout_operation = (+cout_operation) - (+apport);
 let personne = this.nbrPers;
-console.log('personne : ' + this.nbrPers + 'pers' + personne +' revenu fisc ' +revenu_fiscale+ ' cour op ' + cout_operation );
   
     if(revenu_fiscale!=0){
     	revenu_fiscale = revenu_fiscale.replace(/ /g, '');
-    	cout_operation = cout_operation.replace(/ /g, '');
 	};
 
-    let nbpers = parseInt(personne);
+    let nbpers = personne;
     let rfr = parseFloat(revenu_fiscale);
     let cout = parseFloat(cout_operation);
     let bDOM = false;
@@ -122,6 +126,7 @@ console.log('personne : ' + this.nbrPers + 'pers' + personne +' revenu fisc ' +r
 
     switch (this.zoneptz) {
         case "A":
+        case "Abis":
             this.zoneptz = 1;
             break;
         case "B1":
@@ -191,41 +196,75 @@ console.log('personne : ' + this.nbrPers + 'pers' + personne +' revenu fisc ' +r
     this.montant_retenu = Math.max(rfr, cout / this.coeff_rev_forf);
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
 
-console.log('avant let' + this.zoneptz);
   
-console.log('1');
-console.log(this.plafond_de_operation);
-console.log(this.zoneptz);
 console.log(' nbr personne ' + nbpers);
     if (cout < this.plafond_de_operation[this.zoneptz][nbpers]) {
-console.log('2');
+
     } else {
         cout = this.plafond_de_operation[this.zoneptz][nbpers];
     };
     //Outuput
-    if (this.is_allowed_ptz(cout, rfr, nbpers, 0 , this.zoneptz)) {
-/*        
-        let montant_max_ptz_neuf = (cout * quantite_maximale_du_pret_neuf[zone]) / 100;
-        let montant_max_ptz_ancien = (cout * quantite_maximale_du_pret_ancien[zone]) / 100;
-        let montant_max_ptz_hlm = (cout * quantite_maximale_du_pret_hlm[zone]) / 100;
-        let coeff_familial = coeff_ptz[nbpers];
-        let montant_retenu = Math.max(rfr, cout / 9);
-        let revenu_familiales = montant_retenu / coeff_familial;
-        let dure_tot_remb = get_cdr("duree_tot", zone, revenu_familiales);
-        let dure_du_differe = get_cdr("periode_diff", zone, revenu_familiales); //Periode re remb
-        let periode_de_remboursement = get_cdr("periode_remb", zone, revenu_familiales);
-        let montant_differe = get_cdr("montant_diff", zone, revenu_familiales); //differe d'armotissement
-        let mensualite_premiere_neuf = (montant_max_ptz_neuf * ((100 - montant_differe) / 100)) / dure_du_differe;
-        let mensualite_premiere_ancien = (montant_max_ptz_ancien * ((100 - montant_differe) / 100)) / dure_du_differe;
-        let mensualite_premiere_hlm = (montant_max_ptz_hlm * ((100 - montant_differe) / 100)) / dure_du_differe;
-        let dure_total_de_remboursement = dure_du_differe + periode_de_remboursement;
-        let mensualite_seconde_neuf = (montant_max_ptz_neuf * (montant_differe / 100)) / (periode_de_remboursement);
-        let mensualite_seconde_ancien = (montant_max_ptz_ancien * (montant_differe / 100)) / (periode_de_remboursement);
-        let mensualite_seconde_neuf_hlm = (montant_max_ptz_hlm * (montant_differe / 100)) / (periode_de_remboursement);
-        differe = true;*/
+    if (this.is_allowed_ptz(cout, rfr, nbpers, 0 , this.zoneptz)) {   
+
+
+
+        var zone = this.zoneFromNumber(this.zoneptz);
+
+
+
+        var montant_max_ptz_neuf = (cout * this.quantite_maximale_du_pret_neuf[zone]) / 100;
+        var montant_max_ptz_ancien = (cout * this.quantite_maximale_du_pret_ancien[zone]) / 100;
+        var montant_max_ptz_hlm = (cout * this.quantite_maximale_du_pret_hlm[zone]) / 100;
+        var coeff_familial = this.coeff_ptz[nbpers];
+        var montant_retenu = Math.max(rfr, cout / 9);
+        var revenu_familiales = this.montant_retenu / this.coeff_familial;
+        var dure_tot_remb = this.get_cdr("duree_tot", zone, this.revenu_familiales);
+        var dure_du_differe = this.get_cdr("periode_diff", zone, revenu_familiales); //Periode re remb
+        var periode_de_remboursement = this.get_cdr("periode_remb", zone, revenu_familiales);
+        var montant_differe = this.get_cdr("montant_diff", zone, revenu_familiales); //differe d'armotissement
+        var mensualite_premiere_neuf = (montant_max_ptz_neuf * ((100 - montant_differe) / 100)) / dure_du_differe;
+        var mensualite_premiere_ancien = (montant_max_ptz_ancien * ((100 - montant_differe) / 100)) / dure_du_differe;
+        var mensualite_premiere_hlm = (montant_max_ptz_hlm * ((100 - montant_differe) / 100)) / dure_du_differe;
+        var dure_total_de_remboursement = dure_du_differe + periode_de_remboursement;
+        var mensualite_premiere_neuf = (montant_max_ptz_neuf * (montant_differe / 100)) / (periode_de_remboursement);
+        var mensualite_seconde_ancien = (montant_max_ptz_ancien * (montant_differe / 100)) / (periode_de_remboursement);
+        var mensualite_seconde_neuf_hlm = (montant_max_ptz_hlm * (montant_differe / 100)) / (periode_de_remboursement);
+        var differe = true;
         console.log('YATA');
-let zone = this.zoneFromNumber(this.zoneptz);
-        console.log((cout * this.quantite_maximale_du_pret_neuf[zone]) / 100);
+        console.log('dure_tot_remb ' + dure_tot_remb);
+        console.log('dure_total_de_remboursement ' + dure_total_de_remboursement);
+
+
+
+         if(this.bienPtz == 'neuf'){
+           var coutMax = (cout * this.quantite_maximale_du_pret_neuf[zone]) / 100;
+           var premiere = mensualite_premiere_neuf;
+           var seconde = mensualite_premiere_neuf;
+         }else if(this.bienPtz == 'hlm'){
+           var coutMax =  (cout * this.quantite_maximale_du_pret_hlm[zone]) / 100;
+           var premiere = mensualite_premiere_hlm;
+           var seconde = mensualite_seconde_neuf_hlm;
+         }else if(this.bienPtz == 'ancienTravaux'){
+           var coutMax =  (cout * this.quantite_maximale_du_pret_ancien[zone]) / 100;
+           var premiere = mensualite_premiere_ancien;
+           var seconde = mensualite_seconde_ancien;
+         }
+
+
+
+        this.nav.push(ResultPtzPage, {
+            bien: this.bienPtz,
+            dure_tot_remb: dure_tot_remb,
+            dure_total_de_remboursement: dure_total_de_remboursement,
+            montant_differe: montant_differe,
+            coutMax: coutMax,
+            premiere: premiere,
+            seconde: seconde,
+            dure_du_differe: dure_du_differe
+        });
+
+         console.log(coutMax);
+
        /* scope.model['success_box_messages_ptz'] = true;
         scope.model["montant_maximum_1"] = mtr.number_format(montant_max_ptz_neuf, 0, ',', ' ');
         scope.model["montant_maximum_ancien"] = mtr.number_format(montant_max_ptz_ancien, 0, ',', ' ');

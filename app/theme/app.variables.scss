@@ -29,3 +29,18 @@ $colors: (
   inputLight: #7f7f7f,
   favorite:   #69BB7B
 );
+
+// bug depuis la maj beta 11
+// Tous les inputs ayant un ng-model reçoivent l'attribut ng-valid
+// ce qui rajoute un soulignage rouge comme ci les inputs étaient "faux"
+//$text-input-ios-highlight-color-valid: transparent !global;
+//$text-input-wp-highlight-color-valid: transparent !global;
+//$text-input-md-highlight-color-valid: transparent !global;
+
+$text-input-md-show-valid-highlight: false;
+$text-input-ios-show-valid-highlight: false;
+$text-input-wp-show-valid-highlight: false;
+
+$text-input-md-show-invalid-highlight: false;
+$text-input-ios-show-invalid-highlight: false;
+$text-input-wp-show-invalid-highlight: false;

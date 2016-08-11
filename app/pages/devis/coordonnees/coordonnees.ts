@@ -1,5 +1,5 @@
-import {NavController, Alert, Loading} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from '@angular/common';
+import {NavController, AlertController , Loading, LoadingController } from 'ionic-angular';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {Http, HTTP_PROVIDERS }    from '@angular/http';
 import {Component, OnInit, Input} from '@angular/core';
 
@@ -19,18 +19,19 @@ import {GettingStartedPage} from '../../../pages/getting-started/getting-started
 export class CoordonneesPage implements OnInit {
 
 	response: any;
-	coordonneesForm : ControlGroup;
+	coordonneesForm : FormGroup;
 	nav : NavController;
 	@Input()  data: DevisData;
 
 
 
 
-	constructor(form: FormBuilder, private http: Http, nav: NavController, private _devisService: DevisService) {
+	constructor(private loadingController: LoadingController, form: FormBuilder, private http: Http, nav: NavController, private _devisService: DevisService, public alertCtrl: AlertController ) {
 		this.nav = nav;
 
 		this.coordonneesForm = form.group({ // name should match [ngFormModel] in your html
 		
+			civilite: ["", Validators.required],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
 			telPort: ["", Validators.required],
@@ -53,14 +54,14 @@ export class CoordonneesPage implements OnInit {
 		this.http.post('http://www.e-mantica.com/mailer.php', JSON.stringify(value))
 			.subscribe(res => {
 				this.response = res;
-				let loading = Loading.create({
+				let loading = this.loadingController.create({
 					content: 'Please wait...',
 					dismissOnPageChange : true
 				});
-
-				this.nav.present(loading);
+					loading.present();
+					
 				if (this.response) {
-					let alert = Alert.create({
+					let alert = this.alertCtrl.create({
 						title: 'Demande envoyée !',
 						subTitle: 'Votre demande a bien été envoyé, un de nos experts vous contactera sous peu',
 						buttons: [
@@ -73,15 +74,15 @@ export class CoordonneesPage implements OnInit {
 						]
 					});
 
-					this.nav.present(alert);
+					alert.present();
 
 				} else {
-					let alert = Alert.create({
+					let alert = this.alertCtrl.create({
 						title: 'Erreur',
 						subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuilleZ réessayer plus tard',
 						buttons: ['OK']
 					});
-					this.nav.present(alert);
+					alert.present();
 				}
 			});
 

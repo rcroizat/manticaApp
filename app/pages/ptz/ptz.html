@@ -30,7 +30,7 @@
             <ion-select [(ngModel)]="nbrPers" #pers >
                 <ion-option value="1">1</ion-option>
                 <ion-option value="2">2</ion-option>
-                <ion-option selected value="3">3</ion-option>
+                <ion-option value="3">3</ion-option>
                 <ion-option value="4">4</ion-option>
                 <ion-option value="5">5</ion-option>
                 <ion-option value="6">6</ion-option>
@@ -42,33 +42,32 @@
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Revenu Fiscal de référence</ion-label>
-            <ion-input value="150000" [(ngModel)]="revenuFiscal" #rev type="number"></ion-input>
+            <ion-input [(ngModel)]="revenuFiscal" #rev type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Coût du projet</ion-label>
-            <ion-input value="150000" #coutPrj type="number"></ion-input>
+            <ion-input #coutPrj type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Apport personnel</ion-label>
-            <ion-input type="number"></ion-input>
+            <ion-input type="number" #apport></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item >
             <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
-                Type de bien</ion-label>
-            <ion-select [(ngModel)]="bienPtz">
-                <ion-option value="neuf">Neuf</ion-option>
-                <ion-option value="hlm">HLM ancien</ion-option>
+                Type de logement</ion-label>
+            <ion-select #etat [(ngModel)]="bienPtz" text-wrap>
+                <ion-option value="neuf">Neuf ou assimilé</ion-option>
+                <ion-option value="hlm">Existant acquis auprès d'un organisme HLM</ion-option>
                 <ion-option value="ancienTravaux">Ancien avec travaux</ion-option>
-                <ion-option value="anciensSansTravaux">Ancien sans travaux</ion-option>
             </ion-select>
         </ion-item>
 
-      <button primary  (click)="CalculPTZ(rev.value, coutPrj.value )">Calcul</button>
-      <p *ngIf="reponse"><b style="color : red;">QUEL MESSAGE METTRE</b>Compte tenu des éléments que vous avez indiqué, vous n'avez pas droit au Prêt à Taux Zéro plus 2016. </p>
+      <button primary  (click)="CalculPTZ(rev.value, coutPrj.value , apport.value)">Calcul</button>
+      <p *ngIf="reponse"><b>Compte tenu des éléments que vous avez indiqué, vous n'avez pas droit au Prêt à Taux Zéro plus 2016.</b> </p>
     </ion-list>
 </ion-content>

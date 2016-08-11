@@ -8,7 +8,7 @@ import {Storage, LocalStorage} from 'ionic-angular';
 
 export class NotairePage {
   storage : Storage;
-	result: number;
+	result: any;
 	montantNotaire: number;
 	departement: string;
 	type: string;
@@ -19,10 +19,20 @@ export class NotairePage {
      this.storage = new Storage(LocalStorage);
   }
 
+
+
+  formatMillier( nombre ){
+    nombre += '';
+    let sep = ' ';
+    let reg = /(\d+)(\d{3})/;
+    while( reg.test( nombre)) {
+      nombre = nombre.replace( reg, '$1' +sep +'$2');
+    }
+    return nombre;
+  }
+
   calcul(event:any){
-
-
-
+console.log('event')
     if (event) {
       this.montantNotaire = event.target.value;
     }
@@ -80,7 +90,12 @@ export class NotairePage {
         emoluments_formalites += 1350.0;
     }
 
-    this.result = Math.round(emoluments_notaire + droits_et_taxes + emoluments_formalites);
+    let resultSal = Math.round(emoluments_notaire + droits_et_taxes + emoluments_formalites);
+    if(resultSal < 10000000){
+      this.result = this.formatMillier(resultSal);
+    }else{
+      this.result = null;
+    }
 
     this.storage.set('notaire', this.result);
   }

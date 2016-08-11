@@ -9,13 +9,13 @@ import {DevisService} from './services/devis.service';
 
 // Pages
 import {GettingStartedPage} from './pages/getting-started/getting-started';
-import {ListPage} from './pages/list/list';
 import {MensualitesPage} from './pages/mensualites/mensualites';
 import {NotairePage} from './pages/notaire/notaire';
 import {DevisPage} from './pages/devis/devis';
 import {CoordonneesPage} from './pages/devis/coordonnees/coordonnees';
 import {CapacitePage} from './pages/capacite/capacite';
 import {PtzPage} from './pages/ptz/ptz';
+import {TestPage} from './pages/test/test';
 
 
 @Component({
@@ -23,7 +23,7 @@ import {PtzPage} from './pages/ptz/ptz';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = DevisPage;
+  rootPage: any = MensualitesPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: App, private platform: Platform) {
     this.initializeApp();
@@ -31,12 +31,12 @@ class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Getting Started', component: GettingStartedPage },
-      { title: 'List', component: ListPage },
       { title: 'Calcul des mensualités', component: MensualitesPage },
       { title: 'Capacité d\'emprunt', component: CapacitePage },
       { title: 'Demande de devis', component: DevisPage },
       { title: 'Frais de notaire', component: NotairePage },
-      { title: 'Prêt à taux zéro', component: PtzPage }
+      { title: 'Prêt à taux zéro', component: PtzPage },
+      { title: 'DDDDDDD', component: TestPage }
     ];
 
   }

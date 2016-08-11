@@ -1,10 +1,16 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Injectable} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
+
+import {NavController} from 'ionic-angular';
+import {DevisPage} from '../devis/devis';
 
 @Component({
   templateUrl: 'build/pages/mensualites/mensualites.html'
 })
+
+
+
 export class MensualitesPage implements OnInit {
 
 	@Input() datas: Data;
@@ -14,10 +20,14 @@ export class MensualitesPage implements OnInit {
 	result :any;
 	resultSal: number;
 	montant2: number;
-	constructor(private _dataService: DataService) {
-/*
-		this.datas;*/
-  }
+	ablou: string = 'lakekeke';
+
+
+
+
+	constructor(private nav: NavController, private _dataService: DataService) {
+
+ 	}
 
 
 	ngOnInit() {
@@ -25,7 +35,7 @@ export class MensualitesPage implements OnInit {
 	}
 
 	getDatas() {
-		this._dataService.getDatas().then(data => {
+		this._dataService.getDatas().then((data: Array<any>) => {
 			this.datas = {
 				montant: data[0] || null,
 				mensualites: data[1] || null,
@@ -46,24 +56,26 @@ export class MensualitesPage implements OnInit {
 	calcul(){
 		// le + permet de convertir une promise en number
 		this.montant2 = (+this.datas.montant) + (+this.datas.notaire) + (+this.datas.dossier) - (+this.datas.apport);
-
-		this.datas.caution = (this.montant2 * 0.01);
-		this._dataService.save('caution', Math.round(this.datas.caution));
-
+		if(this.datas.montant != null && this.datas.duree != null){
+			this.datas.caution = Math.round(this.montant2 * 0.01);
+			this._dataService.save('caution', this.datas.caution);
+		}
 		this.nouveauMontant = this.montant2 + this.datas.caution;
 		
-		this.assuranceMois = (this.nouveauMontant) * ((this.datas.assurance/100)/12);
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100));
+		let assuranceMoisSal = (this.nouveauMontant) * ((this.datas.assurance/100)/12);
+		let montantAssuranceSal = (this.datas.assurance * this.datas.duree * (this.nouveauMontant/100));
+		this.assuranceMois = Math.round(assuranceMoisSal);
+		this.montantAssurance = Math.round(montantAssuranceSal);
 
-		this.resultSal = this.assuranceMois + 
+		this.resultSal = assuranceMoisSal + 
 		(
-				(
-					( (this.nouveauMontant) * ((this.datas.interets/100)/12))/
-					(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
- 				)
+			(
+				( (this.nouveauMontant) * ((this.datas.interets/100)/12))/
+				(1-(Math.pow((1+((this.datas.interets/100)/12)),-(this.datas.duree*12))))
+ 			)
  		);
 		this.result = this.formatMillier(Math.round(this.resultSal));
-		
+
 	}
 
 	formatMillier( nombre){
@@ -76,13 +88,22 @@ export class MensualitesPage implements OnInit {
 	  return nombre;
 	}
 
-	onKey(field:string, value:number) {
+	convertBack(str : string){
+		let newValue = str.replace(' ', '');
+		newValue = parseFloat(newValue);
+		return newValue;
+	}
 
+	onKey(field:string, value:number) {
 
 		this._dataService.save(field, value); // un cran de retard
 
 		this.calcul();
-		
+
+	}
+
+	openDevis() {
+		this.nav.setRoot(DevisPage);
 	}
 
 

@@ -1,5 +1,6 @@
 import {Page, NavController, Alert, NavParams} from 'ionic-angular';
-import {FormBuilder, Validators, ControlGroup} from '@angular/common';
+import {FormBuilder, Validators, FormGroup} from '@angular/forms';
+
 import {BudgetPage} from '../budget/budget';
 import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
@@ -12,7 +13,7 @@ import {OnInit, Input} from '@angular/core';
 export class SituationPage implements OnInit {
 
 
-	situationForm: ControlGroup;
+	situationForm: FormGroup;
 	nav: NavController;
 	
 	@Input() data: DevisData;

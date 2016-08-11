@@ -6,8 +6,6 @@ import {Data} from './data';
 @Injectable()
 export class DataService {
 	storage : Storage;
-	public all: Data;
-	montant : number;
 	constructor() {
 		this.storage = new Storage(LocalStorage);
 	}

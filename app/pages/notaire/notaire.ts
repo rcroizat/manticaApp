@@ -91,12 +91,12 @@ console.log('event')
     }
 
     let resultSal = Math.round(emoluments_notaire + droits_et_taxes + emoluments_formalites);
+
     if(resultSal < 10000000){
       this.result = this.formatMillier(resultSal);
     }else{
       this.result = null;
     }
-
-    this.storage.set('notaire', this.result);
+    this.storage.set('notaire', resultSal);
   }
 }

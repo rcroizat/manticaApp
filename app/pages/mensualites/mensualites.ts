@@ -89,7 +89,7 @@ export class MensualitesPage implements OnInit {
 	}
 
 	convertBack(str : string){
-		let newValue = str.replace(' ', '');
+		let newValue : any = str.replace(' ', '');
 		newValue = parseFloat(newValue);
 		return newValue;
 	}

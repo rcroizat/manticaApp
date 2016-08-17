@@ -15,7 +15,7 @@ import {DevisPage} from './pages/devis/devis';
 import {CoordonneesPage} from './pages/devis/coordonnees/coordonnees';
 import {CapacitePage} from './pages/capacite/capacite';
 import {PtzPage} from './pages/ptz/ptz';
-import {TestPage} from './pages/test/test';
+import {AgencesPage} from './pages/agences/agences';
 
 
 @Component({
@@ -23,7 +23,7 @@ import {TestPage} from './pages/test/test';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = MensualitesPage;
+  rootPage: any = AgencesPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: App, private platform: Platform) {
     this.initializeApp();
@@ -36,7 +36,7 @@ class MyApp {
       { title: 'Demande de devis', component: DevisPage },
       { title: 'Frais de notaire', component: NotairePage },
       { title: 'Prêt à taux zéro', component: PtzPage },
-      { title: 'DDDDDDD', component: TestPage }
+      { title: 'Nos agences', component: AgencesPage }
     ];
 
   }

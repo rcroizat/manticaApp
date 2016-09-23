@@ -2,7 +2,7 @@ import {Page} from 'ionic-angular';
 /*import {ZonageService} from '../../services/zonage.service';
 import {ZoneData} from '../../services/zones';*/
 
-import {OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {NavController} from 'ionic-angular';
 import {ResultPtzPage} from './result-ptz/result-ptz';
@@ -15,7 +15,7 @@ import {ResultPtzPage} from './result-ptz/result-ptz';
   Ionic pages and navigation.
 */
 
-@Page({
+@Component({
   templateUrl: 'build/pages/ptz/ptz.html',
 })
 
@@ -85,38 +85,38 @@ export class PtzPage {
        return b;
    };
 
-    get_tr(cout_op, rfr, nbpers, typo, ptzParam) {
-      this.montant_retenu = Math.max(rfr, cout_op / 9);
-      this.coeff_familial = this.coeff_ptz[nbpers];
-      this.revenu_familiales = this.montant_retenu / this.coeff_familial;
-     
-      console.log('zoneptz' + this.zoneptz);
+  get_tr(cout_op, rfr, nbpers, typo, ptzParam) {
+    this.montant_retenu = Math.max(rfr, cout_op / 9);
+    this.coeff_familial = this.coeff_ptz[nbpers];
+    this.revenu_familiales = this.montant_retenu / this.coeff_familial;
+   
+    console.log('zoneptz' + this.zoneptz);
 
-      this.zoneptz = this.zoneFromNumber(ptzParam);
-      console.log('PTZ FROM NUMBER' + this.zoneptz);
-      let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
-      if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
-          let i = 1;
-          return i;
-      }else{
-      	return -1;
-      };
+    this.zoneptz = this.zoneFromNumber(ptzParam);
+    console.log('PTZ FROM NUMBER' + this.zoneptz);
+    let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
+    if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
+        let i = 1;
+        return i;
+    }else{
+    	return -1;
     };
+  };
 
 
- is_allowed_ptz(cout_op, rfr, nbpers, typo, zoneptz) {
+  is_allowed_ptz(cout_op, rfr, nbpers, typo, zoneptz) {
     return this.get_tr(cout_op, rfr, nbpers, typo, zoneptz) != -1;
-};
+  };
 
 
- CalculPTZ( revenu_fiscale, cout_operation, apport, etat) {
-   console.log(this.bienPtz)
-   cout_operation = (+cout_operation) - (+apport);
-let personne = this.nbrPers;
-  
+  CalculPTZ( revenu_fiscale, cout_operation, apport, etat) {
+    console.log(this.bienPtz)
+    cout_operation = (+cout_operation) - (+apport);
+    let personne = this.nbrPers;
+
     if(revenu_fiscale!=0){
-    	revenu_fiscale = revenu_fiscale.replace(/ /g, '');
-	};
+      revenu_fiscale = revenu_fiscale.replace(/ /g, '');
+  };
 
     let nbpers = personne;
     let rfr = parseFloat(revenu_fiscale);
@@ -124,27 +124,27 @@ let personne = this.nbrPers;
     let bDOM = false;
     this.zoneptz = this.zoneField;
 
-    switch (this.zoneptz) {
-        case "A":
-        case "Abis":
-            this.zoneptz = 1;
-            break;
-        case "B1":
-            this.zoneptz = 2;
-            break;
-        case "B2":
-            this.zoneptz = 3;
-            break;
-        case "C":
-            this.zoneptz = 4;
-            break;
-        case "DOM":
-            {
-                bDOM = true;
-                this.zoneptz = 3;
-            }
-            break;
-    }
+  switch (this.zoneptz) {
+    case "A":
+    case "Abis":
+      this.zoneptz = 1;
+    break;
+    case "B1":
+      this.zoneptz = 2;
+    break;
+    case "B2":
+      this.zoneptz = 3;
+    break;
+    case "C":
+      this.zoneptz = 4;
+    break;
+    case "DOM":
+      {
+      bDOM = true;
+      this.zoneptz = 3;
+      }
+    break;
+  }
 
 
     let rfr_ptz = Math.max(cout / 9.0, rfr);
@@ -197,7 +197,6 @@ let personne = this.nbrPers;
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
 
   
-console.log(' nbr personne ' + nbpers);
     if (cout < this.plafond_de_operation[this.zoneptz][nbpers]) {
 
     } else {

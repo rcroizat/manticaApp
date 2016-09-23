@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar primary>
+    <ion-navbar secondary>
         <button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
@@ -7,11 +7,11 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding class="devis">
- <form [formGroup]="devisForm" (ngSubmit)="next()" >
-
+ <form  [formGroup]="devisForm" (ngSubmit)="next()" >
+<ion-list>
         <ion-item>
               <ion-label >
-                <ion-icon name="home"></ion-icon>
+                <ion-icon name="home"  ></ion-icon>
                 Votre projet immobilier*</ion-label>
             <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.projet" formControlName="projet">
                 <ion-option value="Acquisition">Acquisition</ion-option>
@@ -22,8 +22,14 @@
             <ion-label floating>
                 <ion-icon name="map"></ion-icon>
                 Code postal*</ion-label>
-            <ion-input type="number" [(ngModel)]="data.cpProjet"  formControlName="cpProjet"></ion-input>
+            <ion-input type="number" 
+             [(ngModel)]="data.cpProjet"  
+             formControlName="cpProjet" 
+             ></ion-input>
+            
         </ion-item>
+
+                    
         <ion-item>
             <ion-label floating>
                 <ion-icon name="pin"></ion-icon>
@@ -87,8 +93,8 @@
                 <ion-option value="Investissement locatif">Investissement locatif</ion-option>
             </ion-select>
         </ion-item>
-
-<button block primary type="submit" [disabled]="devisForm.valid">Suivant
+</ion-list>
+<button block tertiary type="submit" [disabled]="devisForm.valid">Suivant
       </button>
 
 </form>

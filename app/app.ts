@@ -8,7 +8,7 @@ import {DevisService} from './services/devis.service';
 
 
 // Pages
-import {GettingStartedPage} from './pages/getting-started/getting-started';
+import {AccueilPage} from './pages/accueil/accueil';
 import {MensualitesPage} from './pages/mensualites/mensualites';
 import {NotairePage} from './pages/notaire/notaire';
 import {DevisPage} from './pages/devis/devis';
@@ -23,14 +23,14 @@ import {AgencesPage} from './pages/agences/agences';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = AgencesPage;
+  rootPage: any = DevisPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: App, private platform: Platform) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Getting Started', component: GettingStartedPage },
+      { title: 'Getting Started', component: AccueilPage },
       { title: 'Calcul des mensualités', component: MensualitesPage },
       { title: 'Capacité d\'emprunt', component: CapacitePage },
       { title: 'Demande de devis', component: DevisPage },

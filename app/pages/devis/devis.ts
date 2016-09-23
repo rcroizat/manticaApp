@@ -17,17 +17,19 @@ export class DevisPage implements OnInit  {
 	devisForm : FormGroup;
 	nav : NavController;
 	@Input() data: DevisData;
-
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;
 		this.devisForm = form.group({ // name should match [ngFormModel] in your html
 			projet: ["", Validators.required],
-			cpProjet: ["", Validators.required],
+			cpProjet: ["", Validators.pattern('[0-9]{5}')],
 			villeProjet: ["", Validators.required],
 			typeProjet: ["", Validators.required],
 			etat: ["", Validators.required],
 			usage: ["", Validators.required]
 		});
+
+
+
 	}
 
 
@@ -37,6 +39,7 @@ export class DevisPage implements OnInit  {
 
 	getDatas() {
 		this.data = this._devisService.getDevisData();
+		console.log(this.devisForm)
 	}
 
 

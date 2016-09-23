@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { NavParams } from 'ionic-angular';
 /*
   Generated class for the ResultPtzPage page.
@@ -21,7 +20,7 @@ export class ResultPtzPage {
 	dure_du_differe:number;
 
 
-  constructor(private nav: NavController, public params: NavParams) {
+  constructor(public params: NavParams) {
      this.bien = params.get('bien');
      this.dure_tot_remb = this.formatMillier(params.get('dure_tot_remb'));
      this.montant_differe = this.formatMillier(params.get('montant_differe'));

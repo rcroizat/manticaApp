@@ -9,146 +9,40 @@
 
 
 <ion-content padding>
-<ion-card>
-  <img src="img/immeuble.jpg"/>
+<ion-card *ngFor="let agence of agences">
+  <img src="{{agence.img}}"/>
 
  <ion-card-content>
     <ion-card-title>
-      Saint Michel sur Orge
+      {{agence.nom}}
       </ion-card-title>
       <p>
-      29 rue des Rosières<br>
-      Immeuble Diamant<br>
-      91240 Saint Michel sur Orge<br>
-      Tél : 01 69 46 10 04
+      {{agence.adresse}}<br>
+      {{agence.cp}} {{agence.nom}}<br>
+      Tél : {{agence.telString}}
+      contact : {{agence.mail}}
     </p>
  
   </ion-card-content>
     <ion-row no-padding>
       <ion-col width-33>
-        <button clear small primary (click)="stmichel()" >
-          <ion-icon name='map'></ion-icon>
+        <button clear small primary (click)="map(agence.shortcut)" >
+          <ion-icon name='map' class="agence"></ion-icon>
           Itinéraire
         </button>
       </ion-col>
       <ion-col width-33>
         <button clear small primary>
-          <ion-icon name='call'></ion-icon>
-          <a href="tel:0169461004"> Appeler</a>
+          <ion-icon name='call'  class="agence"></ion-icon>
+          <a href="tel:{{agence.tel}}"> Appeler</a>
         </button>
       </ion-col>
       <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='mail'></ion-icon>
+        <button clear small primary (click)="contact(agence.mail)">
+          <ion-icon name='mail'  class="agence"></ion-icon>
           Contact
         </button>
       </ion-col>
     </ion-row>
-
-</ion-card>
-<ion-card>
-  <img src="img/immeuble.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      Massy (91)
-      </ion-card-title>
-      <p>
-      8 rue René Cassin<br>
-      91300 Massy<br>
-      Tél : 01 69 81 71 06
-    </p>
-  </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col width-33>
-        <button clear small primary (click)="massy()">
-          <ion-icon name='map'></ion-icon>
-          Itinéraire
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='call'></ion-icon>
-          <a href="tel:0169817106"> Appeler</a>
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='mail'></ion-icon>
-          Contact
-        </button>
-      </ion-col>
-    </ion-row>
-
-</ion-card>
-<ion-card>
-  <img src="img/immeuble.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      Brunoy
-      </ion-card-title>
-    <p>
-      94, Route Nationale 6<br>
-      91800 Brunoy<br>
-      Tél : 01 60 46 84 26
-    </p>
-  </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col width-33>
-        <button clear small primary (click)="brunoy()">
-          <ion-icon name='map'></ion-icon>
-          Itinéraire
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='call'></ion-icon>
-           <a href="tel:0160468426"> Appeler</a>
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='mail'></ion-icon>
-          Contact
-        </button>
-      </ion-col>
-    </ion-row>
-
-</ion-card>
-<ion-card>
-  <img src="img/immeuble.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      Meulan
-      </ion-card-title>
-    <p>
-      19 bis quai de l'arquebuse<br>
-      78250 Meulan<br>
-      Tél : 01 34 74 40 16
-    </p>
-  </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col width-33>
-        <button clear small primary (click)="meulan()">
-          <ion-icon name='map'></ion-icon>
-          Itinéraire
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='call'></ion-icon>
-          <a href="tel:0134744016"> Appeler</a>
-        </button>
-      </ion-col>
-      <ion-col width-33>
-        <button clear small primary>
-          <ion-icon name='mail'></ion-icon>
-          Contact
-        </button>
-      </ion-col>
-    </ion-row>
-
 </ion-card>
 </ion-content>

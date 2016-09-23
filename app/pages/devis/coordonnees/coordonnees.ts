@@ -8,7 +8,7 @@ import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
 
 
-import {GettingStartedPage} from '../../../pages/getting-started/getting-started';
+import {AccueilPage} from '../../../pages/accueil/accueil';
 
 
 @Component({
@@ -51,14 +51,14 @@ export class CoordonneesPage implements OnInit {
 	send() {
 		let value = this.data;
 		
-		this.http.post('http://www.e-mantica.com/mailer.php', JSON.stringify(value))
+		this.http.post('http://www.e-mantica.com/appMobile/devisMailerApp.php', JSON.stringify(value))
 			.subscribe(res => {
 				this.response = res;
-				let loading = this.loadingController.create({
+				/*let loading = this.loadingController.create({
 					content: 'Please wait...',
 					dismissOnPageChange : true
 				});
-					loading.present();
+					loading.present();*/
 					
 				if (this.response) {
 					let alert = this.alertCtrl.create({
@@ -68,7 +68,7 @@ export class CoordonneesPage implements OnInit {
 							{
 								text: 'OK',
 								handler: () => {
-									this.nav.setRoot(GettingStartedPage);
+									this.nav.setRoot(AccueilPage);
 								}
 							}
 						]
@@ -79,7 +79,7 @@ export class CoordonneesPage implements OnInit {
 				} else {
 					let alert = this.alertCtrl.create({
 						title: 'Erreur',
-						subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuilleZ réessayer plus tard',
+						subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuillez réessayer plus tard',
 						buttons: ['OK']
 					});
 					alert.present();

@@ -7,7 +7,7 @@
 // By default each design mode includes these shared imports.
 // App Shared Sass variables belong in app.variables.scss.
 
-@import "../pages/getting-started/getting-started";
+@import "../pages/accueil/accueil";
 
 @import "../pages/list/list";
 
@@ -17,3 +17,4 @@
 @import "../pages/ptz/ptz";
 @import "../pages/devis/devis";
 @import "../pages/agences/agences";
+@import "../pages/agences/contact/contact";

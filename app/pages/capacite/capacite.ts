@@ -17,6 +17,7 @@ export class CapacitePage implements OnInit {
 	resultSal: number;
 	cout: number;
 
+	taux:any[];
 
 	constructor(private nav: NavController, private _dataService: DataService) {
 
@@ -29,12 +30,18 @@ export class CapacitePage implements OnInit {
 	}
 
 	getDatas() {
+		// on recupere le taux sur emantica
+		this._dataService.getTaux().subscribe(
+                     taux  => this.taux = taux,
+                     error => console.log(<any>error));
+
+
 		this._dataService.getDatas().then((data: Array<any>) => {
 			this.datas = {
 				montant: data[0] || null,
 				mensualites: data[1] || null,
 				duree: data[2] || null,
-				interets: data[3] || null,
+				interets: data[3] || 0.75,
 				dossier: data[4] || null,
 				assurance: data[5] || null,
 				caution: data[6] || null,
@@ -101,5 +108,19 @@ export class CapacitePage implements OnInit {
 	openDevis() {
 		this.nav.setRoot(DevisPage);
 	}
+
+
+	calculTaux(val : number) {
+		let interet;
+		this.taux.forEach(function(element){
+			if(val >= element.duree){
+				 interet = element.taux;
+			}
+		});
+		this.datas.interets = interet;
+		this._dataService.save('interets', interet); 
+	}
+
+
 
 }

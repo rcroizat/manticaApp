@@ -15,51 +15,50 @@
              <ion-input type="number" [(ngModel)]="datas.mensualites" #mensualites (keyup)="onKey('mensualites', mensualites.value)" ><span>Euro</span></ion-input>
         </ion-item>
 
-            <ion-item>
-              <ion-label floating class="labelRange">Durée du prêt (en années)</ion-label>
-         <ion-range min="2" max="30" pin="true" [(ngModel)]="datas.duree" #duree (ionChange)="onKey('duree', duree.value)">
-           <ion-icon range-left small name="timer"></ion-icon>
-           <ion-icon range-right name="timer"></ion-icon>
+        <ion-item>
+          <ion-label floating class="labelRange">Durée du prêt (en années)</ion-label>
+         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" [(ngModel)]="datas.duree" #duree (ionChange)="onKey('duree', duree.value);calculTaux(duree.value)">
+           <ion-icon class="labelRange" range-left small name="timer"></ion-icon>
+           <ion-icon class="labelRange" range-right name="timer"></ion-icon>
          </ion-range> 
         </ion-item>
+
         <ion-item>
             <ion-label floating>
                 <ion-icon name="trending-up"></ion-icon>
                 Taux d'intérêt (%)</ion-label>
             <ion-input [(ngModel)]="datas.interets" #interets (keyup)="onKey('interets', interets.value)" type="number" ></ion-input>
         </ion-item>
- <ion-item>
-    <ion-label floating>
-        <ion-icon name="home"></ion-icon>
-        Taux d'assurance (%)</ion-label>
-    <ion-input [(ngModel)]="datas.assurance"  #assurance (keyup)="onKey('assurance', assurance.value)" type="number" ></ion-input>
-</ion-item>
-<ion-item>
-    <ion-label floating>
-        <ion-icon name="briefcase"></ion-icon>
-        Frais de dossier (€)</ion-label>
-    <ion-input [(ngModel)]="datas.dossier"  #dossier (keyup)="onKey('dossier', dossier.value)" type="number" ></ion-input>
-</ion-item>
-<ion-item>
-    <ion-label floating>
-        <ion-icon name="key"></ion-icon>
-        Frais de caution (€)</ion-label>
-    <ion-input [(ngModel)]="datas.caution" #caution  (keyup)="onKey('caution', caution.value)"  type="number"></ion-input>
-</ion-item> 
-   </ion-list> 
+       <ion-item>
+          <ion-label floating>
+              <ion-icon name="home"></ion-icon>
+              Taux d'assurance (%)</ion-label>
+          <ion-input [(ngModel)]="datas.assurance"  #assurance (keyup)="onKey('assurance', assurance.value)" type="number" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>
+              <ion-icon name="briefcase"></ion-icon>
+              Frais de dossier (€)</ion-label>
+          <ion-input [(ngModel)]="datas.dossier"  #dossier (keyup)="onKey('dossier', dossier.value)" type="number" ></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>
+              <ion-icon name="key"></ion-icon>
+              Frais de caution (€)</ion-label>
+          <ion-input [(ngModel)]="datas.caution" #caution  (keyup)="onKey('caution', caution.value)"  type="number"></ion-input>
+      </ion-item> 
+         </ion-list> 
 
-    <h5><b>Capacité d'emprunt :</b></h5>
+          <h5><b>Capacité d'emprunt :</b></h5>
 
-    <div *ngIf="datas && datas.mensualites > 0 && datas.duree > 0 && datas.interets > 0 &&  result">
-        <b>{{ result }} € </b> 
-        <span *ngIf="cout">(dont <b>{{cout}} €</b> de frais)</span>
-    <button primary (click)="openDevis()">Faire une demande de devis</button>
-
-
-    </div>
+          <div *ngIf="datas && datas.mensualites > 0 && datas.duree > 0 && datas.interets > 0 &&  result">
+              <b>{{ result }} € </b> 
+              <span *ngIf="cout">(dont <b>{{cout}} €</b> de frais)</span>
+          <button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>
 
 
+          </div>
 
-
+      <p class="condition" *ngIf="datas && datas.mensualites > 0 && datas.duree > 0 && datas.interets > 0 &&  result"><i>*Ces montants sont une simulation établie à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
 
 </ion-content>

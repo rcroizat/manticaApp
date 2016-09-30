@@ -2,7 +2,7 @@ import {Component, OnInit, Input, Injectable} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
 
-import {NavController} from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
 import {DevisPage} from '../devis/devis';
 
 @Component({
@@ -20,13 +20,19 @@ export class MensualitesPage implements OnInit {
 	result :any;
 	resultSal: number;
 	montant2: number;
-	ablou: string = 'lakekeke';
+	
+	taux:any[];
+	ios:boolean = false;
 
 
 
+	constructor(private nav: NavController, private _dataService: DataService, private platform: Platform) {
+		 this.platform = platform;
 
-	constructor(private nav: NavController, private _dataService: DataService) {
-
+	    if (this.platform.is('ios')) {
+	      // This will only print when on iOS
+	      this.ios = true;
+	    }
  	}
 
 
@@ -35,12 +41,17 @@ export class MensualitesPage implements OnInit {
 	}
 
 	getDatas() {
+		// on recupere le taux sur emantica
+		this._dataService.getTaux().subscribe(
+                     taux  => this.taux = taux,
+                     error => console.log(<any>error));
+
 		this._dataService.getDatas().then((data: Array<any>) => {
 			this.datas = {
 				montant: data[0] || null,
 				mensualites: data[1] || null,
 				duree: data[2] || null,
-				interets: data[3] || null,
+				interets: data[3] || 0.75,
 				dossier: data[4] || null,
 				assurance: data[5] || null,
 				caution: data[6] || null,
@@ -67,6 +78,7 @@ export class MensualitesPage implements OnInit {
 		this.assuranceMois = Math.round(assuranceMoisSal);
 		this.montantAssurance = Math.round(montantAssuranceSal);
 
+		// calcul
 		this.resultSal = assuranceMoisSal + 
 		(
 			(
@@ -87,16 +99,17 @@ export class MensualitesPage implements OnInit {
 	  }
 	  return nombre;
 	}
-
+/*
 	convertBack(str : string){
 		let newValue : any = str.replace(' ', '');
 		newValue = parseFloat(newValue);
 		return newValue;
-	}
+	}*/
 
 	onKey(field:string, value:number) {
 
-		this._dataService.save(field, value); // un cran de retard
+		this._dataService.save(field, value); 
+
 
 		this.calcul();
 
@@ -106,6 +119,14 @@ export class MensualitesPage implements OnInit {
 		this.nav.setRoot(DevisPage);
 	}
 
-
-
+	calculTaux(val : number) {
+		let interet;
+		this.taux.forEach(function(element){
+			if(val >= element.duree){
+				 interet = element.taux;
+			}
+		});
+		this.datas.interets = interet;
+		this._dataService.save('interets', interet); 
+	}
 }

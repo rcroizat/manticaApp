@@ -31,7 +31,7 @@ agences: any[];
         cp : '91240',
         telString : '01 69 46 10 04',
         tel : '0169461004',
-        mail : 'contact@mantica.fr',
+        mail : 'romaincroizat@mantica.fr',
         img : 'img/immeuble.jpg',
         shortcut : 'stmichel'
       },
@@ -97,12 +97,12 @@ agences: any[];
    
 
 
-/*  	contact(mail : string){
+  	contact(mail : string){
       this.nav.push(ContactPage, {
         contactAgence: mail
       });
 	  }
-*/
+
 
  }
 

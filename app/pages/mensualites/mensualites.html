@@ -21,9 +21,15 @@
              <ion-input  [(ngModel)]="datas.apport" (keyup)="onKey('apport', apport.value)" #apport type="number"    ></ion-input>
         </ion-item>
         <ion-item>
+         <ion-label [style.margin-bottom.rem]="ios ? '5' : ''" floating class="labelRange" >Durée du prêt (en années)
 
-         <ion-label floating class="labelRange">Durée du prêt (en années)</ion-label>
-         <ion-range min="2" max="30" pin="true" #duree  [(ngModel)]="datas.duree" (ionChange)="onKey('duree', duree.value)">
+           <!--  badge que sur ios car pas de pin -->
+            <ion-badge *ngIf="ios" item-right color="primary">{{datas.duree}}</ion-badge>
+         </ion-label>
+          
+           <!--  pin que sur android -->
+         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" #duree  [(ngModel)]="datas.duree" (ionChange)="onKey('duree', duree.value);calculTaux(duree.value)">
+
            <ion-icon class="labelRange" range-left small name="timer"></ion-icon>
            <ion-icon class="labelRange" range-right name="timer"></ion-icon>
          </ion-range> 
@@ -61,25 +67,16 @@
        </ion-item> 
    </ion-list>
 
-<h5><b>Mensualités :</b></h5>
+<h5><b>Mensualités :{{test}}</b></h5>
 
 <div *ngIf="datas && datas.duree > 0 && datas.interets >  0">
 <b>{{result}} €</b><br>
-<button primary (click)="openDevis()">Faire une demande de devis</button>
-<!--  {{
-   (assuranceMois +
-(
-(( (datas.montant-datas.apport) + r) * ((datas.interets/100)/12))
-/(1-
-(math.pow((1+((datas.interets/100)/12)),-(datas.duree*12)))
-)
-)
-) | number:'.0-0'
-}} €  -->
 </div>
 
  <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}} €</b> soit <b>{{assuranceMois}} €</b> par mois
 </div>
 
-
+<button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>
+<br>
+<p class="condition" *ngIf="datas && datas.duree > 0 && datas.interets >  0"><i>Ces montants sont une simulation établie à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
 </ion-content>

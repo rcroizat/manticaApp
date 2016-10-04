@@ -16,11 +16,19 @@
         </ion-item>
 
         <ion-item>
-          <ion-label floating class="labelRange">Durée du prêt (en années)</ion-label>
-         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" [(ngModel)]="datas.duree" #duree (ionChange)="onKey('duree', duree.value);calculTaux(duree.value)">
+         <ion-label [style.margin-bottom.rem]="ios ? '1' : ''" floating class="labelRange" >Durée du prêt (en années)
+
+           <!--  badge que sur ios car pas de pin -->
+            <ion-badge *ngIf="ios" item-right color="primary">{{datas.duree}}</ion-badge>
+         </ion-label>
+          
+           <!--  pin que sur android -->
+         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" #duree  [(ngModel)]="datas.duree" (ionChange)="onKey('duree', duree.value);calculTaux(duree.value)">
+
            <ion-icon class="labelRange" range-left small name="timer"></ion-icon>
            <ion-icon class="labelRange" range-right name="timer"></ion-icon>
          </ion-range> 
+
         </ion-item>
 
         <ion-item>

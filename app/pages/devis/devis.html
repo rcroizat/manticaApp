@@ -15,7 +15,7 @@
                 Votre projet immobilier*</ion-label>
             <ion-select okText="Ok" cancelText="Annuler" [(ngModel)]="data.projet" formControlName="projet">
                 <ion-option value="Acquisition">Acquisition</ion-option>
-                <ion-option value="Rachat de prêt immobilier en cours">Rachat de prêt immobilier en cours</ion-option>
+                <ion-option value="Rachat de prêt immobilier en cours">Rachat de prêt en cours</ion-option>
             </ion-select>
         </ion-item>    
         <ion-item>
@@ -94,7 +94,7 @@
             </ion-select>
         </ion-item>
 </ion-list>
-<button block primary type="submit" [disabled]="devisForm.valid">Suivant
+<button block primary type="submit" [disabled]="!devisForm.valid">Suivant
       </button>
 
 </form>

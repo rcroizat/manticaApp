@@ -43,10 +43,12 @@
     <ion-row center>
   <ion-col center width-66>
 
-  <b>Frais de notaire : <br>
+  <b>Frais de notaire : </b><br>
 
-<div *ngIf="result">{{result}} €</div>
-</b>
+<div *ngIf="result"><b>{{result}} €</b>
+<p class="condition" *ngIf="datas && datas.duree > 0 && datas.interets >  0"><i>Ces montants sont une simulation établie à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
+
+</div>
   </ion-col>
   <!-- 
   

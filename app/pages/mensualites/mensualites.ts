@@ -91,7 +91,7 @@ export class MensualitesPage implements OnInit {
 	}
 
 	formatMillier( nombre){
-	nombre += '';
+	  nombre += '';
 	  let sep = ' ';
 	  let reg = /(\d+)(\d{3})/;
 	  while( reg.test( nombre)) {

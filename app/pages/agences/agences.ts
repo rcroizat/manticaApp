@@ -27,7 +27,7 @@ agences: any[];
     [
       {
         nom : 'Saint-Michel sur Orge',
-        adresse : '29 rue de Rosières <br>Immeuble Dimant',
+        adresse : '29 rue de Rosières, Immeuble Dimant',
         cp : '91240',
         telString : '01 69 46 10 04',
         tel : '0169461004',
@@ -97,9 +97,10 @@ agences: any[];
    
 
 
-  	contact(mail : string){
+  	contact(mail : string, nomAgence : string){
       this.nav.push(ContactPage, {
-        contactAgence: mail
+        contactAgence: mail,
+        nomAgence: nomAgence
       });
 	  }
 

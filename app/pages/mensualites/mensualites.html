@@ -14,14 +14,16 @@
               Montant du prêt</ion-label>
              <ion-input   [(ngModel)]="datas.montant" #montant (keyup)="onKey('montant', montant.value)" type="number" ></ion-input>
         </ion-item>
+        
         <ion-item>
             <ion-label floating >
                 <ion-icon name="logo-euro"></ion-icon>
               Apport</ion-label>
              <ion-input  [(ngModel)]="datas.apport" (keyup)="onKey('apport', apport.value)" #apport type="number"    ></ion-input>
         </ion-item>
+        
         <ion-item>
-         <ion-label [style.margin-bottom.rem]="ios ? '5' : ''" floating class="labelRange" >Durée du prêt (en années)
+         <ion-label [style.margin-bottom.rem]="ios ? '1' : ''" floating class="labelRange" >Durée du prêt (en années)
 
            <!--  badge que sur ios car pas de pin -->
             <ion-badge *ngIf="ios" item-right color="primary">{{datas.duree}}</ion-badge>
@@ -69,7 +71,7 @@
 
 <h5><b>Mensualités :{{test}}</b></h5>
 
-<div *ngIf="datas && datas.duree > 0 && datas.interets >  0">
+<div *ngIf="datas && datas.duree > 0 && datas.interets >  0 && datas.montant >  0">
 <b>{{result}} €</b><br>
 </div>
 

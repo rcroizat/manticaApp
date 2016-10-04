@@ -8,7 +8,6 @@ import {DevisService} from './services/devis.service';
 
 
 // Pages
-import {AccueilPage} from './pages/accueil/accueil';
 import {MensualitesPage} from './pages/mensualites/mensualites';
 import {NotairePage} from './pages/notaire/notaire';
 import {DevisPage} from './pages/devis/devis';
@@ -30,7 +29,6 @@ class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Accueil', component: AccueilPage },
       { title: 'Calcul des mensualités', component: MensualitesPage },
       { title: 'Capacité d\'emprunt', component: CapacitePage },
       { title: 'Demande de devis', component: DevisPage },

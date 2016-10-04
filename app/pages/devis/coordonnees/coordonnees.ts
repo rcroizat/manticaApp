@@ -8,7 +8,7 @@ import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
 
 
-import {AccueilPage} from '../../../pages/accueil/accueil';
+import {MensualitesPage} from '../../mensualites/mensualites';
 
 
 @Component({
@@ -68,7 +68,7 @@ export class CoordonneesPage implements OnInit {
 							{
 								text: 'OK',
 								handler: () => {
-									this.nav.setRoot(AccueilPage);
+									this.nav.setRoot(MensualitesPage);
 								}
 							}
 						]

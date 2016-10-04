@@ -20,17 +20,19 @@ export class ContactPage {
 	response: any;
 	nav : NavController;
 	contactAgence : string;
+	nomAgence : string;
 
 	constructor(form: FormBuilder, public params : NavParams, private loadingController: LoadingController, private http: Http, nav: NavController, public alertCtrl: AlertController ) {
 		this.nav = nav;
-  		this.contactAgence = params.get('contactAgence');
+  		this.contactAgence = params.get('contactAgence'); // mail de l'agence clickée désactivé car Pascal veut que tout passe par saint michel (contact@mantica.fr)
+  		this.nomAgence = params.get('nomAgence');
   		this.contactForm = form.group({ // name should match [ngFormModel] in your html
 			subject: ["", Validators.required],
 			message: ["", Validators.required],
 			nom: ["", Validators.required],
 			prenom: ["", Validators.required],
 			tel: ["", Validators.required],
-			mail: ["", Validators.required],
+			mail: ["", Validators.required]
 		});
 
 	}
@@ -45,7 +47,8 @@ export class ContactPage {
 		"prenom": prenom,
 		"tel": tel,
 		"mail": mail,
-		"contactAgence": this.contactAgence,
+		"contactAgence": "romaincroizat@mantica.fr",
+		"nomAgence": this.nomAgence
 	};
 
 	this.http.post('http://www.e-mantica.com/appMobile/mailAgenceApp.php', JSON.stringify(data))

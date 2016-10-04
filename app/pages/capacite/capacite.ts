@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {Data} from '../../services/data';
 import {DataService} from '../../services/data.service';
 
-import {NavController} from 'ionic-angular';
+import {NavController, Platform} from 'ionic-angular';
 import {DevisPage} from '../devis/devis';
 
 
@@ -18,9 +18,16 @@ export class CapacitePage implements OnInit {
 	cout: number;
 
 	taux:any[];
+	ios:boolean = false;
+	
 
-	constructor(private nav: NavController, private _dataService: DataService) {
+	constructor(private nav: NavController, private _dataService: DataService, private platform: Platform) {
+	 this.platform = platform;
 
+	    if (this.platform.is('ios')) {
+	      // This will only print when on iOS
+	      this.ios = true;
+	    }
 	}
 
 
@@ -115,6 +122,7 @@ export class CapacitePage implements OnInit {
 		this.taux.forEach(function(element){
 			if(val >= element.duree){
 				 interet = element.taux;
+				 console.log(element.duree);
 			}
 		});
 		this.datas.interets = interet;

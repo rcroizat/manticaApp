@@ -26,8 +26,8 @@
             <ion-label inputLight>
                 <ion-icon name="people"></ion-icon>
                 Nombre de personnes au foyer</ion-label>
-            <ion-select [(ngModel)]="nbrPers" #pers >
-                <ion-option value="1">1</ion-option>
+            <ion-select [(ngModel)]="nbrPers" #pers cancelText="Annuler">
+                <ion-option selected value="1">1</ion-option>
                 <ion-option value="2">2</ion-option>
                 <ion-option value="3">3</ion-option>
                 <ion-option value="4">4</ion-option>
@@ -41,13 +41,13 @@
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Revenu Fiscal de référence</ion-label>
-            <ion-input [(ngModel)]="revenuFiscal" #rev type="number"></ion-input>
+            <ion-input [(ngModel)]="revenuFiscal" #rev value="25000"  type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
                 <ion-icon name="logo-euro"></ion-icon>
                 Coût du projet</ion-label>
-            <ion-input #coutPrj type="number"></ion-input>
+            <ion-input #coutPrj value="260000" type="number"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>
@@ -59,14 +59,14 @@
             <ion-label inputLight>
                 <ion-icon name="home"></ion-icon>
                 Type de logement</ion-label>
-            <ion-select #etat [(ngModel)]="bienPtz" text-wrap>
+            <ion-select #etat [(ngModel)]="bienPtz" cancelText="Annuler" class="item-text-wrap">
                 <ion-option value="neuf">Neuf ou assimilé</ion-option>
-                <ion-option value="hlm">Existant acquis auprès d'un organisme HLM</ion-option>
+                <ion-option selected value="hlm">Existant acquis auprès d'un organisme HLM</ion-option>
                 <ion-option value="ancienTravaux">Ancien avec travaux</ion-option>
             </ion-select>
         </ion-item>
-
-      <button primary [disabled]="!ville && !pers && !rev && !coutPrj && !etat" (click)="CalculPTZ(rev.value, coutPrj.value , apport.value)">Calcul</button>
-      <p *ngIf="reponse"><b>Compte tenu des éléments que vous avez indiqué, vous n'avez pas droit au Prêt à Taux Zéro plus 2016.</b> </p>
+        
+      <button primary [disabled]=" !nbrPers || !rev.value || !coutPrj.value || !bienPtz || !zoneField || !villePtz" (click)="CalculPTZ(rev.value, coutPrj.value , apport.value)">Calcul</button>
+      <p *ngIf="reponse"><b>Compte tenu des éléments que vous avez indiqués, vous n'avez pas droit au Prêt à Taux Zéro plus 2016.</b> </p>
     </ion-list>
 </ion-content>

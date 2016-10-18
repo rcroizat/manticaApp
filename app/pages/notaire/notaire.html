@@ -11,7 +11,7 @@
         <ion-item>
             <ion-label inputLight primary><ion-icon name="home"></ion-icon>Type de logement</ion-label>
 
-            <ion-select (ionChange)="calcul()" [(ngModel)]="type">
+            <ion-select (ionChange)="calcul()" cancelText="Annuler" [(ngModel)]="type">
                 <ion-option value="ancien">Ancien</ion-option>
                 <ion-option value="neuf">Neuf</ion-option>
                 <ion-option value="terrain">Terrain</ion-option>
@@ -23,7 +23,7 @@
                 <ion-icon name="map"></ion-icon>
                 Département</ion-label>
 
-            <ion-select (ionChange)="calcul()" [(ngModel)]="departement">
+            <ion-select (ionChange)="calcul()" cancelText="Annuler" [(ngModel)]="departement">
                 <ion-option value="france">France métropolitaine / Corse</ion-option>
                 <ion-option value="reunion">Réunion</ion-option>
                 <ion-option value="guadeloupe">Guadeloupe / Martinique</ion-option>
@@ -46,7 +46,7 @@
   <b>Frais de notaire : </b><br>
 
 <div *ngIf="result"><b>{{result}} €</b>
-<p class="condition" *ngIf="datas && datas.duree > 0 && datas.interets >  0"><i>Ces montants sont une simulation établie à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
+<p class="condition" *ngIf="datas && datas.duree > 0 && datas.interets >  0"><i>Ces montants sont établis à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
 
 </div>
   </ion-col>

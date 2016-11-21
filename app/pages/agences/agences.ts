@@ -22,7 +22,7 @@ agences: any[];
     this._platform = platform;
   	this._isAndroid = platform.is('android');
   	this._isiOS = platform.is('ios');
-
+    // mail renvoi tout vers contact@mantica.fr pour l instant
     this.agences = 
     [
       {
@@ -31,7 +31,7 @@ agences: any[];
         cp : '91240',
         telString : '01 69 46 10 04',
         tel : '0169461004',
-        mail : 'romaincroizat@mantica.fr',
+        mail : 'contact@mantica.fr',
         img : 'img/immeuble.jpg',
         shortcut : 'stmichel'
       },

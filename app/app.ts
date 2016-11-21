@@ -22,7 +22,7 @@ import {AgencesPage} from './pages/agences/agences';
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = PtzPage;
+  rootPage: any = MensualitesPage;
   pages: Array<{title: string, component: any}>
   constructor(private app: App, private platform: Platform) {
     this.initializeApp();

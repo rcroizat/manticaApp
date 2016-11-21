@@ -47,7 +47,7 @@ export class ContactPage {
 		"prenom": prenom,
 		"tel": tel,
 		"mail": mail,
-		"contactAgence": "romaincroizat@mantica.fr",
+		"contactAgence": "contact@mantica.fr",
 		"nomAgence": this.nomAgence
 	};
 

@@ -1,23 +1,14 @@
-import {Page} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 /*import {ZonageService} from '../../services/zonage.service';
 import {ZoneData} from '../../services/zones';*/
 
 import {Component, OnInit} from '@angular/core';
 
-import {NavController} from 'ionic-angular';
 import {ResultPtzPage} from './result-ptz/result-ptz';
 
 
 import {ValuesPTZ} from '../../data/zonage';
 import {Ville} from '../../data/ville';
-
-
-/*
-  Generated class for the PtzPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 
 @Component({
   templateUrl: 'build/pages/ptz/ptz.html',
@@ -56,23 +47,16 @@ export class PtzPage {
   constructor(nav: NavController) {
 	  this.initialiseItems();
     this.nav = nav;	
-
   };
 
  	get_cdr(champ : string, zone : string, revenu_fam : number) {
     	for (let i = 1; i < 4; ++i) {
-
-        console.log("get tr : "+zone);
-        console.log(this.tranches[i][zone]);
-
         	if (revenu_fam <= this.tranches[i][zone]){
             return this.tranches[i][champ];
           }
 	    }
 	};
  zoneFromNumber(zone : number) : string {
- 	
-
     var b = "C";
        switch (zone) {
            case 1:
@@ -98,11 +82,8 @@ export class PtzPage {
     this.coeff_familial = this.coeff_ptz[nbpers];
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
    
-    console.log('montant_retenu ' + this.montant_retenu);
-    console.log('ptzParam ' + ptzParam);
     let plafond_controle = this.get_cdr(this.zoneptz,this.zoneptz,this.revenu_familiales);
     
-    console.log("revenu_familiales "+this.revenu_familiales+" < "+ plafond_controle);
     if (this.revenu_familiales <= plafond_controle /*&& cout_op <= plafond_de_operation[zoneptz][nbpers]*/) {
         let i = 1;
         return i;
@@ -118,7 +99,6 @@ export class PtzPage {
 
 
   CalculPTZ( revenu_fiscale, cout_operation, apport, etat) {
-    console.log(this.bienPtz)
     cout_operation = (+cout_operation) - (+apport);
     let personne = this.nbrPers;
 
@@ -218,17 +198,14 @@ export class PtzPage {
     this.montant_retenu = Math.max(rfr, cout / 9);
     this.revenu_familiales = this.montant_retenu / this.coeff_familial;
 
-     console.log("this.zoneptz before " + this.zoneptz);
       if (cout < this.plafond_de_operation[this.zoneptz][nbpers]) {
 
       } else {
           cout = this.plafond_de_operation[this.zoneptz][nbpers];
-          console.log("cout fail" + cout);
       };
 
 
         var zone = this.zoneFromNumber(this.zoneptz);
-        console.log("zone ultimze " + zone);
         var montant_max_ptz_neuf = (cout * this.quantite_maximale_du_pret_neuf[zone]) / 100;
         var montant_max_ptz_ancien = (cout * this.quantite_maximale_du_pret_ancien[zone]) / 100;
         var montant_max_ptz_hlm = (cout * this.quantite_maximale_du_pret_hlm[zone]) / 100;
@@ -251,9 +228,6 @@ export class PtzPage {
         var dure_total_de_remboursement = dure_du_differe + periode_de_remboursement;
 
         var differe = true;
-        console.log('dure_tot_remb ' + dure_tot_remb);
-        console.log('dure_total_de_remboursement ' + dure_total_de_remboursement);
-
 
 
          if(this.bienPtz == 'neuf'){
@@ -283,8 +257,6 @@ export class PtzPage {
             dure_du_differe: dure_du_differe
         });
 
-         console.log(coutMax);
-
        /* scope.model['success_box_messages_ptz'] = true;
         scope.model["montant_maximum_1"] = mtr.number_format(montant_max_ptz_neuf, 0, ',', ' ');
         scope.model["montant_maximum_ancien"] = mtr.number_format(montant_max_ptz_ancien, 0, ',', ' ');
@@ -305,9 +277,7 @@ export class PtzPage {
     } else {/*
         scope.model['success_box_messages_ptz'] = false;
         scope.model['error_message_ptz'] = true;*/
-         console.log('NON');
          this.reponse = true;
-          console.log(this.reponse );
     };
 
 };

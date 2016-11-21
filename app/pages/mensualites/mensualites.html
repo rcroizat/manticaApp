@@ -69,16 +69,17 @@
        </ion-item> 
    </ion-list>
 
-<h5><b>Mensualités :{{test}}</b></h5>
+<h5><b>Mensualités :</b></h5>
 
 <div *ngIf="datas && datas.duree > 0 && datas.interets >  0 && datas.montant >  0">
-<b>{{result}} €</b><br>
-</div>
+  <b>{{result}} €</b><br>
 
- <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}} €</b> soit <b>{{assuranceMois}} €</b> par mois
-</div>
 
-<button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>
-<br>
-<p class="condition" *ngIf="datas && datas.duree > 0 && datas.interets >  0"><i>Ces montants sont établis à partir des informations que vous nous avez données. Ils de constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
+   <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}} €</b> soit <b>{{assuranceMois}} €</b> par mois
+  </div>
+
+  <button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>
+  <br>
+  <p class="condition"><i>Ces montants sont établis à partir des informations que vous nous avez données. Ils ne constituent pas une offre contractuelle et ne saurait engager la responsabilité de la société Mantica.</i></p>
+</div>
 </ion-content>

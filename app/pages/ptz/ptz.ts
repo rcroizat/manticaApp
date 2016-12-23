@@ -11,7 +11,7 @@ import {ValuesPTZ} from '../../data/zonage';
 import {Ville} from '../../data/ville';
 
 @Component({
-  templateUrl: 'build/pages/ptz/ptz.html',
+  templateUrl: 'build/pages/ptz/ptz.html'
 })
 
 
@@ -106,7 +106,7 @@ export class PtzPage {
       revenu_fiscale = revenu_fiscale.replace(/ /g, '');
   };
 
-    let nbpers = personne;
+    let nbpers = this.nbrPers;
     let rfr = parseFloat(revenu_fiscale);
     let cout = parseFloat(cout_operation);
     let bDOM = false;

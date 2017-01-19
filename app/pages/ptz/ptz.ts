@@ -244,7 +244,7 @@ export class PtzPage {
            var seconde = mensualite_seconde_ancien;
          }
 
-
+console.log(montant_differe);
 
         this.nav.push(ResultPtzPage, {
             bien: this.bienPtz,

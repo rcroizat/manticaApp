@@ -16,12 +16,12 @@ export class NotairePage {
 
   nav : NavController;
   storage : Storage;
-	result: any;
-	montantNotaire: number;
+  result: any;
+  montantNotaire: number;
   departement: number;// recup de la vue
   departements: any;//liste avec ville
   localisation: string;
-	type: string;
+  type: string;
   FraisNotaire: any;
   FraisNotaireDMTO: any;
   deps: string[];
@@ -57,8 +57,6 @@ export class NotairePage {
     if(this.type && this.departement && this.montantNotaire){
       if (event) {
         this.montantNotaire = event.target.value;
-
-      console.log(  this.montantNotaire );
       }
       
 
@@ -116,8 +114,6 @@ export class NotairePage {
         droits_et_taxes += (this.montantNotaire * (this.FraisNotaireDMTO[this.departement]["neuf"] / 100));
       }else{
         droits_et_taxes += (this.montantNotaire * (this.FraisNotaireDMTO[this.departement]["ancien"] / 100));
-         console.log("DMTO ancien "+this.FraisNotaireDMTO[this.departement]["ancien"] );
-            console.log("Localisation "+this.departement);
       }
 
      //common.droits_et_taxes += (base * (securite / 100));
@@ -144,10 +140,6 @@ export class NotairePage {
       {
           emoluments_formalites = emoluments_metropolitane;
       }
-      console.log('emoluments_notaire' + emoluments_notaire);
-      console.log('droits_et_taxes' + droit_et_taxes_sum);
-      console.log('emoluments_formalites' + emoluments_formalites);
-      console.log('securite_immobilier_fn' + securite_immobilier_fn);
 
       let resultSal = Math.round(emoluments_notaire + droit_et_taxes_sum + emoluments_formalites);
 

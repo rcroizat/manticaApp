@@ -25,7 +25,19 @@ $text-input-md-show-invalid-highlight: true;
 $text-input-ios-show-invalid-highlight: true;
 $text-input-wp-show-invalid-highlight: true;
 
+// barre soulignement rouge
+$text-input-ios-show-focus-highlight : true;
 
+.input-has-focus .label-ios[stacked],
+.input-has-focus .label-ios[floating] {
+  color: #B31919;
+}
+
+.item-input .label-ios,
+.item-select .label-ios,
+.item-datetime .label-ios {
+  color: #999;
+}
 
 // Named Color Variables
 // --------------------------------------------------

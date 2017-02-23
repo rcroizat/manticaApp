@@ -36,7 +36,7 @@ export class NotairePage {
   constructor(storage : Storage, nav: NavController) {
     this.nav = nav;  
     this.FraisNotaire = FraisNotaire;
-            
+    this.storage = storage;
     this.FraisNotaireDMTO = FraisNotaireDMTO;
     this.departements = Departements;
   }

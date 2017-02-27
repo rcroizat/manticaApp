@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="fr.mantica.mantica" version="1.1.0" android-versionCode="100100" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="fr.mantica.mantica" version="1.1.1" android-versionCode="100101" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Mantica</name>
   <description>Simulatieur de crédit immobilier, frais de notaire ou prêt à taux zéro</description>
   <author email="contact@mantica.fr" href="http://mantica.fr/">Mantica</author>
@@ -70,13 +70,12 @@
   <preference name="android-minSdkVersion" value="14"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="SplashScreen" value="screen"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="15000"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
   <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
   <plugin name="cordova-plugin-whitelist" spec="1.3.1"/>
-  <plugin name="cordova-plugin-console" spec="1.0.5"/>
   <plugin name="cordova-plugin-statusbar" spec="2.2.1"/>
   <plugin name="cordova-plugin-device" spec="1.1.4"/>
   <plugin name="cordova-plugin-splashscreen" spec="~4.0.1"/>

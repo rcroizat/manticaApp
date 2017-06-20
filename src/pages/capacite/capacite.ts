@@ -1,34 +1,34 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Data} from '../../services/data';
-import {DataService} from '../../services/data.service';
+import { Component, OnInit } from '@angular/core';
+import { Data } from '../../services/data';
+import { DataService } from '../../services/data.service';
 
-import {NavController, Platform} from 'ionic-angular';
-import {DevisPage} from '../devis/devis';
+import { NavController, Platform } from 'ionic-angular';
+import { DevisPage } from '../devis/devis';
 
 
 @Component({
-  selector: 'capacite',
-  templateUrl: 'capacite.html'
+	selector: 'capacite',
+	templateUrl: 'capacite.html'
 })
 export class CapacitePage implements OnInit {
 
-	@Input() datas: Data;
+	datas: Data;
 	montantAssurance: number;
 	result: any;
 	resultSal: number;
 	cout: number;
 
-	taux:any[];
-	ios:boolean = false;
-	
+	taux: any[];
+	ios: boolean = false;
+
 
 	constructor(private nav: NavController, private _dataService: DataService, private platform: Platform) {
-	 this.platform = platform;
+		this.platform = platform;
 
-	    if (this.platform.is('ios')) {
-	      // This will only print when on iOS
-	      this.ios = true;
-	    }
+		if (this.platform.is('ios')) {
+			// This will only print when on iOS
+			this.ios = true;
+		}
 	}
 
 
@@ -40,8 +40,8 @@ export class CapacitePage implements OnInit {
 	getDatas() {
 		// on recupere le taux sur emantica
 		this._dataService.getTaux().subscribe(
-                     taux  => this.taux = taux,
-                     error => console.log(<any>error));
+			taux => this.taux = taux,
+			error => this.taux = null);
 
 
 		this._dataService.getDatas().then((data: Array<any>) => {
@@ -49,44 +49,44 @@ export class CapacitePage implements OnInit {
 				montant: data[0] || null,
 				mensualites: data[1] || null,
 				duree: data[2] || null,
-				interets: data[3] || 0.75,
+				interets: data[3] || null,
 				dossier: data[4] || null,
 				assurance: data[5] || null,
 				caution: data[6] || null,
 				apport: data[7] || null,
 				notaire: data[8] || null
-			},  rejet => {
+			}, rejet => {
 				console.log(rejet)
 			};
-		this.calcul();
+			this.calcul();
 		});
 	}
 
-	calcul(){
+	calcul() {
 
-		this.resultSal = 
-			 	(
-					this.datas.mensualites *
-						(1- Math.pow((1+((this.datas.interets/100)/12)),-this.datas.duree*12))/
-						((this.datas.interets/100)/12)
-				);
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal/100));
+		this.resultSal =
+			(
+				this.datas.mensualites *
+				(1 - Math.pow((1 + ((this.datas.interets / 100) / 12)), -this.datas.duree * 12)) /
+				((this.datas.interets / 100) / 12)
+			);
+		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal / 100));
 
-		let coutSal =  (+this.datas.dossier) + (+this.datas.caution) + (+this.montantAssurance);
+		let coutSal = (+this.datas.dossier) + (+this.datas.caution) + (+this.montantAssurance);
 
-		if((this.resultSal - coutSal) > 0){
-			this.result = this.formatMillier(Math.round(this.resultSal- coutSal));
-		}else{
+		if ((this.resultSal - coutSal) > 0) {
+			this.result = this.formatMillier(Math.round(this.resultSal - coutSal));
+		} else {
 			this.result = null;
 		}
-		if(coutSal > 0){
+		if (coutSal > 0) {
 			this.cout = this.formatMillier(Math.round(coutSal));
-		}else{
+		} else {
 			this.cout = null;
 		}
 		this.cout = this.formatMillier(Math.round(coutSal));
 
-		if(Math.round(this.resultSal) > 0){ // sauvegarde de la capacite d'emprunt qui est égal au budget du client
+		if (Math.round(this.resultSal) > 0) { // sauvegarde de la capacite d'emprunt qui est égal au budget du client
 			this._dataService.save('capacite', Math.round(this.resultSal));
 
 		}
@@ -94,12 +94,12 @@ export class CapacitePage implements OnInit {
 
 
 
-	formatMillier( nombre ){
+	formatMillier(nombre) {
 		nombre += '';
 		let sep = ' ';
 		let reg = /(\d+)(\d{3})/;
-		while( reg.test( nombre)) {
-			nombre = nombre.replace( reg, '$1' +sep +'$2');
+		while (reg.test(nombre)) {
+			nombre = nombre.replace(reg, '$1' + sep + '$2');
 		}
 		return nombre;
 	}
@@ -118,16 +118,17 @@ export class CapacitePage implements OnInit {
 	}
 
 
-	calculTaux(val : number) {
+	calculTaux(val: number) {
 		let interet;
-		this.taux.forEach(function(element){
-			if(val >= element.duree){
-				 interet = element.taux;
-				 console.log(element.duree);
-			}
-		});
-		this.datas.interets = interet;
-		this._dataService.save('interets', interet); 
+		if (this.taux) {
+			this.taux.forEach(function (element) {
+				if (val >= element.duree) {
+					interet = element.taux;
+				}
+			});
+			this.datas.interets = interet;
+			this._dataService.save('interets', interet);
+		}
 	}
 
 

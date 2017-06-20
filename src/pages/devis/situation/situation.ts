@@ -4,7 +4,7 @@ import {FormBuilder, Validators, FormGroup} from '@angular/forms';
 import {BudgetPage} from '../budget/budget';
 import {DevisService} from '../../../services/devis.service';
 import {DevisData} from '../../../services/devis';
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'situation',
@@ -17,7 +17,7 @@ export class SituationPage implements OnInit {
 	situationForm: FormGroup;
 	nav: NavController;
 	
-	@Input() data: DevisData;
+	data: DevisData;
 
 	constructor(form: FormBuilder, nav: NavController, private _devisService: DevisService) {
 		this.nav = nav;

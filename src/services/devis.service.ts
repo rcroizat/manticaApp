@@ -12,8 +12,6 @@ export class DevisService {
 			villeProjet: null,
 			typeProjet: null,
 			etat: null,
-			norme: null,
-			bbc: null,
 			usage: null,
 			situationActuelle: null,
 			avancement: null,
@@ -30,6 +28,7 @@ export class DevisService {
 
 			montant: null,
 			notaire: null,
+			caution: null,
 			budget: null,
 		};
 	}

@@ -4,8 +4,6 @@ export class DevisData {
 	villeProjet: string;
 	typeProjet: string;
 	etat: string;
-	norme: string;
-	bbc: string;
 	usage: string;
 	situationActuelle: string;
 	avancement: string;
@@ -18,7 +16,8 @@ export class DevisData {
 	telPort: number;
 	telFixe: number;
 	mail: string;
-	montant: Promise<number>;
-	notaire: Promise<number>;
-	budget: Promise<number>;
+	montant: number;
+	notaire: number;
+	caution:number;
+	budget: number;
 };

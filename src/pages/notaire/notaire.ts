@@ -4,8 +4,7 @@ import { Storage } from '@ionic/storage';
 import {ResultNotairePage} from './result-notaire/result-notaire';
 
 
-import {FraisNotaire} from '../../data/notaire';
-import {FraisNotaireDMTO} from '../../data/notaire';
+import {FraisNotaire, FraisNotaireDMTO} from '../../data/notaire';
 import {Departements} from '../../data/notaire';
 
 @Component({
@@ -25,7 +24,6 @@ export class NotairePage {
   type: string;
   FraisNotaire: any;
   FraisNotaireDMTO: any;
-  deps: string[];
   emoluments_notaire_vue: string;
   droit_et_taxes_sum_vue: string;
   emoluments_formalites_vue: string;
@@ -55,10 +53,6 @@ export class NotairePage {
   calcul(event:any){
 
     if(this.type && this.departement && this.montantNotaire){
-      if (event) {
-        this.montantNotaire = event.target.value;
-      }
-      
 
        var tranche1 = this.FraisNotaire.Tranche["0-6500"];
        var tranche2 = this.FraisNotaire.Tranche["6500-17000"];

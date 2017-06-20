@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {NavController, AlertController , LoadingController, NavParams } from 'ionic-angular';
-import {FormBuilder, Validators, FormGroup} from '@angular/forms';
-import {Http }    from '@angular/http';
-import {AgencesPage} from '../agences';
+import { NavController, AlertController, LoadingController, NavParams } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Http } from '@angular/http';
+import { AgencesPage } from '../agences';
 
 /*
   Generated class for the ContactPage page.
@@ -11,23 +11,23 @@ import {AgencesPage} from '../agences';
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'contact',
-  templateUrl: 'contact.html'
+	selector: 'contact',
+	templateUrl: 'contact.html'
 })
 export class ContactPage {
-	contactForm:FormGroup;
+	contactForm: FormGroup;
 	subject: string;
 	message: string;
 	response: any;
-	nav : NavController;
-	contactAgence : string;
-	nomAgence : string;
+	nav: NavController;
+	contactAgence: string;
+	nomAgence: string;
 
-	constructor(form: FormBuilder, public params : NavParams, private loadingController: LoadingController, private http: Http, nav: NavController, public alertCtrl: AlertController ) {
+	constructor(form: FormBuilder, public params: NavParams, private loadingController: LoadingController, private http: Http, nav: NavController, public alertCtrl: AlertController) {
 		this.nav = nav;
-  		this.contactAgence = params.get('contactAgence'); // mail de l'agence clickée désactivé car Pascal veut que tout passe par saint michel (contact@mantica.fr)
-  		this.nomAgence = params.get('nomAgence');
-  		this.contactForm = form.group({ // name should match [ngFormModel] in your html
+		this.contactAgence = params.get('contactAgence'); // mail de l'agence clickée, désactivé car Pascal veut que tout passe par saint michel (contact@mantica.fr)
+		this.nomAgence = params.get('nomAgence');
+		this.contactForm = form.group({ // name should match [ngFormModel] in your html
 			subject: ["", Validators.required],
 			message: ["", Validators.required],
 			nom: ["", Validators.required],
@@ -39,55 +39,65 @@ export class ContactPage {
 	}
 
 
-  send(subject : string, message: string, nom: string, prenom: string, tel: number, mail: string){
+	send(subject: string, message: string, nom: string, prenom: string, tel: number, mail: string) {
 
-	let data = { 
-		"subject": subject, 
-		"message": message,
-		"nom": nom,
-		"prenom": prenom,
-		"tel": tel,
-		"mail": mail,
-		"contactAgence": "contact@mantica.fr",
-		"nomAgence": this.nomAgence
-	};
+		let data = {
+			"subject": subject,
+			"message": message,
+			"nom": nom,
+			"prenom": prenom,
+			"tel": tel,
+			"mail": mail,
+			"contactAgence": "contact@mantica.fr",
+			"nomAgence": this.nomAgence
+		};
 
-	this.http.post('http://www.e-mantica.com/appMobile/mailAgenceApp.php', JSON.stringify(data))
-		.subscribe(res => {
-			this.response = res;
-/*			let loading = this.loadingController.create({
-				content: 'Please wait...',
-				dismissOnPageChange : true
-			});
-				loading.present();
-				*/
-			if (this.response) {
-				let alert = this.alertCtrl.create({
-					title: 'Votre message a bien été envoyé',
-					subTitle: 'Nous vous recontacterons très prochainement',
-					buttons: [
-						{
-							text: 'Ok',
-							handler: () => {
-								this.nav.setRoot(AgencesPage);
+		this.http.post('http://www.e-mantica.com/appMobile/mailAgenceApp.php', JSON.stringify(data))
+			.subscribe(res => {
+				this.response = res;
+				/*			let loading = this.loadingController.create({
+								content: 'Please wait...',
+								dismissOnPageChange : true
+							});
+								loading.present();
+								*/
+				if (this.response) {
+					let alert = this.alertCtrl.create({
+						title: 'Votre message a bien été envoyé',
+						subTitle: 'Nous vous recontacterons très prochainement.',
+						buttons: [
+							{
+								text: 'Ok',
+								handler: () => {
+									this.nav.setRoot(AgencesPage);
+								}
 							}
-						}
-					]
-				});
+						]
+					});
 
-				alert.present();
+					alert.present();
 
-			} else {
+				} else {
+					let alert = this.alertCtrl.create({
+						title: 'Erreur',
+						subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuillez réessayer plus tard',
+						buttons: ['Ok']
+					});
+					alert.present();
+				}
+			},
+			error => {
+				console.log('Erreur contact.ts l.90 : ' + error);
 				let alert = this.alertCtrl.create({
 					title: 'Erreur',
-					subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuillee réessayer plus tard',
-					buttons: ['Ok']
+					subTitle: 'Nous sommes désolé, votre mail n\'a pas pu être envoyé, veuillez vérifier votre connexion internet et réessayer plus tard.',
+					buttons: ['OK']
 				});
 				alert.present();
 			}
-		});
+			);
 
-  }
+	}
 
 
 }

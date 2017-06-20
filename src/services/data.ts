@@ -5,7 +5,7 @@ export class Data {
 	interets: number;
 	dossier: number;
 	assurance: number;
-	caution: any;
+	caution: number;
 	apport: number;
 	notaire: number;
 };

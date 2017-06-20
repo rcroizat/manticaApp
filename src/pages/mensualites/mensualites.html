@@ -11,7 +11,7 @@
         <ion-item >
             <ion-label floating text-left>
                 <ion-icon name="logo-euro"></ion-icon>
-              Montant du prêt</ion-label>
+              Montant du bien</ion-label>
              <ion-input   [(ngModel)]="datas.montant" #montant (keyup)="onKey('montant', montant.value)" type="number" ></ion-input>
         </ion-item>
         
@@ -30,7 +30,7 @@
          </ion-label>
           
            <!--  pin que sur android -->
-         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" #duree  [(ngModel)]="datas.duree" (ionChange)="onKey('duree', duree.value);calculTaux(duree.value)">
+         <ion-range min="7" max="30" [pin]="ios ? 'false' : 'true'" #duree  [(ngModel)]="datas.duree" (ionChange)="calculTaux(duree.value);onKey('duree', duree.value)">
 
            <ion-icon class="labelRange" range-left small name="timer"></ion-icon>
            <ion-icon class="labelRange" range-right name="timer"></ion-icon>
@@ -67,15 +67,19 @@
                Frais de notaire (€)</ion-label>
            <ion-input [(ngModel)]="datas.notaire"  #notaire (keyup)="onKey('notaire', notaire.value)" type="number" ></ion-input>
        </ion-item> 
+
+        <button ion-button outline  (click)="openNotaire()" *ngIf="!datas.notaire">
+                Calculez vos frais de notaire
+        </button>
    </ion-list>
 
 <h5><b>Mensualités :</b></h5>
 
 <div *ngIf="datas && datas.duree > 0 && datas.interets >  0 && datas.montant >  0">
-  <b>{{result}} €</b><br>
+  <b>{{result}} €</b> <span *ngIf="!montantAssurance">hors assurance</span><br>
 
 
-   <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}} €</b> soit <b>{{assuranceMois}} €</b> par mois
+   <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}}&nbsp;€</b> soit <b>{{assuranceMois}}&nbsp;€</b> par mois<!--&nbsp empeche les retour à la ligne du signe € -->
   </div>
 
   <button ion-button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>

@@ -1,8 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 //Services
 import {DataService} from '../services/data.service';
 import {DevisService} from '../services/devis.service';
@@ -41,7 +42,11 @@ import {ContactPage} from '../pages/agences/contact/contact';
   ],
   imports: [
     HttpModule,
-    IonicModule.forRoot(MyApp)
+     BrowserModule,
+    IonicModule.forRoot(MyApp, {
+      backButtonText: 'Retour'
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -59,6 +64,6 @@ import {ContactPage} from '../pages/agences/contact/contact';
     AgencesPage,
     ContactPage
   ],
-  providers: [Storage, DataService, DevisService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [DataService, DevisService, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}

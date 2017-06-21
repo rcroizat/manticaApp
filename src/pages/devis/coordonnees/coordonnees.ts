@@ -4,7 +4,6 @@ import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { DevisService } from '../../../services/devis.service';

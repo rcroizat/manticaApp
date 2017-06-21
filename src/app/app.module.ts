@@ -9,7 +9,6 @@ import {DataService} from '../services/data.service';
 import {DevisService} from '../services/devis.service';
 
 
-
 // Pages
 import {MensualitesPage} from '../pages/mensualites/mensualites';
 import {NotairePage} from '../pages/notaire/notaire';
@@ -23,6 +22,7 @@ import {PtzPage} from '../pages/ptz/ptz';
 import {ResultPtzPage} from '../pages/ptz/result-ptz/result-ptz';
 import {AgencesPage} from '../pages/agences/agences';
 import {ContactPage} from '../pages/agences/contact/contact';
+
 
 @NgModule({
   declarations: [

@@ -3,6 +3,7 @@ import {NavController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {ResultNotairePage} from './result-notaire/result-notaire';
 
+import { DataService } from '../../services/data.service';
 
 import {FraisNotaire, FraisNotaireDMTO} from '../../data/notaire';
 import {Departements} from '../../data/notaire';
@@ -14,6 +15,7 @@ import {Departements} from '../../data/notaire';
 
 export class NotairePage {
 
+  datas : any;
   nav : NavController;
   storage : Storage;
   result: any;
@@ -31,15 +33,26 @@ export class NotairePage {
   droits_et_taxes_vue: string;
     
 
-  constructor(storage : Storage, nav: NavController) {
+  constructor(storage : Storage, nav: NavController,  private _dataService: DataService) {
     this.nav = nav;  
     this.FraisNotaire = FraisNotaire;
     this.storage = storage;
     this.FraisNotaireDMTO = FraisNotaireDMTO;
     this.departements = Departements;
+    this.getDatas();
   }
 
+  getDatas(){
+    
+		this._dataService.getDatas().then(
+			(data: Array<any>) => {
+				this.montantNotaire =  data[0] || null;
+			}).catch(rejet => {
+				console.log('Error ' + rejet)
+			});
+  }
 
+  
   formatMillier( nombre ){
     nombre += '';
     let sep = ' ';

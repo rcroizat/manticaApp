@@ -59,7 +59,7 @@
            <ion-label floating>
                <ion-icon name="key"></ion-icon>
                Frais de caution (€)</ion-label>
-           <ion-input [(ngModel)]="datas.caution" disabled #caution  type="number" ></ion-input>
+           <ion-input [(ngModel)]="datas.caution"  #caution  type="number" ></ion-input>
        </ion-item> 
         <ion-item>
            <ion-label floating>
@@ -75,11 +75,11 @@
 
 <h5><b>Mensualités :</b></h5>
 
-<div *ngIf="datas && datas.duree > 0 && datas.interets >  0 && datas.montant >  0">
-  <b>{{result}} €</b> <span *ngIf="!montantAssurance">hors assurance</span><br>
+<div *ngIf="datas && datas.duree > 0 && datas.montant >  0">
+  <b>{{result}} €</b> <span *ngIf="montantAssurance == 0">hors assurance</span><br>
 
 
-   <div *ngIf="montantAssurance">Le coût total de l'assurance sera de <b>{{montantAssurance}}&nbsp;€</b> soit <b>{{assuranceMois}}&nbsp;€</b> par mois<!--&nbsp empeche les retour à la ligne du signe € -->
+   <div *ngIf="montantAssurance != 0">Le coût total de l'assurance sera de <b>{{montantAssurance}}&nbsp;€</b> soit <b>{{assuranceMois}}&nbsp;€</b> par mois<!--&nbsp empeche les retour à la ligne du signe € -->
   </div>
 
   <button ion-button primary (click)="openDevis()"><b>Faire une demande de devis</b></button>

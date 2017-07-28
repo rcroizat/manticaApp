@@ -13,10 +13,8 @@ import { DevisPage } from '../devis/devis';
 export class CapacitePage implements OnInit {
 
 	datas: Data;
-	montantAssurance: number;
 	result: any;
 	resultSal: number;
-	cout: number;
 
 	taux: any[];
 	ios: boolean = false;
@@ -70,24 +68,13 @@ export class CapacitePage implements OnInit {
 				(1 - Math.pow((1 + ((this.datas.interets / 100) / 12)), -this.datas.duree * 12)) /
 				((this.datas.interets / 100) / 12)
 			);
-		this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal / 100));
 
-		let coutSal = (+this.datas.dossier) + (+this.datas.caution) + (+this.montantAssurance);
+		// this.montantAssurance = (this.datas.assurance * this.datas.duree * (this.resultSal / 100)); on a retirer les assurances
 
-		if ((this.resultSal - coutSal) > 0) {
-			this.result = this.formatMillier(Math.round(this.resultSal - coutSal));
-		} else {
-			this.result = null;
-		}
-		if (coutSal > 0) {
-			this.cout = this.formatMillier(Math.round(coutSal));
-		} else {
-			this.cout = null;
-		}
-		this.cout = this.formatMillier(Math.round(coutSal));
+			this.result = this.formatMillier(Math.round(this.resultSal));
 
-		if (Math.round(this.resultSal) > 0) { // sauvegarde de la capacite d'emprunt qui est égal au budget du client
-			this._dataService.save('capacite', Math.round(this.resultSal));
+		if (this.resultSal > 0) { // sauvegarde de la capacite d'emprunt qui est égal au budget du client
+			this._dataService.save('capacite', Math.round(this.result));
 
 		}
 	}

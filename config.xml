@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="fr.mantica.mantica" version="1.2.2" android-versionCode="100202" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="fr.mantica.mantica" version="1.2.3" android-versionCode="100203" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Mantica</name>
   <description>Simulatieur de crédit immobilier, frais de notaire ou prêt à taux zéro</description>
   <author email="contact@mantica.fr" href="http://mantica.fr/">Mantica</author>

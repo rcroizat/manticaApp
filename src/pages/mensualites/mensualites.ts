@@ -71,25 +71,34 @@ export class MensualitesPage {
 	calcul() {
 		// le + permet de convertir une promise en number
 		this.montant2 = (+this.datas.montant) + (+this.datas.notaire) + (+this.datas.dossier) - (+this.datas.apport);
-		if (this.datas.montant != null && this.datas.duree != null) {
-			this.datas.caution = Math.round(this.montant2 * 0.03);
+
+		if (this.datas.montant) {
+			this.datas.caution = Math.round(this.montant2 * 0.013);
 			this._dataService.save('caution', this.datas.caution);
 		}
 		this.nouveauMontant = this.montant2 + this.datas.caution;
-
+		
 		let assuranceMoisSal = (this.nouveauMontant) * ((this.datas.assurance / 100) / 12);
 		let montantAssuranceSal = (this.datas.assurance * this.datas.duree * (this.nouveauMontant / 100));
 		this.assuranceMois = this.formatMillier(Math.round(assuranceMoisSal));
 		this.montantAssurance = this.formatMillier(Math.round(montantAssuranceSal));
 
 		// calcul
-		this.resultSal = assuranceMoisSal +
-			(
+		if (this.datas.interets > 0) {
+			this.resultSal = assuranceMoisSal +
 				(
-					((this.nouveauMontant) * ((this.datas.interets / 100) / 12))
-					/ (1 - (Math.pow((1 + ((this.datas.interets / 100) / 12)), -(this.datas.duree * 12))))
-				)
-			);
+					(
+						((this.nouveauMontant) * ((this.datas.interets / 100) / 12))
+						/ (1 - (Math.pow((1 + ((this.datas.interets / 100) / 12)), -(this.datas.duree * 12))))
+					)
+				);
+
+		} else {
+			this.resultSal = assuranceMoisSal +
+				(
+					this.nouveauMontant / (this.datas.duree * 12)
+				);
+		}
 		this.result = this.formatMillier(Math.round(this.resultSal));
 	}
 
